@@ -666,6 +666,8 @@ html {
     outline: none;
     border: none;
     border-radius: 7px;
+    color: var(--white-color);
+    padding-left: 6px;
     background-color: var(--text-color-grey);
 }
 
@@ -673,7 +675,6 @@ html {
 {
     color: var(--white-color);
     font-size: 0.7rem;
-    padding-left: 6px;
 }
 
 .report-content__send{
@@ -772,10 +773,27 @@ html {
     position: absolute;
 }
 
-.chat-side__content-friend--active{
+.chat-side__content-friends{
     display: flex;
     align-items: center;
     margin: 7px;
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: var(--grey-color);
+}
+
+.chat-side__content-friends--active{
+    cursor: pointer;
+    border-radius: 9px;
+    background-color: #fdfdfd;
+}
+
+.chat-side__content-friends:hover {
+    cursor: pointer;
+    opacity: 0.6;
+    border-radius: 9px;
+    background-color: #e0dfdf;
 }
 
 .friendchat-avt-name{
@@ -841,5 +859,13 @@ html {
     background-color: var(--grey-color);
 }
 
+/* Animation */
 
-
+@keyframes growth {
+    from{
+        transform: scale(var(--growth-from));
+    }
+    to{
+        transform: scale(var(--growth-to));
+    }
+}
