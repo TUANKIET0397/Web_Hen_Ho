@@ -26,9 +26,8 @@ button
 {
     font-family: 'Heebo', sans-serif;
 }
+
 /* Avatar */
-
-
 .avatar {
     width: 47px;
     height: 47px;
@@ -143,6 +142,7 @@ button
 
 .chat-friend__chat, 
 .chat-friend__friend {
+    
     display: flex;
 }
 
@@ -158,7 +158,8 @@ button
 {
     background-color: var(--grey-color);
     border-radius: 10px;
-    line-height: 2.7rem;
+    line-height: 2.4rem;
+    padding: 0 4px 0 2px;
 }
 
 .chat-friend__chat-img, 
@@ -168,7 +169,7 @@ button
 
 .chat-friend__chat-text, 
 .chat-friend__friend-text{
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: var(--white-color);
 }
 
