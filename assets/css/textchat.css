@@ -21,7 +21,13 @@ html {
     font-family: 'Heebo', sans-serif;
     box-sizing: border-box;
 }
+
+button 
+{
+    font-family: 'Heebo', sans-serif;
+}
 /* Avatar */
+
 
 .avatar {
     width: 47px;
