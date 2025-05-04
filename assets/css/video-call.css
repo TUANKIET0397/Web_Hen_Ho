@@ -27,24 +27,24 @@ body {
     justify-content: space-between; 
   }
 
-  .logo{
+.logo{
     width: 150px;
     height: 90px;
     margin-bottom: 0px;
     margin-top: 110px;
-  }
+}
 
-  .FZ{
+.FZ{
     margin-top: 8px;
     height: 40px;
-  }
+}
 
 .edit{
     display: inline;
     position: relative;
 }
 
-  .status{
+.status{
     background-color: #52FF14;
     height: 9px;
     width: 9px;
@@ -53,7 +53,7 @@ body {
     margin-left: 1px;
     margin-bottom: 9px;
     margin-top: 10px;
-  }
+}
 
 .UO{
     font-family: 'Heeboo', sans-serif;
@@ -70,8 +70,8 @@ body {
     position: relative;
     display: flex;
     justify-content: center;
-    
 }
+
 .startButton{
     margin-bottom: 130px;
     margin-top: 90px;
@@ -91,7 +91,6 @@ body {
 }
 
 .avt{
-  background-color: #9493F4;
   height: 50px;
   width: 50px;
   border-radius: 40px;
@@ -107,8 +106,7 @@ body {
   width: 170px;   
   border-radius: 40px;
   border: none;
-  /* margin-bottom: 130px; */
-  margin-top: 329px;
+  margin-top: 170px;
   margin-left: 210px;
   font-family: 'Heebo',sans-serif;
   font-size: 19px;
@@ -120,3 +118,4 @@ body {
   cursor: pointer;
   box-shadow: 3px 5px 3px  rgba(0,0,0,0.2);
 }
+
