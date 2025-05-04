@@ -27,12 +27,49 @@ body {
   }
 
   .logo{
-    width: 190px;
-    height: 200px;
-    margin-bottom: 70px;
-    margin-top: 130px;
+    width: 150px;
+    height: 90px;
+    margin-bottom: 0px;
+    margin-top: 110px;
   }
 
+  .FZ{
+    margin-top: 8px;
+    height: 40px;
+  }
+
+.edit{
+    display: inline;
+    position: relative;
+}
+
+  .status{
+    background-color: #52FF14;
+    height: 9px;
+    width: 9px;
+    position: absolute;
+    border-radius: 30px;
+    margin-left: 1px;
+    margin-bottom: 9px;
+    margin-top: 10px;
+  }
+
+.UO{
+    font-family: 'Heeboo', sans-serif;
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    font-size: 20px;
+    margin-top: 11px;
+}
+.content{
+    margin-bottom: 120px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+}
 .startButton{
     margin-bottom: 130px;
     margin-top: 90px;
@@ -48,4 +85,5 @@ body {
     align-items: center;
     cursor: pointer;
     box-shadow: 3px 5px 3px  rgba(0,0,0,0.2);
+    font-family: 'Heebo', sans-serif;
 }
