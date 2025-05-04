@@ -1,0 +1,51 @@
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    font-family: 'Heebo', sans-serif;
+  }
+
+.left, .right {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .left{
+    background: linear-gradient(to bottom, #43CDC2, #03A2EB, #58E590);
+    margin: 4px 3px 4px 6px;
+    border-radius: 9px;
+  }
+
+  .right{
+    background-color: #D9D9D9;
+    margin: 4px 3px 4px 6px;
+    border-radius: 9px;
+  }
+
+  .logo{
+    width: 190px;
+    height: 200px;
+    margin-bottom: 70px;
+    margin-top: 130px;
+  }
+
+.startButton{
+    margin-bottom: 130px;
+    margin-top: 90px;
+    width: 200px;
+    height: 50px;
+    border-radius: 40px;
+    border: none;
+    background: linear-gradient(to right,#2AFAB1,#9493F4,#52FF14);
+    font-size: 19px;
+    color: #fffdfd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 3px 5px 3px  rgba(0,0,0,0.2);
+}
