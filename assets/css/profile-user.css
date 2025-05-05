@@ -1,8 +1,9 @@
 body {
     font-family: 'Heebo', sans-serif;
+
 }
 
-
+/* Header  */
 .fixed-header {
     padding-top: 2px;
     position: sticky;
@@ -18,12 +19,13 @@ body {
     height: 87px;
     display: flex;
     align-items: center;
+    /* justify-content: space-around; */
 }
 
 .logo {
     display: flex;
     align-items: flex-end;
-    margin-left: 25px;
+    margin-left: 5px;
 }
 
 .logo-img {
@@ -43,6 +45,7 @@ body {
     display: flex;
     padding-left: 300px;
     padding-right: 260px;
+
 }
 
 .header ul a {
@@ -54,6 +57,7 @@ body {
     font-size: 25px;
     color: white;
     padding: 10px 20px;
+
 }
 
 .header .body ul a:hover {
@@ -68,7 +72,7 @@ a {
 .action {
     display: flex;
     align-items: center;
-    margin-left: 5px;
+    margin-left: auto;
 }
 
 
@@ -82,4 +86,19 @@ a {
     width: 58px;
     height: 58px;
     border-radius: 999px;
+
+}
+
+.main-container {
+    display: flex;
+    height: calc(100vh - 89px);
+    overflow: auto;
+    width: auto;
+    background-color: beige;
+}
+
+.sideBar {
+    background-color: brown;
+    width: 238px;
+    height: 100vh;
 }
