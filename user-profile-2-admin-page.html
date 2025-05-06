@@ -4,69 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> User-Profile-2-Admin-Page</title>
+    <title>User-Profile-2-Admin-Page</title>
     <!-- Reset -->
     <link rel="stylesheet" href="./assets/css/reset.css">
     <!-- fonts -->
     <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
-    <!-- styles home page -->
-    <link rel="stylesheet" href="/assets/css/style_user-profile-2-admin-page.css" >
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="./assets/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="./assets/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./assets/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./assets/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="./assets/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="./assets/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="./assets/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./assets/favicon/manifest.json">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="./assets/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <!-- AdminPage css -->
+    <link rel="stylesheet" href="/assets/css/style_user-profile-2-admin-page.css">
 </head>
 
-
-<body class="flex">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="logo-container">
-            <img src="/assets/img/logo.svg"  alt="Logo" />
-            <div class="logo-desc">
-                <img src="/assets/img/logo-desc1.svg" >
-                <img src="/assets/img/logo-desc2.svg" >
+<body>
+    <div class="container">
+        <!-- wrap nav -->
+        <aside class="aside">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="./assets/img/logo.svg" alt="Flirt Zone">
+                <div class="logo-desc">
+                    <img src="./assets/img/logo-desc1.svg" alt="Flirt Zone">
+                    <img src="./assets/img/logo-desc2.svg" alt="Flirt Zone">
+                </div>
             </div>
-        </div>
 
-        <nav class="nav">
-            <div class="nav-section">
-                <span class="nav-title">Manage</span>
-                <ul class="nav-links">
-                    <li><a class="nav-link active" href="#"><img src="/assets/img/dash board.svg" alt="Dashboard Icon" class="nav-icon" /><span>Dashboard</span></a></li>
-                    <li><a class="nav-link" href="#"><img src="/assets/img/user.svg" alt="User Icon" class="nav-icon" /><span>User profile</span></a></li>
-                    <li><a class="nav-link" href="#"><img src="/assets/img/trash.svg" alt="Bin Icon" class="nav-icon" /><span>Bin</span></a></li>
-                </ul>
-            </div>
-        </nav>
-    </aside>
+            <!-- Mangage -->
+            <h2 class="title">Manage</h2>
 
-    <main class="main-content">
-        <div class="header">
-            <div class="header-content">
-                <h1 class="header-title">Hey there! 😊</h1>
-                <p class="header-subtitle">Here's what happen your stored today</p>
-            </div>
-            <form class="search-form">
-                <input class="search-input" type="text" placeholder="what are you looking for?" />
-                <button class="search-button" type="submit"><i class="fas fa-search"></i></button>
-            </form>
-        </div>
+            <!-- nav -->
+            <nav class="nav">
+                <div class="nav-item">
+                    <div class="icon">
+                        <img src="./assets/img/dash board.svg" alt="Dash board">
+                    </div>
+                    <p class="task">Dash board</p>
+                </div>
+
+                <div class="nav-item">
+                    <div class="icon">
+                        <img src="/assets/img/user.svg" alt="User profile">
+                    </div>
+                    <p class="task">User profile</p>
+                </div>
+
+                <div class="nav-item">
+                    <div class="icon">
+                        <img src="/assets/img/trash.svg" alt="Bin">
+                    </div>
+                    <p class="task">Bin</p>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- wrap content -->
+        <div class="wrap">
+            <!-- Header -->
+            <header class="header">
+                <div class="title-intro">
+                    <h1 class="title">Hey there!😘</h1>
+                    <p class="desc">Here’s what happen your stored today</p>
+                </div>
+                <form class="bar-search">
+                    <input type="text" size="31" value="what are you looking for?" class="looking" id="word"
+                        name="word">
+                    <button>
+                        <img src="./assets/icons/search.svg" alt="Search" class="icon-search">
+                    </button>
+                </form>
+            </header>
 
         <section class="content-section">
             <div class="profile-container">
@@ -97,7 +100,7 @@
                 <div class="info-field"><span class="info-label">ID</span>
                     <span class="info-value">097586</span>
                 </div>
-                <div class="info-field"><span class="info-label">Name</span><span class="info-value">Jasa Mark</span>
+                <div class="info-field"><div class="info-label">Name</div><div class="info-value">Jasa Mark</div>
                 </div>
                 <div class="info-field"><span class="info-label">Date</span><span
                         class="info-value">25/03/2003</span></div>
