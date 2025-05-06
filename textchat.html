@@ -313,6 +313,15 @@
                         <button class="textchat__func">
                             <img src="./assets/img/x-circle.svg" alt="" class="textchat__func-report-img">
                         </button>
+                        <div class="textchat__func-report">
+                                <div class="textchat__func-report__title">Report</div>
+                                <div class="textchat__func-report-content">
+                                        <input type="text" placeholder="What is your annoys?" class="report-content__input"></input>
+                                        <button class="report-content__send">
+                                            <img src="./assets/img/Frame 232.svg" alt="" class="report-content__send-report">
+                                        </button>
+                                </div>
+                            </div>
                     </div>
                 </div>
 
@@ -348,6 +357,12 @@
                     </div>
                 </div>
             `
+                const report = document.querySelectorAll('.textchat__func');
+                const report_modal = document.querySelector('.textchat__func-report')
+
+                report[2].addEventListener('click', () => {
+                    report_modal.classList.toggle('textchat__func-report--show');
+                })
         })
     </script>
     <!-- Script choose friend to chat -->
@@ -398,19 +413,25 @@
                             <img src="./assets/img/send.svg" alt="" class="textchat__action--send">
                         </button>
                     </div>
-            `
+                `
+                const report = document.querySelectorAll('.textchat__func');
+                const report_modal = document.querySelector('.textchat__func-report')
+
+                report[2].addEventListener('click', () => {
+                    report_modal.classList.toggle('textchat__func-report--show');
+                })
             });
         });
     </script>
     <!-- Script report -->
-    <script>
+    <!-- <script>
         const report = document.querySelectorAll('.textchat__func');
         const report_modal = document.querySelector('.textchat__func-report')
 
         report[2].addEventListener('click', () => {
-            report_modal.classList.add('textchat__func-report--show');
+            report_modal.classList.toggle('textchat__func-report--show');
         })
-    </script>
+    </script> -->
     <!-- Script choose chat-friend -->
     <script>
         const chat = document.querySelector('.chat-friend__chat');
