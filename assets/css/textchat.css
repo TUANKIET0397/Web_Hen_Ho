@@ -74,7 +74,7 @@ button
 
 .header__nav{
     display: flex;
-    align-items: center;    
+    align-items: center;
     margin: auto;
 }
 
@@ -142,7 +142,9 @@ button
 
 .chat-friend__chat, 
 .chat-friend__friend {
-    
+    outline: none;
+    border: none;
+    background-color: var(--grey-bgcolor-color);
     display: flex;
 }
 
@@ -150,11 +152,9 @@ button
 .chat-friend__friend:hover
 {
     cursor: pointer;
-
 }
 
-.chat-friend__chat--active, 
-.chat-friend__friend--active
+.chat-friend--active
 {
     background-color: var(--grey-color);
     border-radius: 10px;
@@ -178,12 +178,19 @@ button
     text-align: center;
 }
 
+.chat-side__content--hide
+{
+    display: none;
+}
+
 .content__text
 {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-size: 0.8rem;
+    padding: 0 12px 0 12px;
     color: var(--text-color-grey);
 }
 
@@ -402,6 +409,12 @@ button
     justify-content: center;
 }
 
+.gender-choose__box.chose
+{
+    border:5px solid #8c62a8;
+    opacity: 0.8;
+}
+
 .gender-choose__box:hover{
     opacity: 0.7;
 }
@@ -432,6 +445,7 @@ button
     font-size: 1.2rem;
     color: var(--white-color);
     text-decoration: none;
+    cursor: pointer;
     background:  linear-gradient(0, #1B96F4, #27D3B3);
     display: flex;
     align-items: center;
@@ -461,6 +475,11 @@ button
     display: flex;
     z-index: 2;
     animation: fadeIn linear 0.15s;
+    display: none;
+}
+
+.modal.show {
+    display: flex;
 }
 
 .modal__overlay{
@@ -624,8 +643,13 @@ button
 }
 
 .textchat__func{
-    text-decoration: none;
+    outline: none;
+    border: none;
     padding-right: 24px;
+    background-color: var(--grey-bgcolor);
+}
+.textchat__func:hover{
+    cursor: pointer;
 }
 
 .textchat__func-phone-img{
@@ -656,11 +680,15 @@ button
     width: 229px;
     height: 113px;
     border-radius: 25px;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     background-color: rgba(255, 0, 0, 0.72);
+}
+
+.textchat__func-report--show{
+    display: flex;
 }
 
 .textchat__func-report__title{
@@ -778,6 +806,11 @@ button
     width: 90%;
     top: 85px;
     position: absolute;
+    display: none;
+}
+
+.chat-side__content-friend--show{
+    display: block;
 }
 
 .chat-side__content-friends{
@@ -793,6 +826,7 @@ button
 .chat-side__content-friends--active{
     cursor: pointer;
     border-radius: 9px;
+    padding: 0 4px 0 2px;
     background-color: #fdfdfd;
 }
 
@@ -800,7 +834,7 @@ button
     cursor: pointer;
     opacity: 0.6;
     border-radius: 9px;
-    background-color: #e0dfdf;
+    background-color: #fdfdfd;
 }
 
 .friendchat-avt-name{

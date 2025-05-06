@@ -39,18 +39,41 @@
             <!-- Chat side no friend -->
             <div class="chat-side">
                 <div class="chat-friend">
-                    <div class="chat-friend__chat ">
+                    <button class="chat-friend__chat chat-friend--active">
                         <img src="./assets/img/mail.svg" alt="" class="chat-img">
                         <span class="chat-friend__chat-text">Chat</span>
-                    </div>
-                    <div class="chat-friend__friend chat-friend__friend--active">
+                    </button>
+                    <button class="chat-friend__friend ">
                         <img src="./assets/img/users.svg" alt="" class="friend-img">
                         <span class="chat-friend__friend-text">Friends</span>
-                    </div>
+                    </button>
                 </div>
                 <div class="chat-side__content">
                     <img src="./assets/img/image.svg" alt="" class="content__img">
-                    <span class="content__text">Look like you are person who don’t have any friends 😊😊 </span>
+                    <span class="content__text">Looks like you're the popular one here. no messages yet! </span>
+                </div>
+                <div class="chat-side__content-friend">
+                    <button class="chat-side__content-friends">
+                        <img src="./assets/img/avt.jpg" alt="" class="avatar">
+                        <div class="listfriend">
+                            <div class="listfriend__name">Lee tuna kaai</div>
+                            <div class="listfriend__seen">seen. 2 hours</div>
+                        </div>
+                    </button>
+                    <button class="chat-side__content-friends">
+                        <img src="./assets/img/avt.jpg" alt="" class="avatar">
+                        <div class="listfriend">
+                            <div class="listfriend__name">Lee tuna kaai</div>
+                            <div class="listfriend__seen">seen. 2 hours</div>
+                        </div>
+                    </button>
+                    <button class="chat-side__content-friends">
+                        <img src="./assets/img/avt.jpg" alt="" class="avatar">
+                        <div class="listfriend">
+                            <div class="listfriend__name">Lee tuna kaai</div>
+                            <div class="listfriend__seen">seen. 2 hours</div>
+                        </div>
+                    </button>
                 </div>
                 <div class="chat-side__user">
                     <div class="chat-side__user-avt-name-status">
@@ -85,29 +108,7 @@
                         <span class="chat-friend__friend-text">Friends</span>
                     </div>
                 </div>
-                <div class="chat-side__content-friend">
-                    <button class="chat-side__content-friends chat-side__content-friends--active">
-                        <img src="./assets/img/avt.jpg" alt="" class="avatar">
-                        <div class="listfriend">
-                            <div class="listfriend__name">Lee tuna kaai</div>
-                            <div class="listfriend__seen">seen. 2 hours</div>
-                        </div>
-                    </button>
-                    <button class="chat-side__content-friends">
-                        <img src="./assets/img/avt.jpg" alt="" class="avatar">
-                        <div class="listfriend">
-                            <div class="listfriend__name">Lee tuna kaai</div>
-                            <div class="listfriend__seen">seen. 2 hours</div>
-                        </div>
-                    </button>
-                    <button class="chat-side__content-friends">
-                        <img src="./assets/img/avt.jpg" alt="" class="avatar">
-                        <div class="listfriend">
-                            <div class="listfriend__name">Lee tuna kaai</div>
-                            <div class="listfriend__seen">seen. 2 hours</div>
-                        </div>
-                    </button>
-                </div>
+                
                 <div class="chat-side__user">
                     <div class="chat-side__user-avt-name-status">
                         <img src="./assets/img/avt.jpg" alt="" class="avatar">
@@ -164,7 +165,7 @@
                         <a href="" class="func-vdcall">
                             <img src="./assets/img/video.svg" alt="" class="vdcall-img">
                         </a>
-                        <a href="" class="func-chat">
+                        <a class="func-chat">
                             <img src="./assets/img/Vector.svg" alt="" class="chat-img">
                             Start Text Chat
                         </a>
@@ -177,15 +178,15 @@
                 <div class="textchat__header">
                     <div class="textchat__username">Bellamy</div>
                     <div class="textchat__func-box">
-                        <a href="" class="textchat__func">
+                        <button class="textchat__func">
                             <img src="./assets/img/phone.svg" alt="" class="textchat__func-phone-img">
-                        </a>
-                        <a href="" class="textchat__func">
+                        </button>
+                        <button class="textchat__func">
                             <img src="./assets/img/video.png" alt="" class="textchat__func-video-img">
-                        </a>
-                        <a href="" class="textchat__func">
+                        </button>
+                        <button class="textchat__func">
                             <img src="./assets/img/x-circle.svg" alt="" class="textchat__func-report-img">
-                        </a>
+                        </button>
                     </div>
                 </div>
 
@@ -220,10 +221,6 @@
                         </button>
                     </div>
                 </div>
-
-                
-
-
             </div> -->
 
             <!-- Friend chat -->
@@ -234,15 +231,15 @@
                     <div class="textchat__username">Lee tuna kaai</div>
                     </div>
                     <div class="textchat__func-box">
-                        <a href="" class="textchat__func">
+                        <button class="textchat__func">
                             <img src="./assets/img/phone.svg" alt="" class="textchat__func-phone-img">
-                        </a>
-                        <a href="" class="textchat__func">
+                        </button>
+                        <button class="textchat__func">
                             <img src="./assets/img/video.png" alt="" class="textchat__func-video-img">
-                        </a>
-                        <a href="" class="textchat__func">
+                        </button>
+                        <button class="textchat__func">
                             <img src="./assets/img/x-circle.svg" alt="" class="textchat__func-report-img">
-                        </a>
+                        </button>
                         <div class="textchat__func-report">
                             <div class="textchat__func-report__title">Report</div>
                             <div class="textchat__func-report-content">
@@ -265,12 +262,14 @@
                         <img src="./assets/img/send.svg" alt="" class="textchat__action--send">
                     </button>
                 </div>
-            </div>-->
-
+            </div> -->
         </div>
     </div>
 
-    <!-- <div class="modal">
+
+    <!-- Modal -->
+
+    <div class="modal">
         <div class="modal__overlay"></div>
         <div class="modal__body">
             <div class="modal__inner">
@@ -291,9 +290,201 @@
             </div>
         </div>
     </div>
+    
 
+    <!-- Script chat with stranger-->
+    <script>
+        const func_chat = document.querySelector('.func-chat');
+        main_content = document.querySelector('.main-content');
+        
+        func_chat.addEventListener('click', () => {
+            main_content.classList.add('textchat')
+            main_content.classList.remove('main-content')
+            main_content.innerHTML = `
+                <div class="textchat__header">
+                    <div class="textchat__username">Bellamy</div>
+                    <div class="textchat__func-box">
+                        <button class="textchat__func">
+                            <img src="./assets/img/phone.svg" alt="" class="textchat__func-phone-img">
+                        </button>
+                        <button class="textchat__func">
+                            <img src="./assets/img/video.png" alt="" class="textchat__func-video-img">
+                        </button>
+                        <button class="textchat__func">
+                            <img src="./assets/img/x-circle.svg" alt="" class="textchat__func-report-img">
+                        </button>
+                    </div>
+                </div>
 
+                <div class="textchat__content">
+                    <div class="textchat__box-intro">You are chatting with <span class="textchat__box-username">Bellamy</span> now. Say hi</div>
+                    <div class="box-chat">
+                        <div class="box-chat-1mess">
+                            <img src="./assets/img/avt.jpg" alt="" class="avatar">
+                            <div class="fullmess">
+                                <div class="fullmess__name">Minh Thuan</div>
+                                <div class="fullmess__mess">Hé lô</div>
+                            </div>
+                        </div>
+                        <div class="box-chat-1mess">
+                            <img src="./assets/img/avt.jpg" alt="" class="avatar">
+                            <div class="fullmess">
+                                <div class="fullmess__name">Bellamy</div>
+                                <div class="fullmess__mess">Nani'</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="textchat__box-skipped">🥹Your partner has skipped this chat.</div>
+                    <div class="textchat__action">
+                        <button class="textchat__skip">
+                            <img src="./assets/img/Skip.svg" alt="" class="textchat__action--skip">
+                        </button>
+                        <input type="text" class="textchat__input">
+    
+                        </input>
+                        <button class="textchat__send">
+                            <img src="./assets/img/send.svg" alt="" class="textchat__action--send">
+                        </button>
+                    </div>
+                </div>
+            `
+        })
+    </script>
+    <!-- Script choose friend to chat -->
+    <script>
+        const chat_side__content_friends = document.querySelectorAll('.chat-side__content-friends');
+        const main_content = document.querySelector('.main-content');
+        chat_side__content_friends.forEach (button => {
+            button.addEventListener('click', () => {
+                chat_side__content_friends.forEach(btn => btn.classList.remove('chat-side__content-friends--active'));
+                button.classList.add('chat-side__content-friends--active');
+                main_content.classList.add('friendchat');
+                main_content.classList.remove('main-content');
+                main_content.innerHTML = `
+                    <div class="textchat__header">
+                        <div class="friendchat-avt-name">
+                            <img src="./assets/img/avt.jpg" alt="" class="avatar">
+                        <div class="textchat__username">Lee tuna kaai</div>
+                        </div>
+                        <div class="textchat__func-box">
+                            <button class="textchat__func">
+                                <img src="./assets/img/phone.svg" alt="" class="textchat__func-phone-img">
+                            </button>
+                            <button class="textchat__func">
+                                <img src="./assets/img/video.png" alt="" class="textchat__func-video-img">
+                            </button>
+                            <button class="textchat__func">
+                                <img src="./assets/img/x-circle.svg" alt="" class="textchat__func-report-img">
+                            </button>
+                            <div class="textchat__func-report">
+                                <div class="textchat__func-report__title">Report</div>
+                                <div class="textchat__func-report-content">
+                                        <input type="text" placeholder="What is your annoys?" class="report-content__input"></input>
+                                        <button class="report-content__send">
+                                            <img src="./assets/img/Frame 232.svg" alt="" class="report-content__send-report">
+                                        </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="friendchat-box">
+                            <div class="mess friend-mess">From London</div>
+                            <div class="mess my-mess">Hope to see you soon.</div>
+                            <div class="mess my-mess">Nice.</div>
+                    </div>
+                    <div class="textchat__action">
+                        <input type="text" class="friendchat__input"></input>
+                        <button class="textchat__send">
+                            <img src="./assets/img/send.svg" alt="" class="textchat__action--send">
+                        </button>
+                    </div>
+            `
+            });
+        });
+    </script>
+    <!-- Script report -->
+    <script>
+        const report = document.querySelectorAll('.textchat__func');
+        const report_modal = document.querySelector('.textchat__func-report')
+
+        report[2].addEventListener('click', () => {
+            report_modal.classList.add('textchat__func-report--show');
+        })
+    </script>
+    <!-- Script choose chat-friend -->
+    <script>
+        const chat = document.querySelector('.chat-friend__chat');
+        const friend = document.querySelector('.chat-friend__friend');
+        const chat_side_content = document.querySelector('.chat-side__content');
+        const chat_side__content_friend = document.querySelector('.chat-side__content-friend');
+    
+        chat.addEventListener('click', () => {
+            chat.classList.add('chat-friend--active');
+            friend.classList.remove('chat-friend--active');
+            chat_side_content.classList.remove('chat-side__content--hide');
+            chat_side__content_friend.classList.remove('chat-side__content-friend--show');
+
+        });
+
+        friend.addEventListener('click', () => {
+            friend.classList.add('chat-friend--active');
+            chat.classList.remove('chat-friend--active');
+            chat_side__content_friend.classList.add('chat-side__content-friend--show');
+            chat_side_content.classList.add('chat-side__content--hide');
+        });
+
+    </script>
+    <!-- Script choose gender -->
+    <script>
+        const gender = document.querySelectorAll('.gender-choose__box')
+
+        gender.forEach(button => {
+            button.addEventListener('click', () => {
+                gender.forEach(btn => btn.classList.remove('chose'));
+                button.classList.add('chose');
+            })
+        })
+    </script>
+    <!-- Script click on manage -->
+    <script>
+        const manage = document.getElementsByClassName('interest-manage')[0];
+        const modal = document.querySelector('.modal');
+        const managebox = document.querySelector('.main-box__show-interest');
+
+        manage.addEventListener('click', () => {
+            modal.classList.add('show');
+        })
+
+        managebox.addEventListener('click', () => {
+            modal.classList.add('show');
+        })
+
+        const overlay = document.querySelector('.modal__overlay');
+        const done = document.querySelector('.done-btn');
+
+        overlay.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+
+        done.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+    </script>
+
+    <!-- Script click in manage -->
+    <script>
+        toggle = document.getElementById('myToggle');
+        icon = document.getElementById('circleIcon');
+    
+        toggle.addEventListener('click', () => {
+          toggle.classList.toggle('on');
+          icon.textContent = toggle.classList.contains('on') ? '✔' : '✖';
+        });
+    </script> 
       
+
+
+
 
 
 </body>
