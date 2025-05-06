@@ -6,8 +6,9 @@ html,body {
     scroll-behavior: smooth;
 }
 
+/* Noted */
 html {
-    font-size: 62.5%;
+    font-size: 52.5%;
 }
 
 body {
