@@ -177,8 +177,8 @@ body {
   .signup-form {
     width: 100%;
     max-width: 460px;
-    background: rgba(#F8D7D7); /* Màu nền nhẹ nhàng */
-    backdrop-filter: blur(10px); /* Giảm độ mờ để nội dung dễ đọc hơn */
+    background: rgba(#F8D7D7);
+    backdrop-filter: blur(10px); 
     padding: 40px;
     border-radius: 24px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ hơn */
@@ -205,7 +205,7 @@ body {
 }
 
   .signup-form label {
-    display: block;     /* Makes the label take up the full width */
+    display: block;     
     font-size: 16px;
     margin-top: 20px;
     color: #332D2D;
