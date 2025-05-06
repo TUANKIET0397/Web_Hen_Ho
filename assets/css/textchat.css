@@ -288,16 +288,20 @@ button
     text-align: center;
 }
 
+.support__footer-link-box{
+    display: flex;
+}
+
 .logo-mid__linkpage {
     display: flex;
 }
 
 .linkpage {
-    background-color: var(--grey-color);
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin: 10px;
+    background-color: var(--grey-color);
 }
 
 
