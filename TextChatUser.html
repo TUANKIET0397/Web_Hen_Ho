@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <!-- Reset -->
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <!-- fonts -->
+  <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
+  <!-- styles home page -->
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="./assets/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./assets/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./assets/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./assets/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./assets/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./assets/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./assets/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="./assets/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="./assets/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Heebo';
+    }
+
+    body {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      background-color: #1e1e1e;
+    }
+
+    aside {
+      width: 240px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #282727;
+      min-width: 240px;
+    }
+
+    header {
+      width: 100%;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0) !important;
+    }
+
+    aside .sidebar {
+      width: 100%;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 8px 8px;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .sidebar .chat-list::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .sidebar .chat-list::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+    }
+
+    .menu {
+      margin: 3px 0;
+      width: 100%;
+      height: 139px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .menu .menu-items {
+      margin: 10px 0;
+      cursor: pointer;
+      width: 100%;
+      flex-grow: 1;
+      height: 30px;
+      font-size: 30px;
+      font-weight: bold;
+      color: #FFFFFF;
+    }
+
+    .btn-avatar {
+      width: 47px;
+      height: 47px;
+      border-radius: 50%;
+      min-width: 0;
+      padding: 0;
+    }
+
+    .chat-list {
+      flex-grow: 1;
+      margin-top: 10px;
+      overflow-y: auto;
+    }
+
+    .chat-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .chat-list .avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: black;
+    }
+
+    .chat-box .chat-user {
+      font-size: 16px;
+      color: #000;
+    }
+
+    .chat-box .chat-user small {
+      color: #666;
+      font-size: 11px;
+    }
+
+    .info-footer {
+      border-top: 1px solid #ccc;
+      color: #000;
+      padding-top: 10px;
+      margin-top: 5px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: #000;
+      color: white;
+    }
+
+    .search-bar {
+      background-color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 140px;
+      padding: 20px;
+    }
+
+    .search-bar .welcome {
+      font-size: 40px;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #FFF;
+    }
+
+    .search-bar .welcome small {
+      font-size: 24px;
+      font-weight: bold;
+      color: #666;
+      padding-top: 3px;
+    }
+
+    .search-bar input {
+      width: 538px;
+      height: 71px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 35px;
+      font-size: 22px;
+    }
+
+    .nav-chat {
+      background-color: #9d9d9d;
+      padding: 12px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-chat .username {
+      font-size: 24px;
+      font-weight: medium;
+      display: flex;
+      align-items: center;
+      color: #000;
+      gap: 5px;
+    }
+
+    .nav-chat .chat-service {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-chat .chat-service img{
+      width: 33px;
+      height: 33px;
+    }
+
+    .chat-window {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      max-width: 60%;
+      padding: 10px;
+      border-radius: 15px;
+      word-wrap: break-word;
+    }
+
+    .received {
+      background-color: #f0f0f0;
+      color: black;
+      align-self: flex-start;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <body>
+    <aside>
+      <!-- Header -->
+      <header class="header fixed-header">
+        <!-- logo -->
+        <div class="logo">
+          <img src="./assets/img/logo.svg" alt="Flirt Zone">
+          <div class="logo-desc">
+            <img src="./assets/img/logo-desc1.svg" alt="Flirt Zone">
+            <img src="./assets/img/logo-desc2.svg" alt="Flirt Zone">
+          </div>
+        </div>
+      </header>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="menu">
+          <div class="item1 menu-items"><img src="/assets/img/dashboard.png" alt=""> Dash board</div>
+          <div class="item2 menu-items"><img src="/assets/img/user_dark.png" alt=""> User profile</div>
+          <div class="item3 menu-items"><img src="/assets/img/bin.png" alt=""> Bin</div>
+        </div>
+        <div class="chat-list">
+          <div class="chat-box">
+            <div class="btn btn-avatar" style="width: 33px; height: 33px; overflow: hidden;"><img src="" alt=""></div>
+            <div class="chat-user">
+              <div>Lee tuna kaai</div>
+              <small>seen. 2 hour</small>
+            </div>
+          </div>
+          <div class="chat-box">
+            <div class="btn btn-avatar" style="width: 33px; height: 33px; overflow: hidden;"><img src="" alt=""></div>
+            <div class="chat-user">
+              <div>Lee tuna kaai</div>
+              <small>seen. 2 hour</small>
+            </div>
+          </div>
+          <div class="chat-box">
+            <div class="btn btn-avatar" style="width: 33px; height: 33px; overflow: hidden;"><img src="" alt=""></div>
+            <div class="chat-user">
+              <div>Lee tuna kaai</div>
+              <small>seen. 2 hour</small>
+            </div>
+          </div>
+          <div class="chat-box">
+            <div class="btn btn-avatar" style="width: 33px; height: 33px; overflow: hidden;"><img src="" alt=""></div>
+            <div class="chat-user">
+              <div>Lee tuna kaai</div>
+              <small>seen. 2 hour</small>
+            </div>
+          </div>
+          <div class="chat-box">
+            <div class="btn btn-avatar" style="width: 33px; height: 33px; overflow: hidden;"><img src="" alt=""></div>
+            <div class="chat-user">
+              <div>Lee tuna kaai</div>
+              <small>seen. 2 hour</small>
+            </div>
+          </div>
+          <div class="chat-box">
+            <div class="btn btn-avatar" style="width: 33px; height: 33px; overflow: hidden;"><img src="" alt=""></div>
+            <div class="chat-user">
+              <div>Lee tuna kaai</div>
+              <small>seen. 2 hour</small>
+            </div>
+          </div>
+          <div class="chat-box">
+            <div class="btn btn-avatar" style="width: 33px; height: 33px; overflow: hidden;"><img src="" alt=""></div>
+            <div class="chat-user">
+              <div>Lee tuna kaai</div>
+              <small>seen. 2 hour</small>
+            </div>
+          </div>
+          <div class="chat-box">
+            <div class="btn btn-avatar" style="width: 33px; height: 33px; overflow: hidden;"><img src="" alt=""></div>
+            <div class="chat-user">
+              <div>Lee tuna kaai</div>
+              <small>seen. 2 hour</small>
+            </div>
+          </div>
+          <div class="chat-box">
+            <div class="btn btn-avatar" style="width: 33px; height: 33px; overflow: hidden;"><img src="" alt=""></div>
+            <div class="chat-user">
+              <div>Lee tuna kaai</div>
+              <small>seen. 2 hour</small>
+            </div>
+          </div>
+          <div class="chat-box">
+            <div class="btn btn-avatar" style="width: 33px; height: 33px; overflow: hidden;"><img src="" alt=""></div>
+            <div class="chat-user">
+              <div>Lee tuna kaai</div>
+              <small>seen. 2 hour</small>
+            </div>
+          </div>
+          <div class="chat-box">
+            <div class="btn btn-avatar" style="width: 33px; height: 33px; overflow: hidden;"><img src="" alt=""></div>
+            <div class="chat-user">
+              <div>Lee tuna kaai</div>
+              <small>seen. 2 hour</small>
+            </div>
+          </div>
+        </div>
+
+        <footer>
+          <div class="info-footer">
+            <div class="btn btn-avatar" style="width: 36px; height: 36px; overflow: hidden;"><img src="" alt=""></div>
+            <div>Nguyen Minh Thuan<br><small style="color: green; font-size: 8px;">● online</small></div>
+          </div>
+        </footer>
+      </div>
+    </aside>
+    <!-- Main Chat UI -->
+    <div class="main">
+      <div class="search-bar">
+        <div class="welcome">
+          <div>Hey there! <img src="" alt=""></div>
+          <small>Here's what happen your stored today</small>
+        </div>
+        <div><input type="text" placeholder="What are you looking for?"></div> 
+      </div>
+
+      <div class="nav-chat">
+        <div class="username"><div class="btn btn-avatar" style="width: 36px; height: 36px; overflow: hidden;"><img src="" alt=""></div> @UserName</div>
+        <div class="chat-service">
+            <img src="/assets/img/phone.png" alt="">
+            <img src="/assets/img/video-call.png" alt="">
+            <img src="/assets/img/x-circle.png" alt="">
+        </div>
+      </div>
+
+      <div class="chat-window" id="chat-window">
+        <div class="received message">Hello can I join?</div>
+        <div class="sent message">Of course</div>
+        <div class="sent message">What your name?</div>
+        <div class="received message">My name’s Jack Rayson</div>
+        <div class="sent message">Where are you from?</div>
+        <div class="received message">From London</div>
+        <div class="sent message">Nice</div>
+        <div class="sent message">Hope to see you soon</div>
+      </div>
+    </div>
+
+    <!-- JavaScript
+    <script>
+      function sendMessage() {
+        const input = document.getElementById('messageInput');
+        const chatWindow = document.getElementById('chat-window');
+        const message = input.value.trim();
+
+        if (message !== "") {
+          const messageDiv = document.createElement('div');
+          messageDiv.classList.add('sent', 'message');
+          messageDiv.textContent = message;
+          chatWindow.appendChild(messageDiv);
+          input.value = "";
+          chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+      }
+
+      // Optional: press Enter to send
+      document.getElementById('messageInput').addEventListener("keydown", function (e) {
+        if (e.key === "Enter") sendMessage();
+      });
+      css-----
+      .sent {
+      background-color: #0084ff;
+      align-self: flex-end;
+    }
+
+    .input-area {
+      display: flex;
+      padding: 10px;
+      background-color: #222;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .input-area button {
+      padding: 10px 15px;
+      margin-left: 10px;
+      background-color: #0084ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .input-area button:hover {
+      background-color: #0070cc;
+    }
+    </script> -->
+  </body>
+
+</html>
