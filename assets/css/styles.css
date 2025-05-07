@@ -14,6 +14,7 @@ html {
 body {
     font-size: 1.6rem;
     font-family: 'Heebo', sans-serif;
+    overflow-x: hidden;
 }
 
 /* common */
@@ -446,9 +447,12 @@ body .logo-desc img:first-child {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 1291px;
+    /* width: 1291px; */
     border-radius: 68px;
     margin-top: 85px;
+    margin-left: 26px;
+    margin-right: 26px;
+    padding:0 26px ;
     background: #9549B8;
     color: #fff;
 }
@@ -484,8 +488,10 @@ body .logo-desc img:first-child {
     position: absolute;
     top: 0px;
     content: "";
+    left: 50%;
+    transform: translateX(-50%);
     display: inline-block;
-    width: 1513px;
+    width: 100vw;
     height: 0.9px;
     background: #18181a;
     border-radius: 12px;
@@ -522,6 +528,7 @@ body .logo-desc img:first-child {
 }
 
 .footer .body .icon-contact {
+    display: flex;
     margin-left: auto;
     margin-right: 34px;
 }
@@ -532,10 +539,12 @@ body .logo-desc img:first-child {
 
 .footer .wrap-footer::after {
     position: absolute;
-    top: 3px;
     content: "";
+    top: 3px;
+    left: 50%;
+    transform: translateX(-50%);
     display: inline-block;
-    width: 1513px;
+    width: 100vw;
     height: 0.9px;
     background: #18181a;
     border-radius: 12px;
@@ -551,4 +560,10 @@ body .logo-desc img:first-child {
     font-size: 2.4rem;
     font-weight: 600;
     text-align: center;
+}
+
+.footer .footer-content {
+    width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
 }
