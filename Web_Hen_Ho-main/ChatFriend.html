@@ -63,19 +63,67 @@
             <!-- Chat side no friend -->
             <div class="chat-side">
                 <div class="chat-friend">
-                    <button class="chat-friend__chat chat-friend--active">
-                        <img src="/assets/img/mail.svg" alt="" class="chat-img">
-                        <span class="chat-friend__chat-text">Chat</span>
+                    <button class="chat-friend__filter chat-friend--active">
+                        <img src="/assets/img/filter.svg" alt="" class="chat-img">
+                        <span class="chat-friend__filter-text">Filter</span>
                     </button>
                     <button class="chat-friend__friend">
                         <img src="/assets/img/users.svg" alt="" class="friend-img">
                         <span class="chat-friend__friend-text">Friends</span>
                     </button>
                 </div>
+                <!-- Filter -->
                 <div class="chat-side__content">
-                    <img src="/assets/img/mailBox.svg" alt="" class="content__img">
-                    <span class="content__text">Looks like you're the popular one here. no messages yet! </span>
+                    <form class="chat-side__content-main" name="profile" id="profile" action="!#" method="post" enctype="multipart/form-data" autocomplete="off">
+                        <div class="chat-side__content-filter__age">
+                            <div class="chat-side__content-filter__age-title">AGE:</div>
+                            <input type="range" id="filterAgeMin" name="filterAgeMin" min="18" max="99" value="18" class="chat-side__content-filter__age-line1">
+                            <input type="range" id="filterAgeMax" name="filterAgeMax" min="18" max="99" value="35" class="chat-side__content-filter__age-line2">
+                            <div class="chat-side__content-filter__age-text">
+                                <div class="chat-side__content-filter__age-first-value">13</div>
+                                <div class="chat-side__content-filter__age-text"> - </div>
+                                <div class="chat-side__content-filter__age-second-value">24 </div>
+                                <div class="chat-side__content-filter__age-text"> years old</div>
+                            </div>
+                        </div>
+                        <div class="chat-side__content-filter__lookingfor">
+                            <div class="chat-side__content-filter__lookingfor-title">Looking for:</div>
+                            <select name="lookingfor" id="lookingfor">
+                                <option style="text-align: center;" value="">------ Selection Gender------</option>
+                                <option value="Everyone">Everyone</option>
+                                <option value="Man">Man</option>
+                                <option value="Woman">Woman</option>
+                            </select>
+                        </div>
+                        <div class="chat-side__content-filter__location">
+                            <div class="chat-side__content-filter__location-title">Location:</div>
+                            <select name="location" id="location">
+                                <option style="text-align: center;" value="">------ Selection Location ------</option>
+                                <option value="HCM">HCM</option>
+                                <option value="HaNoi">HaNoi</option>
+                                <option value="DaNang">DaNang</option>
+                                <option value="DongNai">DongNai</option>
+                                <option value="VungTau">VungTau</option>
+                                <option value="BinhPhuoc">BinhPhuoc</option>
+                            </select>
+                        </div>
+                        <div class="chat-side__content-filter__hobby">
+                            <div class="chat-side__content-filter__hobby-title">Hobby:</div>
+                            <select name="hobby" id="hobby">
+                                <option style="text-align: center;" value="">------ Selection Hobby ------</option>
+                                <option value="Movies">Movies</option>
+                                <option value="Reading">Reading</option>
+                                <option value="Travel">Travel</option>
+                            </select>
+                        </div>
+                        <div class="chat-side__content-btn">
+                            <button type="submit" class="apply-btn">Apply</button>
+                            <button type="reset" class="reset-btn">Reset</button>
+                        </div>
+                    </form>
+                    
                 </div>
+                <!-- Friend -->
                 <div class="chat-side__content-friend">
                     <button class="chat-side__content-friends">
                         <div class="chatavt button avatar" style="background-image: url(/assets/img/avt.jpg);"></div>                       
@@ -161,7 +209,7 @@
         });
         
         // Script choose chat-friend
-        const chat = document.querySelector('.chat-friend__chat');
+        const chat = document.querySelector('.chat-friend__filter');
         const friend = document.querySelector('.chat-friend__friend');
         const chat_side_content = document.querySelector('.chat-side__content');
         const chat_side__content_friend = document.querySelector('.chat-side__content-friend');
@@ -207,5 +255,52 @@
             }
         });
     </script>
+
+    <!-- Script Filter -->
+    <script>
+        const filterAgeMinInput = document.getElementById('filterAgeMin');
+        const filterAgeMaxInput = document.getElementById('filterAgeMax');
+        const ageMinDisplay = document.querySelector('.chat-side__content-filter__age-first-value');
+        const ageMaxDisplay = document.querySelector('.chat-side__content-filter__age-second-value');
+
+        function applyFilters() {
+        const ageMin = parseInt(filterAgeMinInput.value);
+        const ageMax = parseInt(filterAgeMaxInput.value);
+
+        filteredUsers = allUsers.filter(user => {
+            let passes = true;
+            if (user.age < ageMin || user.age > ageMax) passes = false;
+            return passes;
+        });
+    }
+
+
+    // Update display for range sliders
+    if (filterAgeMinInput && ageMinDisplay) {
+        filterAgeMinInput.addEventListener('input', (e) => {
+            ageMinDisplay.textContent = e.target.value;
+            if (parseInt(filterAgeMaxInput.value) < parseInt(e.target.value)) {
+                filterAgeMaxInput.value = e.target.value;
+                ageMaxDisplay.textContent = e.target.value;
+            }
+        });
+    }
+    if (filterAgeMaxInput && ageMaxDisplay) {
+        filterAgeMaxInput.addEventListener('input', (e) => {
+            ageMaxDisplay.textContent = e.target.value;
+            if (parseInt(filterAgeMinInput.value) > parseInt(e.target.value)) {
+                filterAgeMinInput.value = e.target.value;
+                ageMinDisplay.textContent = e.target.value;
+            }
+        });
+    }
+    if (filterDistanceInput && distanceDisplay) {
+        filterDistanceInput.addEventListener('input', (e) => {
+            distanceDisplay.textContent = `${e.target.value} km`;
+        });
+    }
+    </script>
+
+
 </body>
 </html>
