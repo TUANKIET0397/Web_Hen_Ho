@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Bin</title>
+    <title>User-Profile-2-Admin-Page</title>
     <!-- Reset -->
     <link rel="stylesheet" href="./assets/css/reset.css">
     <!-- fonts -->
     <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
     <!-- AdminPage css -->
-    <link rel="stylesheet" href="./assets/css/adminbin.css">
+    <link rel="stylesheet" href="/assets/css/style_user-profile-2-admin-page.css">
 </head>
 
 <body>
@@ -33,21 +33,21 @@
             <nav class="nav">
                 <div class="nav-item">
                     <div class="icon">
-                        <img src="./assets/icons/taskAdmin1.svg" alt="Dash board">
+                        <img src="./assets/img/dash board.svg" alt="Dash board">
                     </div>
                     <p class="task"><a style="text-decoration: none;" href="adminpage.html">Dash board</a></p>
                 </div>
 
                 <div class="nav-item">
                     <div class="icon">
-                        <img src="./assets/icons/taskAdmin2.svg" alt="User profile">
+                        <img src="/assets/img/user.svg" alt="User profile">
                     </div>
                     <p class="task"><a style="text-decoration: none;" href="user-profile-2-admin-page.html">User profile</a></p>
                 </div>
 
                 <div class="nav-item">
                     <div class="icon">
-                        <img src="./assets/icons/taskAdmin3.svg" alt="Bin">
+                        <img src="/assets/img/trash.svg" alt="Bin">
                     </div>
                     <p class="task"><a style="text-decoration: none;" href="adminbin.html">Bin</a></p>
                 </div>
@@ -70,40 +70,53 @@
                     </button>
                 </form>
             </header>
-            <div class="wrap-content">
-                <div class="bin__content-head">
-                    <div class="bin__firstcontent">UserName</div>
-                    <div class="bin__secondcontent">Follow</div>
-                    <div class="bin__thirdcontent">Delete Date</div>
-                    <div class="bin__fourthcontent">Restore</div>
-                </div>
-                <div class="bin__content-box">
-                    <div class="bin__content-body">
-                        <div class="content-body__user">
-                            <div class="chatavt button avatar" style="background-image: url(/assets/img/avt.jpg);">
-                            </div>
-                            <div class="content-body__user-N-BD">
-                                <div class="content-body__user-Name">Nicol del rey</div>
-                                <div class="content-body__user-BirthDate">15/06/2003</div>
-                            </div>
-                        </div>
-                        <div class="content-body__followers">
-                            <div class="followers-num">32</div>
-                            <div class="followers-text">Followers</div>
-                        </div>
-                        <div class="content-body__deletedate">
-                            <div class="DeleteDate">November 28, 2015</div>
-                        </div>
-                        <div class="content-body__restore">
-                            <a href="/adminprofileuser.html" class="profile-button btn-icon" style="background-color: blue; background-image: url(/assets/img/user_white.png)"></a>
-                            <a href="/adminchatuser.html" class="chat-button btn-icon" style="background-color: yellow; background-image: url(/assets/img/restore.png);"></a>
-                        </div>
+
+        <section class="content-section">
+            <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-info">
+                    <img class="profile-image" src="/assets/img/Profile.svg" alt="Profile" />
+                   <div class="profile-details">
+                        <p class="profile-name">Anasik Waterman</p>
+                        <p class="profile-status">Online</p>
                     </div>
                 </div>
+                <div class="profile-status-icons">
+                    <img src="/assets/img/Status Icons.svg" alt="Status Icons" class="status-icons" />
+                </div>
+            </div>
+
+            <div class="main-area"></div>
+            <div class="card-grid">
+                <div class="card bg-[#444444]"></div>
+                <div class="card bg-[#444444]"></div>
+                <div class="card bg-[#444444]"></div>
+                <div class="card bg-[#444444]"></div>
+                <div class="card bg-[#444444]"></div>
+                <div class="card bg-[#444444]"></div>
+            </div>
+
+            <div class="info-fields">
+                <div class="info-field"><span class="info-label">ID</span>
+                    <span class="info-value">097586</span>
+                </div>
+                <div class="info-field"><div class="info-label">Name</div><div class="info-value">Jasa Mark</div>
+                </div>
+                <div class="info-field"><span class="info-label">Date</span><span
+                        class="info-value">25/03/2003</span></div>
+                <div class="info-field"><span class="info-label">Email</span><span
+                        class="info-value">jack2302@gmail.com</span></div>
+                <div class="info-field"><span class="info-label">Hooby💕</span><span class="info-value">don't
+                        have</span></div>
+                <div class="info-field"><span class="info-label">Looking for</span><span
+                        class="info-value">don't have</span></div>
             </div>
         </div>
     </div>
-
+</section>
+</main>
 </body>
 
 </html>
+
+

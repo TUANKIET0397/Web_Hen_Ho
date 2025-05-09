@@ -99,12 +99,7 @@ body .logo-desc img:first-child {
     display: flex;
     align-items: center;
     margin-left: auto;
-}
-
-.header .action .action-search {
-    width: 44px;
-    height: 45px;
-    margin-right: 30px;
+    position: relative;
 }
 
 .header .action .action-btn {
@@ -120,6 +115,53 @@ body .logo-desc img:first-child {
 
 .header .action .action-btn:hover {
     opacity: 0.6;
+}
+
+#userMenu {
+  display: none; /* Ẩn mặc định */
+}
+
+
+.menu-nav-avt {
+    position: absolute;
+    top: calc(100% + 5px); /* nằm ngay dưới avatar, có khoảng cách 10px */
+    right: 20%;
+    background: rgb(123, 234, 234);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    display: flex  ;
+    flex-direction: column;
+    z-index: 10;
+    width: 250px;
+    gap:5px;
+}
+
+.menu-nav-avt .dropdown-item {
+    padding: 10px 20px;
+    color: black;
+    text-decoration: none;
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.menu-nav-avt .dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* Avatar */
+.avatar {
+    aspect-ratio: 1 / 1;
+    height: 47px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 0;
+    background-color: #3e3e3e;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display: none;
 }
 /* ====== Hero ====== */
 .hero-wrap .info{
