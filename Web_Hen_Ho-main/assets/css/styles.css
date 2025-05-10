@@ -347,8 +347,8 @@ body .logo-desc img:first-child {
 
 .intro-sub .intro-sub-img .intro-img_sub {
     position: absolute;
-    bottom: -90px;
-    right: 250px;
+    bottom: -50px;
+    right: 300px;
     width: 418px;
     height: 266px;
     border-radius: 108px;
@@ -420,7 +420,8 @@ body .logo-desc img:first-child {
 
 .space-wrap .space-img .space-img-sub {
     position: absolute;
-    bottom: 22.5%;
+    /* Đổi bottom = 0 */
+    bottom: 0; 
     right: -117px;
     width: 383px;
     height: 104px;
