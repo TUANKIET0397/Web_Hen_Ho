@@ -367,7 +367,7 @@ body {
   
 
   /* logout   */
-  .signup-page {
+  .login-page {
     display: flex;
     align-items: center;
     justify-content: space-between;
