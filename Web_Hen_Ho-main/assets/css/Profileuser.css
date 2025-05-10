@@ -431,6 +431,12 @@ body .logo-desc img:first-child {
     font-weight: bold;
     text-align: center;
   }
+
+select.infor__looking-friend {
+        margin-top: 10px;
+        margin-left: 30px;
+        padding-right: 88px;
+  }
   
   .info-value {
     font-size: 2rem;
@@ -473,6 +479,7 @@ body .logo-desc img:first-child {
     font-size: 2rem;
     font-weight: bold;
     text-decoration: none;
+    cursor: pointer;
   }
   
   /* Additional styles for image upload */
@@ -601,7 +608,7 @@ button {
     font-size: 2rem;
 }
 
-input, select[disabled] {
+input, select {
     background-color: #f9f9f9;
     color: #555;
     border: none;

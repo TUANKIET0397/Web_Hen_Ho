@@ -60,7 +60,7 @@
                 </ul>
                 <!-- action to call -->
                 <div class="action">
-                    <a href="#!" class="button avatar"  style="background-image: url(/assets/img/avt.jpg);"></a>
+                    <a href="#!" class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></a>
                     <div class="menu-nav-avt" id="userMenu">
                         <a href="Profileuser.html" class="dropdown-item">Xem trang cá nhân</a>
                         <a href="#!" class="dropdown-item">Đăng xuất</a>
@@ -73,21 +73,24 @@
             <div class="chat-side">
                 <div class="chat-friend">
                     <button class="chat-friend__filter chat-friend--active">
-                        <img src="/assets/img/filter.svg" alt="" class="chat-img">
+                        <img src="./assets/img/filter.svg" alt="" class="chat-img">
                         <span class="chat-friend__filter-text">Filter</span>
                     </button>
                     <button class="chat-friend__friend">
-                        <img src="/assets/img/users.svg" alt="" class="friend-img">
+                        <img src="./assets/img/users.svg" alt="" class="friend-img">
                         <span class="chat-friend__friend-text">Friends</span>
                     </button>
                 </div>
                 <!-- Filter -->
                 <div class="chat-side__content">
-                    <form class="chat-side__content-main" name="profile" id="profile" action="!#" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form class="chat-side__content-main" name="profile" id="profile" action="!#" method="post"
+                        enctype="multipart/form-data" autocomplete="off">
                         <div class="chat-side__content-filter__age">
                             <div class="chat-side__content-filter__age-title">AGE:</div>
-                            <input type="range" id="filterAgeMin" name="filterAgeMin" min="18" max="99" value="18" class="chat-side__content-filter__age-line1">
-                            <input type="range" id="filterAgeMax" name="filterAgeMax" min="18" max="99" value="35" class="chat-side__content-filter__age-line2">
+                            <input type="range" id="filterAgeMin" name="filterAgeMin" min="18" max="99" value="18"
+                                class="chat-side__content-filter__age-line1">
+                            <input type="range" id="filterAgeMax" name="filterAgeMax" min="18" max="99" value="35"
+                                class="chat-side__content-filter__age-line2">
                             <div class="chat-side__content-filter__age-text">
                                 <div class="chat-side__content-filter__age-first-value">13</div>
                                 <div class="chat-side__content-filter__age-text"> - </div>
@@ -130,26 +133,26 @@
                             <button type="reset" class="reset-btn">Reset</button>
                         </div>
                     </form>
-                    
+
                 </div>
                 <!-- Friend -->
                 <div class="chat-side__content-friend">
                     <button class="chat-side__content-friends">
-                        <div class="chatavt button avatar" style="background-image: url(/assets/img/avt.jpg);"></div>                       
+                        <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="listfriend">
                             <div class="listfriend__name">Lee tuna kaai</div>
                             <div class="listfriend__seen">seen. 2 hours</div>
                         </div>
                     </button>
                     <button class="chat-side__content-friends">
-                        <div class="chatavt button avatar" style="background-image: url(/assets/img/avt.jpg);"></div>                       
+                        <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="listfriend">
                             <div class="listfriend__name">John Smith</div>
                             <div class="listfriend__seen">seen. 5 hours</div>
                         </div>
                     </button>
                     <button class="chat-side__content-friends">
-                        <div class="chatavt button avatar" style="background-image: url(/assets/img/avt.jpg);"></div>                       
+                        <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="listfriend">
                             <div class="listfriend__name">Jane Doe</div>
                             <div class="listfriend__seen">seen. 1 day</div>
@@ -161,19 +164,19 @@
             <div class="main-content">
                 <div class="textchat__header">
                     <div class="friendchat-avt-name">
-                        <div class="button avatar" style="background-image: url(/assets/img/avt.jpg);"></div>
+                        <div class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="textchat__username">Lee tuna kaai</div>
                     </div>
                     <div class="textchat__func-box">
                         <button class="textchat__func">
-                            <img src="/assets/img/x-circle.png" alt="" class="textchat__func-report-img">
+                            <img src="./assets/img/x-circle.png" alt="" class="textchat__func-report-img">
                         </button>
                         <div class="textchat__func-report">
                             <div class="textchat__func-report__title">Report</div>
                             <div class="textchat__func-report-content">
                                 <input type="text" placeholder="What is your annoys?" class="report-content__input">
                                 <button class="report-content__send">
-                                    <img src="/assets/img/send.svg" alt="" class="report-content__send-report">
+                                    <img src="./assets/img/send.svg" alt="" class="report-content__send-report">
                                 </button>
                             </div>
                         </div>
@@ -190,7 +193,7 @@
                 <div class="textchat__action">
                     <input type="text" class="friendchat__input" placeholder="Type your message...">
                     <button class="textchat__send">
-                        <img src="/assets/img/send.svg" alt="" class="textchat__action--send">
+                        <img src="./assets/img/send.svg" alt="" class="textchat__action--send">
                     </button>
                 </div>
             </div>
@@ -201,14 +204,14 @@
         // Script choose friend to chat
         const chat_side__content_friends = document.querySelectorAll('.chat-side__content-friends');
         const main_content = document.querySelector('.main-content');
-        
+
         chat_side__content_friends.forEach(button => {
             button.addEventListener('click', () => {
                 chat_side__content_friends.forEach(btn => btn.classList.remove('chat-side__content-friends--active'));
                 button.classList.add('chat-side__content-friends--active');
             });
         });
-        
+
         // Script report
         const reportBtn = document.querySelector('.textchat__func');
         const report_modal = document.querySelector('.textchat__func-report');
@@ -216,13 +219,13 @@
         reportBtn.addEventListener('click', () => {
             report_modal.classList.toggle('textchat__func-report--show');
         });
-        
+
         // Script choose chat-friend
         const chat = document.querySelector('.chat-friend__filter');
         const friend = document.querySelector('.chat-friend__friend');
         const chat_side_content = document.querySelector('.chat-side__content');
         const chat_side__content_friend = document.querySelector('.chat-side__content-friend');
-    
+
         chat.addEventListener('click', () => {
             chat.classList.add('chat-friend--active');
             friend.classList.remove('chat-friend--active');
@@ -236,12 +239,12 @@
             chat_side__content_friend.classList.add('chat-side__content-friend--show');
             chat_side_content.classList.add('chat-side__content--hide');
         });
-        
+
         // Add functionality to send messages
         const textInput = document.querySelector('.friendchat__input');
         const sendButton = document.querySelector('.textchat__send');
         const chatBox = document.querySelector('.friendchat-box');
-        
+
         sendButton.addEventListener('click', () => {
             if (textInput.value.trim() !== '') {
                 const message = document.createElement('div');
@@ -252,7 +255,7 @@
                 chatBox.scrollTop = chatBox.scrollHeight;
             }
         });
-        
+
         textInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && textInput.value.trim() !== '') {
                 const message = document.createElement('div');
@@ -273,46 +276,45 @@
         const ageMaxDisplay = document.querySelector('.chat-side__content-filter__age-second-value');
 
         function applyFilters() {
-        const ageMin = parseInt(filterAgeMinInput.value);
-        const ageMax = parseInt(filterAgeMaxInput.value);
+            const ageMin = parseInt(filterAgeMinInput.value);
+            const ageMax = parseInt(filterAgeMaxInput.value);
 
-        filteredUsers = allUsers.filter(user => {
-            let passes = true;
-            if (user.age < ageMin || user.age > ageMax) passes = false;
-            return passes;
-        });
-    }
+            filteredUsers = allUsers.filter(user => {
+                let passes = true;
+                if (user.age < ageMin || user.age > ageMax) passes = false;
+                return passes;
+            });
+        }
 
 
-    // Update display for range sliders
-    if (filterAgeMinInput && ageMinDisplay) {
-        filterAgeMinInput.addEventListener('input', (e) => {
-            ageMinDisplay.textContent = e.target.value;
-            if (parseInt(filterAgeMaxInput.value) < parseInt(e.target.value)) {
-                filterAgeMaxInput.value = e.target.value;
-                ageMaxDisplay.textContent = e.target.value;
-            }
-        });
-    }
-    if (filterAgeMaxInput && ageMaxDisplay) {
-        filterAgeMaxInput.addEventListener('input', (e) => {
-            ageMaxDisplay.textContent = e.target.value;
-            if (parseInt(filterAgeMinInput.value) > parseInt(e.target.value)) {
-                filterAgeMinInput.value = e.target.value;
+        // Update display for range sliders
+        if (filterAgeMinInput && ageMinDisplay) {
+            filterAgeMinInput.addEventListener('input', (e) => {
                 ageMinDisplay.textContent = e.target.value;
-            }
-        });
-    }
-    if (filterDistanceInput && distanceDisplay) {
-        filterDistanceInput.addEventListener('input', (e) => {
-            distanceDisplay.textContent = `${e.target.value} km`;
-        });
-    }
+                if (parseInt(filterAgeMaxInput.value) < parseInt(e.target.value)) {
+                    filterAgeMaxInput.value = e.target.value;
+                    ageMaxDisplay.textContent = e.target.value;
+                }
+            });
+        }
+        if (filterAgeMaxInput && ageMaxDisplay) {
+            filterAgeMaxInput.addEventListener('input', (e) => {
+                ageMaxDisplay.textContent = e.target.value;
+                if (parseInt(filterAgeMinInput.value) > parseInt(e.target.value)) {
+                    filterAgeMinInput.value = e.target.value;
+                    ageMinDisplay.textContent = e.target.value;
+                }
+            });
+        }
+        if (filterDistanceInput && distanceDisplay) {
+            filterDistanceInput.addEventListener('input', (e) => {
+                distanceDisplay.textContent = `${e.target.value} km`;
+            });
+        }
     </script>
 
-<<<<<<< HEAD
     <script>
-        //nut avt 
+        //nut avt
         const avatar = document.querySelector('.avatar');
         const menu = document.getElementById('userMenu');
         const items = document.querySelectorAll('.dropdown-item');
@@ -335,10 +337,6 @@
             });
         });
     </script>
-
-=======
->>>>>>> 45fe204aa0cdf739a0f22adfbf3c52eb6891a786
-
 </body>
 
 </html>

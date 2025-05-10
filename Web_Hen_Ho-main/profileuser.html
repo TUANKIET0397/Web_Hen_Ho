@@ -60,7 +60,7 @@
                 </ul>
                 <!-- action to call -->
                 <div class="action">
-                    <a href="#!" class="button avatar" style="background-image: url(/assets/img/avt.jpg);"></a>
+                    <a href="#!" class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></a>
                     <div class="menu-nav-avt" id="userMenu">
                         <a href="Profileuser.html" class="dropdown-item">Xem trang cá nhân</a>
                         <a href="#!" class="dropdown-item">Đăng xuất</a>
@@ -73,27 +73,27 @@
             <div class="chat-side">
                 <div class="chat-friend">
                     <button class="chat-friend__friend">
-                        <img src="/assets/img/users.svg" alt="" class="friend-img">
+                        <img src="./assets/img/users.svg" alt="" class="friend-img">
                         <span class="chat-friend__friend-text">Friends</span>
                     </button>
                 </div>
                 <div class="chat-side__content-friend">
                     <button class="chat-side__content-friends">
-                        <div class="chatavt button avatar" style="background-image: url(/assets/img/avt.jpg);"></div>
+                        <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="listfriend">
                             <div class="listfriend__name">Lee tuna kaai</div>
                             <div class="listfriend__seen">seen. 2 hours</div>
                         </div>
                     </button>
                     <button class="chat-side__content-friends">
-                        <div class="chatavt button avatar" style="background-image: url(/assets/img/avt.jpg);"></div>
+                        <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="listfriend">
                             <div class="listfriend__name">John Smith</div>
                             <div class="listfriend__seen">seen. 5 hours</div>
                         </div>
                     </button>
                     <button class="chat-side__content-friends">
-                        <div class="chatavt button avatar" style="background-image: url(/assets/img/avt.jpg);"></div>
+                        <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="listfriend">
                             <div class="listfriend__name">Jane Doe</div>
                             <div class="listfriend__seen">seen. 1 day</div>
@@ -250,7 +250,13 @@
                                 <td rowspan="2">
                                     <div class="info-item" style="flex-direction: column;">
                                         <h3 class="info-label">Looking for:</h3>
-                                        <input type="text" name="hobby" value="Swimming, Reading, Photography" disabled>
+                                        <select class="infor__looking-friend" name="looking-forfor" id="" disabled>
+                                            <option value="1">UnKnown</option>
+                                            <option value="2">AnyThing</option>
+                                            <option value="3">My Lover</option>
+                                            <option value="4">My Friend</option>
+                                            <option value="5">Friend Confide</option>
+                                        </select>
                                     </div>
                                 </td>
                             </tr>
@@ -346,69 +352,6 @@
                     }
                 }
             });
-
-            /* // Hàm upload ảnh đến server
-             function uploadAvatarToServer(file) {
-                 const formData = new FormData();
-                 formData.append('avatar', file);
-                 
-                 // Có thể thêm thông tin người dùng nếu cần
-                 formData.append('userId', '123'); // Giả sử id người dùng là 123
-                 
-                 // Hiển thị thông báo đang tải
-                 showMessage('Đang tải ảnh lên...', '');
-                 
-                 fetch('/upload-avatar.php', {
-                     method: 'POST',
-                     body: formData
-                 })
-                 .then(response => {
-                     if (!response.ok) {
-                         throw new Error('Lỗi khi tải ảnh lên');
-                     }
-                     return response.json();
-                 })
-                 .then(data => {
-                     if (data.success) {
-                         // Hiển thị avatar mới từ server
-                         avatarPreview.style.backgroundImage = `url(${data.avatarUrl}?v=${new Date().getTime()})`;
-                         showMessage('Cập nhật ảnh đại diện thành công!', 'success');
-                     } else {
-                         showMessage(data.message || 'Lỗi khi tải ảnh lên', 'error');
-                     }
-                 })
-                 .catch(error => {
-                     console.error('Error:', error);
-                     showMessage('Có lỗi xảy ra khi tải ảnh lên', 'error');
-                 });
-             }
-             
-             // Hiển thị thông báo
-             function showMessage(text, type) {
-                 message.textContent = text;
-                 message.className = 'message';
-                 if (type) {
-                     message.classList.add(type);
-                 }
-                 message.style.display = 'block';
-                 
-                 // Ẩn thông báo sau 3 giây
-                 setTimeout(() => {
-                     message.style.display = 'none';
-                 }, 3000);
-             }
-             
-             // Tải avatar từ server khi load trang
-             fetch('/get-avatar.php?userId=123')
-                 .then(response => response.json())
-                 .then(data => {
-                     if (data.success && data.avatarUrl) {
-                         avatarPreview.style.backgroundImage = `url(${data.avatarUrl}?v=${new Date().getTime()})`;
-                     }
-                 })
-                 .catch(error => {
-                     console.error('Error loading avatar:', error);
-                 });*/
         });
     </script>
 
