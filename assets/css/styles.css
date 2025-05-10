@@ -374,7 +374,7 @@ body {
     gap: 100px; /* Tăng khoảng cách giữa 2 phần */
     padding: 80px 40px; /* Giữ padding ngang để không dính sát mép */
     max-width: 1380px;  /* Tăng giới hạn chiều ngang tổng thể */
-    margin: 0 auto;     /* Căn giữa toàn bộ khối */
+    margin: -80px auto;     /* Căn giữa toàn bộ khối */
   }
   
   
