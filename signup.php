@@ -50,21 +50,21 @@
         <!-- nav -->
         <ul>
           <li>
-            <a href="index.html">Home</a>
+            <a href="index.php">Home</a>
           </li>
           <li>
             <a href="#!">About</a>
           </li>
           <li>
-            <a href="support.html">Support</a>
+            <a href="support.php">Support</a>
           </li>
           <li>
-            <a href="SwipeProfile.html" style="color: red;">Swipe</a>
+            <a href="SwipeProfile.php" style="color: red;">Swipe</a>
           </li>
         </ul>
         <!-- action to call -->
         <div class="action">
-          <a href="login.html" class="btn btn-login">Login</a>
+          <a href="login.php" class="btn btn-login">Login</a>
         </div>
       </div>
     </div>

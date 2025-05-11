@@ -45,7 +45,7 @@
                 <!-- nav -->
                 <ul>
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
                         <a href="#!">About</a>
@@ -54,12 +54,12 @@
                         <a href="#!">Support</a>
                     </li>
                     <li>
-                        <a href="SwipeProfile.html" style="color: red;">Swipe</a>
+                        <a href="SwipeProfile.php" style="color: red;">Swipe</a>
                     </li>
                 </ul>
                 <!-- action to call -->
                 <div class="action">
-                    <a href="login.html" class="action-btn btn">Login</a>
+                    <a href="login.php" class="action-btn btn">Login</a>
                 </div>
             </div>
         </div>

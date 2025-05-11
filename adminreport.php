@@ -35,14 +35,14 @@
                     <div class="icon">
                         <img src="./assets/icons/taskAdmin1.svg" alt="Dash board">
                     </div>
-                    <p><a class="task" style="text-decoration: none;" href="adminpage.html">Dash board</a></p>
+                    <p><a class="task" style="text-decoration: none;" href="adminpage.php">Dash board</a></p>
                 </div>
 
                 <div class="nav-item">
                     <div class="icon">
                         <img src="./assets/icons/taskAdmin2.svg" alt="User profile">
                     </div>
-                    <p><a class="task" style="text-decoration: none;" href="user-profile-2-admin-page.html">User
+                    <p><a class="task" style="text-decoration: none;" href="user-profile-2-admin-page.php">User
                             profile</a></p>
                 </div>
 
@@ -50,7 +50,7 @@
                     <div class="icon">
                         <img src="./assets/icons/taskAdmin3.svg" alt="Bin">
                     </div>
-                    <p><a class="task" style="text-decoration: none;" href="adminbin.html">Bin</a></p>
+                    <p><a class="task" style="text-decoration: none;" href="adminbin.php">Bin</a></p>
                 </div>
             </nav>
         </aside>
@@ -96,13 +96,13 @@
                             <div class="user-report">December 28, 2023sfdfghj</div>
                         </div>
                         <div class="content-body__status">
-                            <a href="adminreport.html" class="report-button btn-icon"
+                            <a href="adminreport.php" class="report-button btn-icon"
                                 style="background-color: red;"></a>
-                            <a href="adminchatuser.html" class="chat-button btn-icon"
+                            <a href="adminchatuser.php" class="chat-button btn-icon"
                                 style="background-color: #00FF4F; background-image: url(./assets/img/chat-button.png);"></a>
-                            <a href="adminprofileuser.html" class="profile-button btn-icon"
+                            <a href="adminprofileuser.php" class="profile-button btn-icon"
                                 style="background-color: blue; background-image: url(./assets/img/user_white.png)"></a>
-                            <a href="adminbin.html" class="bin-button btn-icon"
+                            <a href="adminbin.php" class="bin-button btn-icon"
                                 style="background-color: red; background-image: url(./assets/img/bin.png);"></a>
                         </div>
                     </div>

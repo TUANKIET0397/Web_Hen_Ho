@@ -54,21 +54,21 @@
                 <!-- nav -->
                 <ul>
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
                         <a href="#!">About</a>
                     </li>
                     <li>
-                        <a href="support.html">Support</a>
+                        <a href="support.php">Support</a>
                     </li>
                     <li>
-                        <a href="SwipeProfile.html" style="color: red;">Swipe</a>
+                        <a href="SwipeProfile.php" style="color: red;">Swipe</a>
                     </li>
                 </ul>
                 <!-- action to call -->
                 <div class="action">
-                    <a href="signup.html" class="btn btn-signUp">Sign up</a>
+                    <a href="signup.php" class="btn btn-signUp">Sign up</a>
                 </div>
             </div>
     </header>

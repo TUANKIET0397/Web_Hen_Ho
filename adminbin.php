@@ -35,14 +35,14 @@
                     <div class="icon">
                         <img src="./assets/icons/taskAdmin1.svg" alt="Dash board">
                     </div>
-                    <p><a class="task" style="text-decoration: none;" href="adminpage.html">Dash board</a></p>
+                    <p><a class="task" style="text-decoration: none;" href="adminpage.php">Dash board</a></p>
                 </div>
 
                 <div class="nav-item">
                     <div class="icon">
                         <img src="./assets/icons/taskAdmin2.svg" alt="User profile">
                     </div>
-                    <p><a class="task" style="text-decoration: none;" href="user-profile-2-admin-page.html">User
+                    <p><a class="task" style="text-decoration: none;" href="user-profile-2-admin-page.php">User
                             profile</a></p>
                 </div>
 
@@ -50,7 +50,7 @@
                     <div class="icon">
                         <img src="./assets/icons/taskAdmin3.svg" alt="Bin">
                     </div>
-                    <p><a class="task" style="text-decoration: none;" href="adminbin.html">Bin</a></p>
+                    <p><a class="task" style="text-decoration: none;" href="adminbin.php">Bin</a></p>
                 </div>
             </nav>
         </aside>
@@ -96,9 +96,9 @@
                             <div class="DeleteDate">November 28, 2015</div>
                         </div>
                         <div class="content-body__restore">
-                            <a href="/adminprofileuser.html" class="profile-button btn-icon"
+                            <a href="/adminprofileuser.php" class="profile-button btn-icon"
                                 style="background-color: blue; background-image: url(./assets/img/user_white.png)"></a>
-                            <a href="/adminchatuser.html" class="chat-button btn-icon"
+                            <a href="/adminchatuser.php" class="chat-button btn-icon"
                                 style="background-color: yellow; background-image: url(./assets/img/restore.png);"></a>
                         </div>
                     </div>

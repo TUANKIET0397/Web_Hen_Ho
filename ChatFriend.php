@@ -46,23 +46,23 @@
                 <!-- nav -->
                 <ul>
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
                         <a href="#!">About</a>
                     </li>
                     <li>
-                        <a href="support.html">Support</a>
+                        <a href="support.php">Support</a>
                     </li>
                     <li>
-                        <a href="SwipeProfile.html" style="color: red;">Swipe</a>
+                        <a href="SwipeProfile.php" style="color: red;">Swipe</a>
                     </li>
                 </ul>
                 <!-- action to call -->
                 <div class="action">
                     <a href="#!" class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></a>
                     <div class="menu-nav-avt" id="userMenu">
-                        <a href="Profileuser.html" class="dropdown-item">Xem trang cá nhân</a>
+                        <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
                         <a href="#!" class="dropdown-item">Đăng xuất</a>
                     </div>
                 </div>
