@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./assets/css/reset.css">
     <!-- fonts -->
     <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
-    <!-- styles home page -->
+    <!-- chat friend page -->
     <link rel="stylesheet" href="./assets/css/ChatFriend.css">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="./assets/favicon/apple-icon-57x57.png">

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./assets/css/reset.css">
     <!-- fonts -->
     <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
-    <!-- AdminPage css -->
+    <!-- Admin report css -->
     <link rel="stylesheet" href="./assets/css/adminreport.css">
 </head>
 
