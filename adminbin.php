@@ -1,3 +1,6 @@
+<?php 
+  include_once "./assets/php/config.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,29 +82,46 @@
                     <div class="bin__fourthcontent">Restore</div>
                 </div>
                 <div class="bin__content-box">
-                    <div class="bin__content-body">
-                        <div class="content-body__user">
-                            <div class="chatavt button avatar" style="background-image: url(/assets/img/avt.jpg);">
+                    <?php 
+                        $bin_un="select UserName,BirthDate from userinformation";
+                        $bin_date ="select DATE(NOW()) AS currentDate";
+                        $kq1 = mysqli_query($conn,$bin_un);
+                        $kq2 = mysqli_query($conn,$bin_date);
+                        
+                        $currentDate = "";
+                        if ($row = mysqli_fetch_assoc($kq2)) {
+                            $currentDate = $row['currentDate'];
+                        }
+                    ?>
+                    <?php 
+                        while ($a = mysqli_fetch_array($kq1)) 
+                        {
+                            ?>
+                            <div class="bin__content-body">
+                                <div class="content-body__user">
+                                    <div class="chatavt button avatar" style="background-image: url(/assets/img/avt.jpg);">
+                                    </div>
+                                
+                                    <div class="content-body__user-N-BD">
+                                        <div class="content-body__user-Name"><?php echo $a["UserName"]?></div>
+                                        <div class="content-body__user-BirthDate"><?php echo $a["BirthDate"]?></div>
+                                    </div>
+                                </div>
+                                <div class="content-body__followers">
+                                    <div class="followers-num">32</div>
+                                    <div class="followers-text">Followers</div>
+                                </div>
+                                <div class="content-body__deletedate">
+                                        <div class="DeleteDate"><?php echo $currentDate ?></div>
+                                </div>
+                                <div class="content-body__restore">
+                                    <a href="/adminprofileuser.php" class="profile-button btn-icon"
+                                        style="background-color: blue; background-image: url(./assets/img/user_white.png)"></a>
+                                    <a href="/adminchatuser.php" class="chat-button btn-icon"
+                                        style="background-color: yellow; background-image: url(./assets/img/restore.png);"></a>
+                                </div>
                             </div>
-                            <div class="content-body__user-N-BD">
-                                <div class="content-body__user-Name">Nicol del rey</div>
-                                <div class="content-body__user-BirthDate">15/06/2003</div>
-                            </div>
-                        </div>
-                        <div class="content-body__followers">
-                            <div class="followers-num">32</div>
-                            <div class="followers-text">Followers</div>
-                        </div>
-                        <div class="content-body__deletedate">
-                            <div class="DeleteDate">November 28, 2015</div>
-                        </div>
-                        <div class="content-body__restore">
-                            <a href="/adminprofileuser.php" class="profile-button btn-icon"
-                                style="background-color: blue; background-image: url(./assets/img/user_white.png)"></a>
-                            <a href="/adminchatuser.php" class="chat-button btn-icon"
-                                style="background-color: yellow; background-image: url(./assets/img/restore.png);"></a>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
