@@ -322,6 +322,7 @@ a {
     font-weight: 700;
     border-bottom: 2px solid #000;
     color: #000;
+    display: block;
 }
 
 .wrap-pro .detail {

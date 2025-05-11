@@ -208,7 +208,7 @@
                     </div>
                     <div class="profile">
                         <div class="wrap-pro">
-                            <h4 class="user-pro">User Profile</h4>
+                            <a href="adminprofileuser.php" class="user-pro">User Profile</a>
                             <?php 
                                 while($a = mysqli_fetch_array($kq_ad_us))
                                 { ?>
