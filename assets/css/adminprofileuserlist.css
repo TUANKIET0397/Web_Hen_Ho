@@ -204,12 +204,14 @@ a {
     flex-direction: column;
     gap: 10px;
     flex: 1;
+    margin-top: 24px;
 }
 
 .content-body__user{
     width: 20%;
     display: flex;
     align-items: center;
+    margin-left: 24px;
 }
 
 .content-body__followers {
