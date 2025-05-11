@@ -42,7 +42,7 @@
                     <div class="icon">
                         <img src="./assets/icons/taskAdmin2.svg" alt="User profile">
                     </div>
-                    <p><a class="task" style="text-decoration: none;" href="user-profile-2-admin-page.php">User
+                    <p><a class="task" style="text-decoration: none;" href="adminprofileuser.php">User
                             profile</a></p>
                 </div>
 
@@ -100,7 +100,7 @@
                                 style="background-color: red;"></a>
                             <a href="adminchatuser.php" class="chat-button btn-icon"
                                 style="background-color: #00FF4F; background-image: url(./assets/img/chat-button.png);"></a>
-                            <a href="adminprofileuser.php" class="profile-button btn-icon"
+                            <a href="user-profile-2-admin-page.php" class="profile-button btn-icon"
                                 style="background-color: blue; background-image: url(./assets/img/user_white.png)"></a>
                             <a href="adminbin.php" class="bin-button btn-icon"
                                 style="background-color: red; background-image: url(./assets/img/bin.png);"></a>

@@ -1,3 +1,7 @@
+<?php 
+  include_once "./assets/php/config.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,13 +102,20 @@
                                 <div class="chat-side__content-filter__age-text"> years old</div>
                             </div>
                         </div>
+                        <?php 
+                            $us_look="select * from looking";
+                            $us_hobby="select * from hobbylist";
+                            $kq_us_look = mysqli_query($conn,$us_look);
+                            $kq_us_hobby = mysqli_query($conn,$us_hobby);
+                        ?>
                         <div class="chat-side__content-filter__lookingfor">
                             <div class="chat-side__content-filter__lookingfor-title">Looking for:</div>
                             <select name="lookingfor" id="lookingfor">
-                                <option style="text-align: center;" value="">------ Selection Gender ------</option>
-                                <option value="Everyone">Everyone</option>
-                                <option value="Man">Man</option>
-                                <option value="Woman">Woman</option>
+                                <option style="text-align: center;" value="">------ Selection Looking ------</option>
+                                <?php 
+                                    while($a = mysqli_fetch_array($kq_us_look)) {?>
+                                        <option value=" <?php echo $a["ID"] ?>"> <?php echo $a["LookingName"] ?></option>
+                                <?php }?>
                             </select>
                         </div>
                         <div class="chat-side__content-filter__location">
@@ -123,9 +134,10 @@
                             <div class="chat-side__content-filter__hobby-title">Hobby:</div>
                             <select name="hobby" id="hobby">
                                 <option style="text-align: center;" value="">------ Selection Hobby ------</option>
-                                <option value="Movies">Movies</option>
-                                <option value="Reading">Reading</option>
-                                <option value="Travel">Travel</option>
+                                <?php 
+                                    while($c = mysqli_fetch_array($kq_us_hobby)) {?>
+                                        <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["HobbyName"] ?></option>
+                                <?php }?>
                             </select>
                         </div>
                         <div class="chat-side__content-btn">

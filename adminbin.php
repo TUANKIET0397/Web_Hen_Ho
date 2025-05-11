@@ -45,7 +45,7 @@
                     <div class="icon">
                         <img src="./assets/icons/taskAdmin2.svg" alt="User profile">
                     </div>
-                    <p><a class="task" style="text-decoration: none;" href="user-profile-2-admin-page.php">User
+                    <p><a class="task" style="text-decoration: none;" href="adminprofileuser.php">User
                             profile</a></p>
                 </div>
 
@@ -83,7 +83,7 @@
                 </div>
                 <div class="bin__content-box">
                     <?php 
-                        $bin_un="select UserName,BirthDate from userinformation";
+                        $bin_un="select ID,UserName,BirthDate from userinformation";
                         $bin_date ="select DATE(NOW()) AS currentDate";
                         $kq1 = mysqli_query($conn,$bin_un);
                         $kq2 = mysqli_query($conn,$bin_date);
@@ -91,6 +91,14 @@
                         $currentDate = "";
                         if ($row = mysqli_fetch_assoc($kq2)) {
                             $currentDate = $row['currentDate'];
+                        }
+
+                        $ad_fl="select * from followers";
+                        $kq_ad_fl = mysqli_query($conn,$ad_fl);
+
+                        $listfollowers = [];
+                        while($row = mysqli_fetch_array($kq_ad_fl)) {
+                            $listfollowers[] = $row;
                         }
                     ?>
                     <?php 
@@ -108,16 +116,26 @@
                                     </div>
                                 </div>
                                 <div class="content-body__followers">
-                                    <div class="followers-num">32</div>
+                                    <div class="followers-num">
+                                        <?php
+                                            $fl_count = 0;                                               
+                                            foreach($listfollowers as $b) {
+                                            if ($b["FollowerID"] == $a["ID"] ) {
+                                                $fl_count += 1;
+                                            } 
+                                        }
+                                        echo $fl_count;
+                                        ?>
+                                    </div>
                                     <div class="followers-text">Followers</div>
                                 </div>
                                 <div class="content-body__deletedate">
                                         <div class="DeleteDate"><?php echo $currentDate ?></div>
                                 </div>
                                 <div class="content-body__restore">
-                                    <a href="/adminprofileuser.php" class="profile-button btn-icon"
+                                    <a href="user-profile-2-admin-page.php" class="profile-button btn-icon"
                                         style="background-color: blue; background-image: url(./assets/img/user_white.png)"></a>
-                                    <a href="/adminchatuser.php" class="chat-button btn-icon"
+                                    <a href="#!" class="chat-button btn-icon"
                                         style="background-color: yellow; background-image: url(./assets/img/restore.png);"></a>
                                 </div>
                             </div>

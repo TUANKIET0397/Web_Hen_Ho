@@ -1,3 +1,6 @@
+<?php 
+  include_once "./assets/php/config.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +17,32 @@
 </head>
 
 <body>
+    <?php 
+
+        $ad_onl = "select isActive from userinformation";
+        $kq_ad_onl = mysqli_query($conn,$ad_onl);
+        $total_onl = 0;
+        $percent_up;
+         while($tt = mysqli_fetch_array($kq_ad_onl))
+         {
+            if($tt["isActive"] == 1)
+            {
+                $total_onl +=1;
+            }
+         }
+
+        $ad_us="select ID,UserName,isActive,Avt from userinformation";
+        $ad_fl="select * from followers";
+        $kq_ad_us = mysqli_query($conn,$ad_us);
+        $kq_ad_fl = mysqli_query($conn,$ad_fl);
+
+        $listfollowers = [];
+        while($row = mysqli_fetch_array($kq_ad_fl)) {
+            $listfollowers[] = $row;
+        }
+    ?>
+
+    
     <div class="container">
         <!-- wrap nav -->
         <aside class="aside">
@@ -42,7 +71,7 @@
                     <div class="icon">
                         <img src="./assets/icons/taskAdmin2.svg" alt="User profile">
                     </div>
-                    <p><a class="task" style="text-decoration: none;" href="user-profile-2-admin-page.php">User profile</a></p>
+                    <p><a class="task" style="text-decoration: none;" href="adminprofileuser.php">User profile</a></p>
                 </div>
 
                 <div class="nav-item">
@@ -81,7 +110,7 @@
                             <img src="./assets/img/decr.svg" alt="Online People" class="item-img">
                             <div class="item-wrap">
                                 <p class="desc">Online People</p>
-                                <p class="total">139.000</p>
+                                <p class="total"><?php echo $total_onl ?></p>
                             </div>
                             <span class="index" style="color: #00FD4E; background: #09ff0036;">+ 3,21%</span>
                         </div>
@@ -100,7 +129,7 @@
                     <!-- Report -->
                     <div class="wrap-report">
 
-                        <h2 class="title">Report</h2>
+                        <a href="adminreport.php" class="title">Report</a>
                         <!-- detail report -->
                         <div class="frame-report">
                             <div class="detail">
@@ -177,138 +206,36 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="profile">
                         <div class="wrap-pro">
                             <h4 class="user-pro">User Profile</h4>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Darwin Waterson</h3>
-                                    <p class="user-desc">37 follower</p>
-                                </div>
-                                <div class="tick-green"></div>
-                            </div>
+                            <?php 
+                                while($a = mysqli_fetch_array($kq_ad_us))
+                                { ?>
+                                    <div class="detail">
+                                        <img src="./assets/img/avt-new.jpg" alt="" class="avt-user">
+                                        <div class="info">
+                                            <h3 class="name"><?php echo $a["UserName"] ?></h3>
+                                            <p class="user-desc">
+                                                <?php
+                                                    $fl_count = 0;                                               
+                                                    foreach($listfollowers as $b) {
+                                                    if ($b["FollowerID"] == $a["ID"] ) {
+                                                        $fl_count += 1;
+                                                    } 
+                                                }
+                                                echo $fl_count . " followers"
+                                                ?>
+                                            </p>
+                                        </div>
+                                            <?php 
+                                                if ($a["isActive"] == 1) { ?>
+                                                    <div class="tick-green"></div>
+                                                <?php } else { ?>
+                                                    <div class="tick-gray"></div>
+                                             <?php } ?>
+                                    </div>
+                               <?php }?>
                         </div>
                     </div>
                 </div>
@@ -316,6 +243,7 @@
         </main>
     </div>
     </div>
+
 </body>
 
 </html>

@@ -42,7 +42,7 @@
                     <div class="icon">
                         <img src="./assets/icons/taskAdmin2.svg" alt="User profile">
                     </div>
-                    <p><a class="task" style="text-decoration: none;" href="user-profile-2-admin-page.php">User
+                    <p><a class="task" style="text-decoration: none;" href="adminprofileuser.php">User
                             profile</a></p>
                 </div>
 
