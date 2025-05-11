@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
-    <!-- Reset -->
-    <link rel="stylesheet" href="./assets/css/reset.css">
-    <!-- fonts -->
-    <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
-    <!-- AdminPage css -->
-    <link rel="stylesheet" href="./assets/css/adminpage.css">
-</head>
+<?php include_once "header.php"; ?>
 
 <body>
     <div class="container">
@@ -42,7 +29,8 @@
                     <div class="icon">
                         <img src="./assets/icons/taskAdmin2.svg" alt="User profile">
                     </div>
-                    <p><a class="task" style="text-decoration: none;" href="user-profile-2-admin-page.html">User profile</a></p>
+                    <p><a class="task" style="text-decoration: none;" href="user-profile-2-admin-page.html">User
+                            profile</a></p>
                 </div>
 
                 <div class="nav-item">

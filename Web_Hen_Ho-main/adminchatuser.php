@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Profile List</title>
-    <!-- Reset -->
-    <link rel="stylesheet" href="./assets/css/reset.css">
-    <!-- fonts -->
-    <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
-    <!-- AdminPage css -->
-    <link rel="stylesheet" href="./assets/css/adminprofileuserlist.css">
-</head>
+<?php include_once "header.php"; ?>
 
 <body>
     <div class="container">
@@ -72,28 +59,19 @@
                 </form>
             </header>
             <div class="wrap-content">
-                <div class="bin__content-box">
-                    <div class="bin__content-body">
-                        <div class="content-body__user">
-                            <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);">
-                            </div>
-                            <div class="content-body__user-N-BD">
-                                <div class="content-body__user-Name">Nicol del rey</div>
-                                <div class="content-body__user-BirthDate">15/06/2003</div>
-                            </div>
-                        </div>
-                        <div class="content-body__followers">
-                            <div class="followers-num">32</div>
-                            <div class="followers-text">Followers</div>
-                        </div>
-                        <div class="content-body__operating-status">
-                            <div class="operating-status">online</div>
-                        </div>
-                        <div class="content-body__profile">
-                            <a href="adminprofileuser.html" class="profile-button btn-icon"
-                                style="background-color: blue; background-image: url(./assets/img/user_white.png)"></a>
-                        </div>
+                <div class="textchat__header">
+                    <div class="friendchat-avt-name">
+                        <div class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
+                        <div class="textchat__username">Lee tuna kaai</div>
                     </div>
+                </div>
+                <div class="friendchat-box">
+                    <div class="mess friend-mess">From London</div>
+                    <div class="mess my-mess">Hope to see you soon.</div>
+                    <div class="mess my-mess">Nice.</div>
+                    <div class="mess friend-mess">I'll be there in a week!</div>
+                    <div class="mess friend-mess">Have you been to Tower Bridge?</div>
+                    <div class="mess my-mess">Not yet, but I'd love to go there!</div>
                 </div>
             </div>
         </div>

@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Report</title>
-    <!-- Reset -->
-    <link rel="stylesheet" href="./assets/css/reset.css">
-    <!-- fonts -->
-    <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
-    <!-- AdminPage css -->
-    <link rel="stylesheet" href="./assets/css/adminreport.css">
-</head>
+<?php include_once "header.php"; ?>
 
 <body>
     <div class="container">
@@ -72,44 +59,33 @@
                 </form>
             </header>
             <div class="wrap-content">
-                <div class="bin__content-head">
-                    <div class="bin__firstcontent">UserName</div>
-                    <div class="bin__secondcontent">Follow</div>
-                    <div class="bin__thirdcontent">User Report</div>
-                    <div class="bin__fourthcontent">Status</div>
-                </div>
                 <div class="bin__content-box">
                     <div class="bin__content-body">
                         <div class="content-body__user">
                             <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);">
                             </div>
                             <div class="content-body__user-N-BD">
-                                <div class="content-body__user-Name">Nguyen Gia Bao</div>
+                                <div class="content-body__user-Name">Nicol del rey</div>
                                 <div class="content-body__user-BirthDate">15/06/2003</div>
                             </div>
                         </div>
                         <div class="content-body__followers">
-                            <div class="followers-num">100</div>
+                            <div class="followers-num">32</div>
                             <div class="followers-text">Followers</div>
                         </div>
-                        <div class="content-body__user-report">
-                            <div class="user-report">December 28, 2023sfdfghj</div>
+                        <div class="content-body__operating-status">
+                            <div class="operating-status">online</div>
                         </div>
-                        <div class="content-body__status">
-                            <a href="adminreport.html" class="report-button btn-icon"
-                                style="background-color: red;"></a>
-                            <a href="adminchatuser.html" class="chat-button btn-icon"
-                                style="background-color: #00FF4F; background-image: url(./assets/img/chat-button.png);"></a>
+                        <div class="content-body__profile">
                             <a href="adminprofileuser.html" class="profile-button btn-icon"
                                 style="background-color: blue; background-image: url(./assets/img/user_white.png)"></a>
-                            <a href="adminbin.html" class="bin-button btn-icon"
-                                style="background-color: red; background-image: url(./assets/img/bin.png);"></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

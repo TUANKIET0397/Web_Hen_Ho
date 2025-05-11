@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Bin</title>
-    <!-- Reset -->
-    <link rel="stylesheet" href="./assets/css/reset.css">
-    <!-- fonts -->
-    <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
-    <!-- AdminPage css -->
-    <link rel="stylesheet" href="./assets/css/adminbin.css">
-</head>
+<?php include_once "header.php"; ?>
 
 <body>
     <div class="container">

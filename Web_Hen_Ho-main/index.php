@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <!-- Reset -->
-    <link rel="stylesheet" href="./assets/css/reset.css">
-    <!-- fonts -->
-    <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
-    <!-- styles home page -->
-    <link rel="stylesheet" href="./assets/css/styles.css">
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="./assets/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="./assets/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./assets/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./assets/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="./assets/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="./assets/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="./assets/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./assets/favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="./assets/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-</head>
+<?php include_once "header.php"; ?>
 
 <body>
     <!-- Header -->
@@ -230,34 +199,34 @@
     </footer>
 
     <script>
-        //nut avt 
-        const loginBtn = document.getElementById('loginBtn');
-        const avatar = document.querySelector('.avatar');
-        const menu = document.getElementById('userMenu');
-        const items = document.querySelectorAll('.dropdown-item');
+    //nut avt 
+    const loginBtn = document.getElementById('loginBtn');
+    const avatar = document.querySelector('.avatar');
+    const menu = document.getElementById('userMenu');
+    const items = document.querySelectorAll('.dropdown-item');
 
-        avatar.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-        });
+    avatar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    });
 
-        document.addEventListener('click', () => {
+    document.addEventListener('click', () => {
+        menu.style.display = 'none';
+    });
+
+    menu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    items.forEach(item => {
+        item.addEventListener('click', () => {
             menu.style.display = 'none';
         });
+    });
 
-        menu.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                menu.style.display = 'none';
-            });
-        });
-
-        loginBtn.addEventListener('click', () => {
-            loginBtn.style.display = 'none';     // Ẩn nút Login
-            avatar.style.display = 'block';      // Hiện avatar
-        });
+    loginBtn.addEventListener('click', () => {
+        loginBtn.style.display = 'none'; // Ẩn nút Login
+        avatar.style.display = 'block'; // Hiện avatar
+    });
     </script>
 </body>
 

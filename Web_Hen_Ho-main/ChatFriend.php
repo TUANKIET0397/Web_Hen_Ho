@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flirt Zone - Chat Friend</title>
-    <!-- Reset -->
-    <link rel="stylesheet" href="./assets/css/reset.css">
-    <!-- fonts -->
-    <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
-    <!-- styles home page -->
-    <link rel="stylesheet" href="./assets/css/ChatFriend.css">
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="./assets/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="./assets/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./assets/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./assets/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="./assets/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="./assets/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="./assets/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./assets/favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="./assets/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-</head>
+<?php include_once "header.php"; ?>
 
 <body>
     <div class="box_textchatpage">
@@ -201,141 +170,142 @@
     </div>
 
     <script>
-        // Script choose friend to chat
-        const chat_side__content_friends = document.querySelectorAll('.chat-side__content-friends');
-        const main_content = document.querySelector('.main-content');
+    // Script choose friend to chat
+    const chat_side__content_friends = document.querySelectorAll('.chat-side__content-friends');
+    const main_content = document.querySelector('.main-content');
 
-        chat_side__content_friends.forEach(button => {
-            button.addEventListener('click', () => {
-                chat_side__content_friends.forEach(btn => btn.classList.remove('chat-side__content-friends--active'));
-                button.classList.add('chat-side__content-friends--active');
-            });
+    chat_side__content_friends.forEach(button => {
+        button.addEventListener('click', () => {
+            chat_side__content_friends.forEach(btn => btn.classList.remove(
+                'chat-side__content-friends--active'));
+            button.classList.add('chat-side__content-friends--active');
         });
+    });
 
-        // Script report
-        const reportBtn = document.querySelector('.textchat__func');
-        const report_modal = document.querySelector('.textchat__func-report');
+    // Script report
+    const reportBtn = document.querySelector('.textchat__func');
+    const report_modal = document.querySelector('.textchat__func-report');
 
-        reportBtn.addEventListener('click', () => {
-            report_modal.classList.toggle('textchat__func-report--show');
-        });
+    reportBtn.addEventListener('click', () => {
+        report_modal.classList.toggle('textchat__func-report--show');
+    });
 
-        // Script choose chat-friend
-        const chat = document.querySelector('.chat-friend__filter');
-        const friend = document.querySelector('.chat-friend__friend');
-        const chat_side_content = document.querySelector('.chat-side__content');
-        const chat_side__content_friend = document.querySelector('.chat-side__content-friend');
+    // Script choose chat-friend
+    const chat = document.querySelector('.chat-friend__filter');
+    const friend = document.querySelector('.chat-friend__friend');
+    const chat_side_content = document.querySelector('.chat-side__content');
+    const chat_side__content_friend = document.querySelector('.chat-side__content-friend');
 
-        chat.addEventListener('click', () => {
-            chat.classList.add('chat-friend--active');
-            friend.classList.remove('chat-friend--active');
-            chat_side_content.classList.remove('chat-side__content--hide');
-            chat_side__content_friend.classList.remove('chat-side__content-friend--show');
-        });
+    chat.addEventListener('click', () => {
+        chat.classList.add('chat-friend--active');
+        friend.classList.remove('chat-friend--active');
+        chat_side_content.classList.remove('chat-side__content--hide');
+        chat_side__content_friend.classList.remove('chat-side__content-friend--show');
+    });
 
-        friend.addEventListener('click', () => {
-            friend.classList.add('chat-friend--active');
-            chat.classList.remove('chat-friend--active');
-            chat_side__content_friend.classList.add('chat-side__content-friend--show');
-            chat_side_content.classList.add('chat-side__content--hide');
-        });
+    friend.addEventListener('click', () => {
+        friend.classList.add('chat-friend--active');
+        chat.classList.remove('chat-friend--active');
+        chat_side__content_friend.classList.add('chat-side__content-friend--show');
+        chat_side_content.classList.add('chat-side__content--hide');
+    });
 
-        // Add functionality to send messages
-        const textInput = document.querySelector('.friendchat__input');
-        const sendButton = document.querySelector('.textchat__send');
-        const chatBox = document.querySelector('.friendchat-box');
+    // Add functionality to send messages
+    const textInput = document.querySelector('.friendchat__input');
+    const sendButton = document.querySelector('.textchat__send');
+    const chatBox = document.querySelector('.friendchat-box');
 
-        sendButton.addEventListener('click', () => {
-            if (textInput.value.trim() !== '') {
-                const message = document.createElement('div');
-                message.classList.add('mess', 'my-mess');
-                message.textContent = textInput.value;
-                chatBox.appendChild(message);
-                textInput.value = '';
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }
-        });
+    sendButton.addEventListener('click', () => {
+        if (textInput.value.trim() !== '') {
+            const message = document.createElement('div');
+            message.classList.add('mess', 'my-mess');
+            message.textContent = textInput.value;
+            chatBox.appendChild(message);
+            textInput.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    });
 
-        textInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && textInput.value.trim() !== '') {
-                const message = document.createElement('div');
-                message.classList.add('mess', 'my-mess');
-                message.textContent = textInput.value;
-                chatBox.appendChild(message);
-                textInput.value = '';
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }
-        });
+    textInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && textInput.value.trim() !== '') {
+            const message = document.createElement('div');
+            message.classList.add('mess', 'my-mess');
+            message.textContent = textInput.value;
+            chatBox.appendChild(message);
+            textInput.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    });
     </script>
 
     <!-- Script Filter -->
     <script>
-        const filterAgeMinInput = document.getElementById('filterAgeMin');
-        const filterAgeMaxInput = document.getElementById('filterAgeMax');
-        const ageMinDisplay = document.querySelector('.chat-side__content-filter__age-first-value');
-        const ageMaxDisplay = document.querySelector('.chat-side__content-filter__age-second-value');
+    const filterAgeMinInput = document.getElementById('filterAgeMin');
+    const filterAgeMaxInput = document.getElementById('filterAgeMax');
+    const ageMinDisplay = document.querySelector('.chat-side__content-filter__age-first-value');
+    const ageMaxDisplay = document.querySelector('.chat-side__content-filter__age-second-value');
 
-        function applyFilters() {
-            const ageMin = parseInt(filterAgeMinInput.value);
-            const ageMax = parseInt(filterAgeMaxInput.value);
+    function applyFilters() {
+        const ageMin = parseInt(filterAgeMinInput.value);
+        const ageMax = parseInt(filterAgeMaxInput.value);
 
-            filteredUsers = allUsers.filter(user => {
-                let passes = true;
-                if (user.age < ageMin || user.age > ageMax) passes = false;
-                return passes;
-            });
-        }
+        filteredUsers = allUsers.filter(user => {
+            let passes = true;
+            if (user.age < ageMin || user.age > ageMax) passes = false;
+            return passes;
+        });
+    }
 
 
-        // Update display for range sliders
-        if (filterAgeMinInput && ageMinDisplay) {
-            filterAgeMinInput.addEventListener('input', (e) => {
-                ageMinDisplay.textContent = e.target.value;
-                if (parseInt(filterAgeMaxInput.value) < parseInt(e.target.value)) {
-                    filterAgeMaxInput.value = e.target.value;
-                    ageMaxDisplay.textContent = e.target.value;
-                }
-            });
-        }
-        if (filterAgeMaxInput && ageMaxDisplay) {
-            filterAgeMaxInput.addEventListener('input', (e) => {
+    // Update display for range sliders
+    if (filterAgeMinInput && ageMinDisplay) {
+        filterAgeMinInput.addEventListener('input', (e) => {
+            ageMinDisplay.textContent = e.target.value;
+            if (parseInt(filterAgeMaxInput.value) < parseInt(e.target.value)) {
+                filterAgeMaxInput.value = e.target.value;
                 ageMaxDisplay.textContent = e.target.value;
-                if (parseInt(filterAgeMinInput.value) > parseInt(e.target.value)) {
-                    filterAgeMinInput.value = e.target.value;
-                    ageMinDisplay.textContent = e.target.value;
-                }
-            });
-        }
-        if (filterDistanceInput && distanceDisplay) {
-            filterDistanceInput.addEventListener('input', (e) => {
-                distanceDisplay.textContent = `${e.target.value} km`;
-            });
-        }
+            }
+        });
+    }
+    if (filterAgeMaxInput && ageMaxDisplay) {
+        filterAgeMaxInput.addEventListener('input', (e) => {
+            ageMaxDisplay.textContent = e.target.value;
+            if (parseInt(filterAgeMinInput.value) > parseInt(e.target.value)) {
+                filterAgeMinInput.value = e.target.value;
+                ageMinDisplay.textContent = e.target.value;
+            }
+        });
+    }
+    if (filterDistanceInput && distanceDisplay) {
+        filterDistanceInput.addEventListener('input', (e) => {
+            distanceDisplay.textContent = `${e.target.value} km`;
+        });
+    }
     </script>
 
     <script>
-        //nut avt
-        const avatar = document.querySelector('.avatar');
-        const menu = document.getElementById('userMenu');
-        const items = document.querySelectorAll('.dropdown-item');
+    //nut avt
+    const avatar = document.querySelector('.avatar');
+    const menu = document.getElementById('userMenu');
+    const items = document.querySelectorAll('.dropdown-item');
 
-        avatar.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-        });
+    avatar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    });
 
-        document.addEventListener('click', () => {
+    document.addEventListener('click', () => {
+        menu.style.display = 'none';
+    });
+
+    menu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    items.forEach(item => {
+        item.addEventListener('click', () => {
             menu.style.display = 'none';
         });
-
-        menu.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                menu.style.display = 'none';
-            });
-        });
+    });
     </script>
 </body>
 
