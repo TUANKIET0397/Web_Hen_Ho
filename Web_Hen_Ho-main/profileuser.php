@@ -1,6 +1,5 @@
 <?php include_once "header.php"; ?>
 
-
 <body>
     <div class="box_profile-page">
         <header class="header fixed-header">
@@ -283,232 +282,234 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const avatarPreview = document.getElementById('avatarPreview');
-            const avatarUpload = document.getElementById('avatarUpload');
-            const uploadBtn = document.getElementById('uploadBtn');
-            const avatarForm = document.getElementById('avatarForm');
-            const message = document.getElementById('message');
+    document.addEventListener('DOMContentLoaded', function() {
+        const avatarPreview = document.getElementById('avatarPreview');
+        const avatarUpload = document.getElementById('avatarUpload');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const avatarForm = document.getElementById('avatarForm');
+        const message = document.getElementById('message');
 
-            // Khi nhấp vào avatar hoặc nút upload
-            avatarPreview.addEventListener('click', function () {
-                avatarUpload.click();
-            });
-
-            uploadBtn.addEventListener('click', function () {
-                avatarUpload.click();
-            });
-
-            // Khi một file được chọn
-            avatarUpload.addEventListener('change', function () {
-                const file = this.files[0];
-
-                if (file) {
-                    // Kiểm tra nếu file là ảnh
-                    if (file.type.match('image.*')) {
-                        const reader = new FileReader();
-
-                        reader.onload = function (e) {
-                            // Hiển thị preview trước khi upload
-                            avatarPreview.style.backgroundImage = `url(${e.target.result})`;
-
-                            // Tự động upload file đến server
-                            uploadAvatarToServer(file);
-                        };
-
-                        reader.readAsDataURL(file);
-                    } else {
-                        showMessage('Vui lòng chọn một file ảnh!', 'error');
-                    }
-                }
-            });
-        });
-    </script>
-
-
-    <script>
-        function calculateAge(dateString) {
-            // Chuyển đổi từ định dạng yyyy-mm-dd sang Date object
-            const birthDate = new Date(dateString);
-            const today = new Date();
-
-            let age = today.getFullYear() - birthDate.getFullYear();
-            const m = today.getMonth() - birthDate.getMonth();
-
-            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-
-            return age;
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const dobInput = document.getElementById('dob');
-            const ageDisplay = document.getElementById('age-display');
-
-            if (dobInput && ageDisplay) {
-                const dobValue = dobInput.value;
-                if (dobValue) {
-                    const age = calculateAge(dobValue);
-                    ageDisplay.textContent = age + ' tuổi';
-                    ageDisplay.style.fontSize = '2rem';
-                    ageDisplay.style.fontFamily = 'Heebo';
-                }
-            }
-        });
-    </script>
-
-
-
-
-    <script>
-        // Toggle edit mode for the profile
-        document.querySelector('.edit-profile').addEventListener('click', function (e) {
-            e.preventDefault();
-            const formElements = document.querySelectorAll('input, select, button.action-button');
-            formElements.forEach(input => {
-                input.disabled = false;
-            });
-
-            // Only enable the first image upload initially
-            document.querySelectorAll('.image-upload-container').forEach((container, index) => {
-                if (index === 0) {
-                    container.classList.add('active-upload');
-                    container.classList.remove('locked-upload');
-                } else {
-                    container.classList.add('locked-upload');
-                    container.classList.remove('active-upload');
-                }
-            });
-
-            // Show notification
-            alert('You can now edit your profile. Upload images in sequence. Don\'t forget to save changes.');
+        // Khi nhấp vào avatar hoặc nút upload
+        avatarPreview.addEventListener('click', function() {
+            avatarUpload.click();
         });
 
-        // Sequential image upload functionality
-        const imageUploads = document.querySelectorAll('.image-upload');
+        uploadBtn.addEventListener('click', function() {
+            avatarUpload.click();
+        });
 
-        // Function to unlock the next image upload
-        function unlockNextImageUpload(currentIndex) {
-            if (currentIndex < 5) { // Only 3 images total (index 0, 1, 2)
-                const nextContainer = document.querySelectorAll('.image-upload-container')[currentIndex + 1];
-                nextContainer.classList.remove('locked-upload');
-                nextContainer.classList.add('active-upload');
-            }
-        }
+        // Khi một file được chọn
+        avatarUpload.addEventListener('change', function() {
+            const file = this.files[0];
 
-        // Handle image uploads
-        imageUploads.forEach((input, index) => {
-            input.addEventListener('change', function () {
-                const file = this.files[0];
-                if (file) {
+            if (file) {
+                // Kiểm tra nếu file là ảnh
+                if (file.type.match('image.*')) {
                     const reader = new FileReader();
-                    const container = this.closest('.image-upload-container');
 
-                    reader.onload = function (e) {
-                        const previewId = `imagePreview${index + 1}`;
-                        document.getElementById(previewId).style.backgroundImage = `url(${e.target.result})`;
+                    reader.onload = function(e) {
+                        // Hiển thị preview trước khi upload
+                        avatarPreview.style.backgroundImage = `url(${e.target.result})`;
 
-                        // Mark as having an image
-                        container.classList.add('has-image');
+                        // Tự động upload file đến server
+                        uploadAvatarToServer(file);
+                    };
 
-                        // Unlock next image upload
-                        unlockNextImageUpload(index);
-                    }
                     reader.readAsDataURL(file);
+                } else {
+                    showMessage('Vui lòng chọn một file ảnh!', 'error');
                 }
-            });
+            }
+        });
+    });
+    </script>
+
+
+    <script>
+    function calculateAge(dateString) {
+        // Chuyển đổi từ định dạng yyyy-mm-dd sang Date object
+        const birthDate = new Date(dateString);
+        const today = new Date();
+
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        return age;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const dobInput = document.getElementById('dob');
+        const ageDisplay = document.getElementById('age-display');
+
+        if (dobInput && ageDisplay) {
+            const dobValue = dobInput.value;
+            if (dobValue) {
+                const age = calculateAge(dobValue);
+                ageDisplay.textContent = age + ' tuổi';
+                ageDisplay.style.fontSize = '2rem';
+                ageDisplay.style.fontFamily = 'Heebo';
+            }
+        }
+    });
+    </script>
+
+
+
+
+    <script>
+    // Toggle edit mode for the profile
+    document.querySelector('.edit-profile').addEventListener('click', function(e) {
+        e.preventDefault();
+        const formElements = document.querySelectorAll('input, select, button.action-button');
+        formElements.forEach(input => {
+            input.disabled = false;
         });
 
-        // Handle label clicks for image upload
-        document.querySelectorAll('.upload-label').forEach((label, index) => {
-            label.addEventListener('click', function (e) {
+        // Only enable the first image upload initially
+        document.querySelectorAll('.image-upload-container').forEach((container, index) => {
+            if (index === 0) {
+                container.classList.add('active-upload');
+                container.classList.remove('locked-upload');
+            } else {
+                container.classList.add('locked-upload');
+                container.classList.remove('active-upload');
+            }
+        });
+
+        // Show notification
+        alert('You can now edit your profile. Upload images in sequence. Don\'t forget to save changes.');
+    });
+
+    // Sequential image upload functionality
+    const imageUploads = document.querySelectorAll('.image-upload');
+
+    // Function to unlock the next image upload
+    function unlockNextImageUpload(currentIndex) {
+        if (currentIndex < 5) { // Only 3 images total (index 0, 1, 2)
+            const nextContainer = document.querySelectorAll('.image-upload-container')[currentIndex + 1];
+            nextContainer.classList.remove('locked-upload');
+            nextContainer.classList.add('active-upload');
+        }
+    }
+
+    // Handle image uploads
+    imageUploads.forEach((input, index) => {
+        input.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
                 const container = this.closest('.image-upload-container');
 
-                // Only proceed if this is an active upload container
-                if (!container.classList.contains('active-upload')) {
-                    e.preventDefault();
+                reader.onload = function(e) {
+                    const previewId = `imagePreview${index + 1}`;
+                    document.getElementById(previewId).style.backgroundImage =
+                        `url(${e.target.result})`;
 
-                    if (container.classList.contains('locked-upload')) {
-                        alert('Please upload the previous image first.');
-                    }
-                    return;
+                    // Mark as having an image
+                    container.classList.add('has-image');
+
+                    // Unlock next image upload
+                    unlockNextImageUpload(index);
                 }
+                reader.readAsDataURL(file);
+            }
+        });
+    });
 
-                const inputId = `imageUpload${index + 1}`;
-                const input = document.getElementById(inputId);
+    // Handle label clicks for image upload
+    document.querySelectorAll('.upload-label').forEach((label, index) => {
+        label.addEventListener('click', function(e) {
+            const container = this.closest('.image-upload-container');
 
-                if (!input.disabled) {
-                    input.click();
-                } else {
-                    e.preventDefault();
-                    alert('Please click "Edit Profile" to enable image uploads.');
+            // Only proceed if this is an active upload container
+            if (!container.classList.contains('active-upload')) {
+                e.preventDefault();
+
+                if (container.classList.contains('locked-upload')) {
+                    alert('Please upload the previous image first.');
                 }
-            });
-        });
+                return;
+            }
 
-        // Handle form submission
-        document.getElementById('profile').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Profile saved successfully!');
+            const inputId = `imageUpload${index + 1}`;
+            const input = document.getElementById(inputId);
 
-            // Disable form elements after save
-            const formElements = document.querySelectorAll('input, select, button.action-button');
-            formElements.forEach(input => {
-                input.disabled = true;
-            });
+            if (!input.disabled) {
+                input.click();
+            } else {
+                e.preventDefault();
+                alert('Please click "Edit Profile" to enable image uploads.');
+            }
         });
+    });
 
-        // Handle cancel button
-        document.querySelector('.cancel-button').addEventListener('click', function () {
-            const formElements = document.querySelectorAll('input, select, button.action-button');
-            formElements.forEach(input => {
-                input.disabled = true;
-            });
+    // Handle form submission
+    document.getElementById('profile').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Profile saved successfully!');
+
+        // Disable form elements after save
+        const formElements = document.querySelectorAll('input, select, button.action-button');
+        formElements.forEach(input => {
+            input.disabled = true;
         });
+    });
+
+    // Handle cancel button
+    document.querySelector('.cancel-button').addEventListener('click', function() {
+        const formElements = document.querySelectorAll('input, select, button.action-button');
+        formElements.forEach(input => {
+            input.disabled = true;
+        });
+    });
     </script>
     <script>
-        // Script choose friend to chat
-        const chat_side__content_friends = document.querySelectorAll('.chat-side__content-friends');
-        const main_content = document.querySelector('.main-content');
+    // Script choose friend to chat
+    const chat_side__content_friends = document.querySelectorAll('.chat-side__content-friends');
+    const main_content = document.querySelector('.main-content');
 
-        chat_side__content_friends.forEach(button => {
-            button.addEventListener('click', () => {
-                chat_side__content_friends.forEach(btn => btn.classList.remove('chat-side__content-friends--active'));
-                button.classList.add('chat-side__content-friends--active');
-            });
+    chat_side__content_friends.forEach(button => {
+        button.addEventListener('click', () => {
+            chat_side__content_friends.forEach(btn => btn.classList.remove(
+                'chat-side__content-friends--active'));
+            button.classList.add('chat-side__content-friends--active');
         });
-        // Script choose chat-friend
-        const friend = document.querySelector('.chat-friend__friend');
-        const chat_side__content_friend = document.querySelector('.chat-side__content-friend');
+    });
+    // Script choose chat-friend
+    const friend = document.querySelector('.chat-friend__friend');
+    const chat_side__content_friend = document.querySelector('.chat-side__content-friend');
 
-        friend.addEventListener('click', () => {
-            friend.classList.toggle('chat-friend--active');
-            chat_side__content_friend.classList.toggle('chat-side__content-friend--show');
-        });
+    friend.addEventListener('click', () => {
+        friend.classList.toggle('chat-friend--active');
+        chat_side__content_friend.classList.toggle('chat-side__content-friend--show');
+    });
 
-        //nut avt 
-        const avatar = document.querySelector('.avatar');
-        const menu = document.getElementById('userMenu');
-        const items = document.querySelectorAll('.dropdown-item');
+    //nut avt 
+    const avatar = document.querySelector('.avatar');
+    const menu = document.getElementById('userMenu');
+    const items = document.querySelectorAll('.dropdown-item');
 
-        avatar.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-        });
+    avatar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    });
 
-        document.addEventListener('click', () => {
+    document.addEventListener('click', () => {
+        menu.style.display = 'none';
+    });
+
+    menu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    items.forEach(item => {
+        item.addEventListener('click', () => {
             menu.style.display = 'none';
         });
-
-        menu.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                menu.style.display = 'none';
-            });
-        });
+    });
     </script>
 
 </body>
