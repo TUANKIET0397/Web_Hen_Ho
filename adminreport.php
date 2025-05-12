@@ -10,7 +10,7 @@
     <!-- fonts -->
     <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
     <!-- Admin report css -->
-    <link rel="stylesheet" href="./assets/css/adminreport.css">
+    <link rel="stylesheet" href="./assets/css/adminreport.css">   
 </head>
 
 <body>
@@ -96,8 +96,39 @@
                             <div class="user-report">December 28, 2023sfdfghj</div>
                         </div>
                         <div class="content-body__status">
-                            <a href="adminreport.php" class="report-button btn-icon"
-                                style="background-color: red;"></a>
+                            <div class="report-button btn-icon">
+                                3
+                                <div class="report-list">
+                                    <div class="report__list--roll">
+                                        <div class="report-list-item">
+                                            <div class="usrp">Gia Bao</div>
+                                            <div class="rp-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic fuga possimus libero distinctio, iste soluta eligendi deleniti suscipit delectus fugiat unde, velit corrupti quas dicta nam cumque, illum nemo. Ipsa.</div>
+                                        </div>
+                                        <div class="report-list-item">
+                                            <div class="usrp">Manh</div>
+                                            <div class="rp-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic fuga possimus libero distinctio, iste soluta eligendi deleniti suscipit delectus fugiat unde, velit corrupti quas dicta nam cumque, illum nemo. Ipsa.</div>
+                                        </div>
+                                        <div class="report-list-item">
+                                            <div class="usrp">Le Tuan Kiet</div>
+                                            <div class="rp-content">123</div>
+                                        </div>
+                                        <div class="report-list-item">
+                                            <div class="usrp">Le Tuan Kiet</div>
+                                            <div class="rp-content">123</div>
+                                        </div>
+                                        <div class="report-list-item">
+                                            <div class="usrp">Le Tuan Kiet</div>
+                                            <div class="rp-content">123</div>
+                                        </div>
+                                        <div class="report-list-item">
+                                            <div class="usrp">Le Tuan Kiet</div>
+                                            <div class="rp-content">123</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                            </div>
+
                             <a href="adminchatuser.php" class="chat-button btn-icon"
                                 style="background-color: #00FF4F; background-image: url(./assets/img/chat-button.png);"></a>
                             <a href="user-profile-2-admin-page.php" class="profile-button btn-icon"
