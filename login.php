@@ -115,7 +115,7 @@
                 </div>
 
                 <!-- submit -->
-                <button type="submit" class="btn-submit">Create an account</button>
+                <button type="submit" class="btn-submit">Log in</button>
                 <p class="form-subnote">Don't have an account? <a href="signup.php">Sign up</a></p>
             </form>
         </section>
