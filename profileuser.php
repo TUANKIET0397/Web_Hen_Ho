@@ -1,3 +1,57 @@
+<?php
+// Kết nối cơ sở dữ liệu
+$link = @mysqli_connect("localhost", "root", "", "dating_app") or die("Không thể kết nối cơ sở dữ liệu");
+
+// Lấy thông tin người dùng (giả sử UserID = 1)
+$userID = 1;
+$sql = "SELECT * FROM userinformation WHERE ID = $userID";
+$result = mysqli_query($link, $sql);
+$user = mysqli_fetch_assoc($result);
+
+// Lấy danh sách ảnh
+$sqlImages = "SELECT imgPath FROM images WHERE UserID = $userID AND IsActive = 1 ORDER BY ID ASC";
+$resultImages = mysqli_query($link, $sqlImages);
+$images = [];
+while ($row = mysqli_fetch_assoc($resultImages)) {
+    $images[] = $row['imgPath'];
+}
+
+// Đảm bảo mảng $images có đủ 6 phần tử
+while (count($images) < 6) {
+    $images[] = './assets/img/default-image.jpg'; // Thêm ảnh mặc định
+}
+
+// Lấy danh sách sở thích
+$sqlHobbies = "SELECT HobbyName FROM hobbylist INNER JOIN userhobbby ON hobbylist.ID = userhobbby.HobbyID WHERE userhobbby.UserID = $userID";
+$resultHobbies = mysqli_query($link, $sqlHobbies);
+$hobbies = [];
+while ($row = mysqli_fetch_assoc($resultHobbies)) {
+    $hobbies[] = $row['HobbyName'];
+}
+
+// Lấy danh sách tính cách
+$sqlPersonally = "SELECT PersonallyName FROM personallylist INNER JOIN userpersonally ON personallylist.ID = userpersonally.PersonallyID WHERE userpersonally.UserID = $userID";
+$resultPersonally = mysqli_query($link, $sqlPersonally);
+$personally = [];
+while ($row = mysqli_fetch_assoc($resultPersonally)) {
+    $personally[] = $row['PersonallyName'];
+}
+
+// Lấy thông tin công việc
+$sqlJob = "SELECT JobName FROM joblist INNER JOIN userjob ON joblist.ID = userjob.JobID WHERE userjob.UserID = $userID";
+$resultJob = mysqli_query($link, $sqlJob);
+$job = mysqli_fetch_assoc($resultJob)['JobName'];
+
+// Lấy thông tin "Looking For"
+$sqlLooking = "SELECT LookingName FROM looking INNER JOIN userlooking ON looking.ID = userlooking.LookingID WHERE userlooking.UserID = $userID";
+$resultLooking = mysqli_query($link, $sqlLooking);
+if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
+    $lookingFor = mysqli_fetch_assoc($resultLooking)['LookingName'];
+} else {
+    $lookingFor = ""; // Hoặc một giá trị mặc định khác
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,110 +160,59 @@
                 <div class="fixe-box_profile">
                     <div class="edit-profile">Edit Profile</div>
                     <div class="profile-header">
-                        <div class="user-avt-profile" id="avatarPreview"></div>
-                        <form id="avatarForm" enctype="multipart/form-data">
+                        <div class="user-avt-profile" id="avatarPreview" style="background-image: url('<?php echo !empty($user['Avt']) ? $user['Avt'] : './assets/img/default-avatar.jpg'; ?>');"></div>
+                        <form id="avatarForm" action="upload_avatar.php" method="post" enctype="multipart/form-data">
                             <input type="file" id="avatarUpload" name="avatar" class="avatar-upload" accept="image/*">
-                            <button type="button" class="btn-upload" id="uploadBtn">Change Avatar</button>
+                            <button type="submit" class="btn-upload" id="uploadBtn">Change Avatar</button>
                             <div id="message" class="message" style="display: none;"></div>
                         </form>
-                        <h2 class="profile-name">Nguyen Minh Thuan</h2>
-                        <h3 class="profile-location">29 year old, Ho Chi Minh</h3>
+                        <h2 class="profile-name"><?php echo $user['UserName']; ?></h2>
+                        <h3 class="profile-location"><?php echo $user['Age']; ?> years old, <?php echo $user['UserAddress']; ?></h3>
                     </div>
 
-                    <form name="profile" id="profile" action="save_profile.php" method="post"
-                        enctype="multipart/form-data" autocomplete="off">
-                        <table class="profile-table"
-                            style="width: 100%; border-collapse: separate; border-spacing: 20px;">
-                            <tr class="libaryimg">
-                                <td class="imguser">
-                                    <div class="image-upload-container active-upload">
-                                        <div class="image-preview" id="imagePreview1"></div>
-                                        <label for="imageUpload1" class="upload-label">
-                                            <span>+ Add Photo</span>
-                                        </label>
-                                        <input type="file" id="imageUpload1" name="image1" accept="image/*" disabled
-                                            class="image-upload">
-                                    </div>
-                                </td>
-                                <td class="imguser">
-                                    <div class="image-upload-container locked-upload">
-                                        <div class="image-preview" id="imagePreview2"></div>
-                                        <label for="imageUpload2" class="upload-label">
-                                            <span class="locked-text">Locked</span>
-                                            <span class="active-text">+ Add Photo</span>
-                                        </label>
-                                        <input type="file" id="imageUpload2" name="image2" accept="image/*" disabled
-                                            class="image-upload">
-                                    </div>
-                                </td>
-                                <td class="imguser">
-                                    <div class="image-upload-container locked-upload">
-                                        <div class="image-preview" id="imagePreview3"></div>
-                                        <label for="imageUpload3" class="upload-label">
-                                            <span class="locked-text">Locked</span>
-                                            <span class="active-text">+ Add Photo</span>
-                                        </label>
-                                        <input type="file" id="imageUpload3" name="image3" accept="image/*" disabled
-                                            class="image-upload">
-                                    </div>
-                                </td>
-
-                            </tr>
-                            <tr class="libaryimg">
-                                <td class="imguser">
-                                    <div class="image-upload-container locked-upload">
-                                        <div class="image-preview" id="imagePreview4"></div>
-                                        <label for="imageUpload4" class="upload-label">
-                                            <span class="locked-text">Locked</span>
-                                            <span class="active-text">+ Add Photo</span>
-                                        </label>
-                                        <input type="file" id="imageUpload4" name="image4" accept="image/*" disabled
-                                            class="image-upload">
-                                    </div>
-                                </td>
-                                <td class="imguser">
-                                    <div class="image-upload-container locked-upload">
-                                        <div class="image-preview" id="imagePreview5"></div>
-                                        <label for="imageUpload5" class="upload-label">
-                                            <span class="locked-text">Locked</span>
-                                            <span class="active-text">+ Add Photo</span>
-                                        </label>
-                                        <input type="file" id="imageUpload5" name="image5" accept="image/*" disabled
-                                            class="image-upload">
-                                    </div>
-                                </td>
-                                <td class="imguser">
-                                    <div class="image-upload-container locked-upload">
-                                        <div class="image-preview" id="imagePreview6"></div>
-                                        <label for="imageUpload6" class="upload-label">
-                                            <span class="locked-text">Locked</span>
-                                            <span class="active-text">+ Add Photo</span>
-                                        </label>
-                                        <input type="file" id="imageUpload6" name="image6" accept="image/*" disabled
-                                            class="image-upload">
-                                    </div>
-                                </td>
-
-                            </tr>
+                    <form name="profile" id="profile" action="save_profile.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                        <table class="profile-table" style="width: 100%; border-collapse: separate; border-spacing: 20px;">
+                            <!-- Thư viện ảnh chia thành 2 hàng -->
+                            <?php for ($row = 0; $row < 2; $row++): ?>
+                                <tr class="libaryimg">
+                                    <?php for ($col = 0; $col < 3; $col++): ?>
+                                        <?php $index = $row * 3 + $col; ?>
+                                        <td class="imguser">
+                                            <div class="image-upload-container <?php echo $index === 0 ? 'active-upload' : 'locked-upload'; ?>">
+                                                <div class="image-preview" id="imagePreview<?php echo $index + 1; ?>"
+                                                    style="background-image: url('<?php echo isset($images[$index]) ? $images[$index] : './assets/img/default-image.jpg'; ?>');">
+                                                </div>
+                                                <label for="imageUpload<?php echo $index + 1; ?>" class="upload-label">
+                                                    <span>
+                                                        <?php echo $index === 0 ? '+ Add Photo' : 'Locked'; ?>
+                                                    </span>
+                                                </label>
+                                                <input type="file" id="imageUpload<?php echo $index + 1; ?>" name="image<?php echo $index + 1; ?>" accept="image/*" class="image-upload" disabled>
+                                            </div>
+                                        </td>
+                                    <?php endfor; ?>
+                                </tr>
+                            <?php endfor; ?>
                             <tr class="infomation">
                                 <td>
                                     <div class="info-item">
                                         <h3 class="info-label">ID:</h3>
-                                        <h3 class="info-value">0992478</h3>
+                                        <h3 class="info-value"><?php echo $user['ID']; ?></h3>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="info-item">
                                         <h3 class="info-label">Name:</h3>
-                                        <input type="text" name="name" value="Nguyen Minh Thuan" required disabled>
+                                        <input type="text" name="name" value="<?php echo $user['UserName']; ?>" required disabled>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="info-item">
                                         <h3 class="info-label">Gender:</h3>
                                         <select name="gender" disabled>
-                                            <option value="women">Women</option>
-                                            <option value="men" selected>Men</option>
+                                            <option value="Men" <?php echo ($user['Gender'] == 'Men') ? 'selected' : ''; ?>>Men</option>
+                                            <option value="Women" <?php echo ($user['Gender'] == 'Women') ? 'selected' : ''; ?>>Women</option>
+                                            <option value="Other" <?php echo ($user['Gender'] == 'Other') ? 'selected' : ''; ?>>Other</option>
                                         </select>
                                     </div>
                                 </td>
@@ -218,54 +221,73 @@
                                 <td>
                                     <div class="info-item">
                                         <h3 class="info-label">Age:</h3>
-                                        <span id="age-display">......</span>
+                                        <span id="age-display"><?php echo $user['Age']; ?></span>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="info-item">
                                         <h3 class="info-label">Location:</h3>
-                                        <select name="Location" disabled>
-                                            <option value="HCM">HCM</option>
-                                            <option value="HN" selected>HN</option>
-                                            <option value="QB">QB</option>
-                                            <option value="TB">TB</option>
-                                            <option value="AG">AG</option>
-                                        </select>
+                                        <input type="text" name="location" value="<?php echo $user['UserAddress']; ?>" required disabled>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="info-item">
                                         <h3 class="info-label">B/D:</h3>
-                                        <input type="date" id="dob" name="dob" value="1996-05-15" required disabled>
+                                        <input type="date" id="dob" name="dob" value="<?php echo $user['BirthDate']; ?>" required disabled>
                                     </div>
                                 </td>
                             </tr>
                             <tr class="infomation">
-                                <td colspan="2">
+                                <td>
                                     <div class="info-item">
                                         <h3 class="info-label">Hobby:</h3>
-                                        <input type="text" name="hobby" value="Swimming, Reading, Photography" disabled>
+                                        <div class="hobby-container">
+                                            <span id="hobby-display" class="hobby-display" onclick="toggleHobbyOptions()">
+                                                <?php echo !empty($hobbies) ? implode(', ', $hobbies) : 'Chọn sở thích'; ?>
+                                            </span>
+                                            <div id="hobby-options" class="hobby-options">
+                                                <?php
+                                                $allHobbies = mysqli_query($link, "SELECT HobbyName FROM hobbylist");
+                                                while ($row = mysqli_fetch_assoc($allHobbies)) {
+                                                    $checked = in_array($row['HobbyName'], $hobbies) ? 'checked' : '';
+                                                    echo "<label><input type='checkbox' name='hobby[]' value='{$row['HobbyName']}' $checked disabled> {$row['HobbyName']}</label><br>";
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
                                     </div>
                                 </td>
-                                <td rowspan="2">
-                                    <div class="info-item" style="flex-direction: column;">
-                                        <h3 class="info-label">Looking for:</h3>
-                                        <select class="infor__looking-friend" name="looking-forfor" id="" disabled>
-                                            <option value="1">UnKnown</option>
-                                            <option value="2">AnyThing</option>
-                                            <option value="3">My Lover</option>
-                                            <option value="4">My Friend</option>
-                                            <option value="5">Friend Confide</option>
-                                        </select>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="infomation">
-                                <td colspan="2">
+                                <td>
                                     <div class="info-item">
                                         <h3 class="info-label">Personally:</h3>
-                                        <input type="text" name="Personally" value="Swimming, Reading, Photography"
-                                            disabled>
+                                        <div class="personally-container">
+                                            <span id="personally-display" class="personally-display" onclick="togglePersonallyOptions()">
+                                                <?php echo !empty($personally) ? implode(', ', $personally) : 'Chọn tính cách'; ?>
+                                            </span>
+                                            <div id="personally-options" class="personally-options">
+                                                <?php
+                                                $allPersonally = mysqli_query($link, "SELECT PersonallyName FROM personallylist");
+                                                while ($row = mysqli_fetch_assoc($allPersonally)) {
+                                                    $checked = in_array($row['PersonallyName'], $personally) ? 'checked' : '';
+                                                    echo "<label><input type='checkbox' name='personally[]' value='{$row['PersonallyName']}' $checked disabled> {$row['PersonallyName']}</label><br>";
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="info-item">
+                                        <h3 class="info-label">Looking for:</h3>
+                                        <select name="looking-for" disabled>
+                                            <?php
+                                            $allLooking = mysqli_query($link, "SELECT LookingName FROM looking");
+                                            while ($row = mysqli_fetch_assoc($allLooking)) {
+                                                $selected = ($row['LookingName'] == $lookingFor) ? 'selected' : '';
+                                                echo "<option value='{$row['LookingName']}' $selected>{$row['LookingName']}</option>";
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </td>
                             </tr>
@@ -274,26 +296,34 @@
                                     <div class="info-item">
                                         <h3 class="info-label">Job:</h3>
                                         <select name="job" disabled>
-                                            <option value="student">Student</option>
-                                            <option value="business" selected>Business</option>
-                                            <option value="teacher">Teacher</option>
-                                            <option value="worker">Worker</option>
-                                            <option value="other">Other</option>
+                                            <?php
+                                            $allJobs = mysqli_query($link, "SELECT JobName FROM joblist");
+                                            while ($row = mysqli_fetch_assoc($allJobs)) {
+                                                $selected = ($row['JobName'] == $job) ? 'selected' : '';
+                                                echo "<option value='{$row['JobName']}' $selected>{$row['JobName']}</option>";
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="info-item">
                                         <h3 class="info-label">Email:</h3>
-                                        <input type="email" name="email" value="thuannguyen@example.com" required
-                                            disabled>
+                                        <input type="email" name="email" value="<?php echo $user['Email']; ?>" required disabled>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="info-item">
                                         <h3 class="info-label">Phone:</h3>
-                                        <input type="tel" name="phone" value="0987654321" pattern="^0[0-9]{9}$" required
-                                            disabled>
+                                        <input type="tel" name="phone" value="<?php echo $user['PhoneNumber']; ?>" pattern="^0[0-9]{9}$" required disabled>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="infomation">
+                                <td colspan="3">
+                                    <div class="info-item">
+                                        <h3 class="info-label">Story:</h3>
+                                        <textarea name="story" id="story" placeholder="Write something about yourself..." disabled><?php echo $user['bio']; ?></textarea>
                                     </div>
                                 </td>
                             </tr>
@@ -301,8 +331,7 @@
                                 <td colspan="3">
                                     <div class="profile-actions">
                                         <button type="submit" class="action-button save-button" disabled>Save</button>
-                                        <button type="reset" class="action-button cancel-button"
-                                            disabled>Cancel</button>
+                                        <button type="reset" class="action-button cancel-button" disabled>Cancel</button>
                                     </div>
                                 </td>
                             </tr>
@@ -312,235 +341,286 @@
             </div>
         </div>
     </div>
+
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', () => {
+            let isEditMode = false;
+
+            // DOM Elements
             const avatarPreview = document.getElementById('avatarPreview');
             const avatarUpload = document.getElementById('avatarUpload');
             const uploadBtn = document.getElementById('uploadBtn');
-            const avatarForm = document.getElementById('avatarForm');
-            const message = document.getElementById('message');
+            const menu = document.getElementById('userMenu');
+            const hobbyDisplay = document.getElementById('hobby-display');
+            const hobbyOptions = document.getElementById('hobby-options');
+            const hobbyCheckboxes = document.querySelectorAll('#hobby-options input[type="checkbox"]');
+            const personallyDisplay = document.getElementById('personally-display');
+            const personallyOptions = document.getElementById('personally-options');
+            const personallyCheckboxes = document.querySelectorAll('#personally-options input[type="checkbox"]');
+            const formElements = document.querySelectorAll('input, select, textarea, button.action-button');
+            const imageUploads = document.querySelectorAll('.image-upload');
+            const editProfileBtn = document.querySelector('.edit-profile');
+            const cancelButton = document.querySelector('.cancel-button');
+            const saveButton = document.querySelector('.save-button');
+            const friendButton = document.querySelector('.chat-friend__friend');
+            const chatSideContentFriend = document.querySelector('.chat-side__content-friend');
+            const chatFriends = document.querySelectorAll('.chat-side__content-friends');
+            const avatar = document.querySelector('.avatar');
+            const imageContainers = document.querySelectorAll('.image-upload-container');
 
-            // Khi nhấp vào avatar hoặc nút upload
-            avatarPreview.addEventListener('click', function () {
-                avatarUpload.click();
-            });
 
-            uploadBtn.addEventListener('click', function () {
-                avatarUpload.click();
-            });
+            // Helper Functions
+            const toggleOptions = (options) => {
+                if (isEditMode) options.classList.toggle('show');
+            };
 
-            // Khi một file được chọn
-            avatarUpload.addEventListener('change', function () {
-                const file = this.files[0];
+            const updateDisplay = (checkboxes, displayElement, defaultText) => {
+                const selectedValues = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
 
-                if (file) {
-                    // Kiểm tra nếu file là ảnh
-                    if (file.type.match('image.*')) {
-                        const reader = new FileReader();
+                displayElement.textContent = selectedValues.length > 0 ? selectedValues.join(', ') : defaultText;
+            };
 
-                        reader.onload = function (e) {
-                            // Hiển thị preview trước khi upload
-                            avatarPreview.style.backgroundImage = `url(${e.target.result})`;
+            const enableEditMode = () => {
+                isEditMode = true;
+                formElements.forEach(input => input.disabled = false);
+                editProfileBtn.style.display = 'none';
+                saveButton.disabled = false;
+                cancelButton.disabled = false;
+            };
 
-                            // Tự động upload file đến server
-                            uploadAvatarToServer(file);
-                        };
+            const disableEditMode = () => {
+                isEditMode = false;
+                formElements.forEach(input => input.disabled = true);
+                updateDisplay(hobbyCheckboxes, hobbyDisplay, 'Chọn sở thích');
+                updateDisplay(personallyCheckboxes, personallyDisplay, 'Chọn tính cách');
+                editProfileBtn.style.display = 'block';
+                saveButton.disabled = true;
+                cancelButton.disabled = true;
+            };
 
-                        reader.readAsDataURL(file);
-                    } else {
-                        showMessage('Vui lòng chọn một file ảnh!', 'error');
-                    }
+            const unlockNextImageUpload = (currentIndex) => {
+                if (currentIndex < imageUploads.length - 1) {
+                    const nextContainer = document.querySelectorAll('.image-upload-container')[currentIndex + 1];
+                    nextContainer.classList.remove('locked-upload');
+                    nextContainer.classList.add('active-upload');
+                    const nextInput = document.getElementById(`imageUpload${currentIndex + 2}`);
+                    nextInput.disabled = false;
                 }
-            });
-        });
-    </script>
+            };
 
+            const showMessage = (message, type = 'success') => {
+                const messageBox = document.getElementById('message');
+                messageBox.textContent = message;
+                messageBox.className = `message ${type}`;
+                messageBox.style.display = 'block';
+                setTimeout(() => {
+                    messageBox.style.display = 'none';
+                }, 3000);
+            };
 
-    <script>
-        function calculateAge(dateString) {
-            // Chuyển đổi từ định dạng yyyy-mm-dd sang Date object
-            const birthDate = new Date(dateString);
-            const today = new Date();
+            const uploadAvatarToServer = (file) => {
+                // Fake server upload logic
+                setTimeout(() => {
+                    showMessage('Avatar uploaded successfully!', 'success');
+                }, 1000);
+            };
 
-            let age = today.getFullYear() - birthDate.getFullYear();
-            const m = today.getMonth() - birthDate.getMonth();
-
-            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-
-            return age;
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const dobInput = document.getElementById('dob');
-            const ageDisplay = document.getElementById('age-display');
-
-            if (dobInput && ageDisplay) {
-                const dobValue = dobInput.value;
-                if (dobValue) {
-                    const age = calculateAge(dobValue);
-                    ageDisplay.textContent = age + ' tuổi';
-                    ageDisplay.style.fontSize = '2rem';
-                    ageDisplay.style.fontFamily = 'Heebo';
-                }
-            }
-        });
-    </script>
-
-
-
-
-    <script>
-        // Toggle edit mode for the profile
-        document.querySelector('.edit-profile').addEventListener('click', function (e) {
-            e.preventDefault();
-            const formElements = document.querySelectorAll('input, select, button.action-button');
-            formElements.forEach(input => {
-                input.disabled = false;
-            });
-
-            // Only enable the first image upload initially
-            document.querySelectorAll('.image-upload-container').forEach((container, index) => {
-                if (index === 0) {
-                    container.classList.add('active-upload');
-                    container.classList.remove('locked-upload');
-                } else {
-                    container.classList.add('locked-upload');
-                    container.classList.remove('active-upload');
-                }
-            });
-
-            // Show notification
-            alert('You can now edit your profile. Upload images in sequence. Don\'t forget to save changes.');
-        });
-
-        // Sequential image upload functionality
-        const imageUploads = document.querySelectorAll('.image-upload');
-
-        // Function to unlock the next image upload
-        function unlockNextImageUpload(currentIndex) {
-            if (currentIndex < 5) { // Only 3 images total (index 0, 1, 2)
-                const nextContainer = document.querySelectorAll('.image-upload-container')[currentIndex + 1];
-                nextContainer.classList.remove('locked-upload');
-                nextContainer.classList.add('active-upload');
-            }
-        }
-
-        // Handle image uploads
-        imageUploads.forEach((input, index) => {
-            input.addEventListener('change', function () {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    const container = this.closest('.image-upload-container');
-
-                    reader.onload = function (e) {
-                        const previewId = `imagePreview${index + 1}`;
-                        document.getElementById(previewId).style.backgroundImage = `url(${e.target.result})`;
-
-                        // Mark as having an image
-                        container.classList.add('has-image');
-
-                        // Unlock next image upload
-                        unlockNextImageUpload(index);
-                    }
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-
-        // Handle label clicks for image upload
-        document.querySelectorAll('.upload-label').forEach((label, index) => {
-            label.addEventListener('click', function (e) {
-                const container = this.closest('.image-upload-container');
-
-                // Only proceed if this is an active upload container
-                if (!container.classList.contains('active-upload')) {
-                    e.preventDefault();
-
-                    if (container.classList.contains('locked-upload')) {
-                        alert('Please upload the previous image first.');
-                    }
+            // Event Listeners
+            avatarPreview.addEventListener('click', () => {
+                if (!isEditMode) {
+                    alert('Please click "Edit Profile" to change your avatar.');
                     return;
                 }
+                avatarUpload.click();
+            });
 
-                const inputId = `imageUpload${index + 1}`;
-                const input = document.getElementById(inputId);
+            uploadBtn.addEventListener('click', () => {
+                if (!isEditMode) {
+                    alert('Please click "Edit Profile" to change your avatar.');
+                    return;
+                }
+                avatarUpload.click();
+            });
 
-                if (!input.disabled) {
-                    input.click();
-                } else {
-                    e.preventDefault();
-                    alert('Please click "Edit Profile" to enable image uploads.');
+            avatarUpload.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    if (file.type.match('image.*')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            avatarPreview.style.backgroundImage = `url(${e.target.result})`;
+                            uploadAvatarToServer(file);
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        showMessage('Please select a valid image file!', 'error');
+                    }
+                }
+            });
+
+            hobbyDisplay.addEventListener('click', () => toggleOptions(hobbyOptions));
+            personallyDisplay.addEventListener('click', () => toggleOptions(personallyOptions));
+
+            hobbyOptions.addEventListener('click', () => updateDisplay(hobbyCheckboxes, hobbyDisplay, 'Chọn sở thích'));
+            personallyOptions.addEventListener('click', () => updateDisplay(personallyCheckboxes, personallyDisplay, 'Chọn tính cách'));
+
+            editProfileBtn.addEventListener('click', enableEditMode);
+            cancelButton.addEventListener('click', disableEditMode);
+
+            // Hàm kiểm tra và mở khóa các ô dựa trên ảnh đã tồn tại
+            const unlockImageUploads = () => {
+                imageContainers.forEach((container, index) => {
+                    const preview = container.querySelector('.image-preview');
+                    const backgroundImage = preview.style.backgroundImage;
+
+                    // Kiểm tra nếu ô hiện tại đã có ảnh (không phải ảnh mặc định)
+                    if (backgroundImage && !backgroundImage.includes('default-image.jpg')) {
+                        container.classList.add('has-image');
+                        container.querySelector('.upload-label').style.display = 'block';
+                        nextLabel = container.querySelector('.upload-label span');
+                        if (nextLabel) {
+                            nextLabel.textContent = '+ Add Photo'; // Cập nhật nội dung
+                        }
+
+                        // Mở khóa ô tiếp theo
+                        if (index < imageContainers.length - 1) {
+                            const nextContainer = imageContainers[index + 1];
+                            nextContainer.classList.remove('locked-upload');
+                            nextContainer.classList.add('active-upload');
+                            // Hiển thị nút "Add Photo" cho ô tiếp theo
+                            const nextLabel = nextContainer.querySelector('.upload-label span');
+                            if (nextLabel) {
+                                nextLabel.textContent = '+ Add Photo'; // Cập nhật nội dung
+                            }
+                            const nextInput = nextContainer.querySelector('.image-upload');
+                            nextInput.disabled = false;
+                        }
+                    }
+                });
+            };
+            unlockImageUploads();
+
+            imageUploads.forEach((input, index) => {
+                input.addEventListener('change', function() {
+                    const file = this.files[0];
+                    if (file) {
+                        if (file.type.match('image.*')) {
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                const preview = document.getElementById(`imagePreview${index + 1}`);
+                                preview.style.backgroundImage = `url(${e.target.result})`;
+
+                                // Đánh dấu ô hiện tại đã có ảnh
+                                const container = preview.closest('.image-upload-container');
+                                container.classList.add('has-image');
+                                container.querySelector('.upload-label').style.display = 'none';
+
+                                // Mở khóa ô tiếp theo
+                                if (index < imageUploads.length - 1) {
+                                    const nextContainer = document.querySelectorAll('.image-upload-container')[index + 1];
+                                    nextContainer.classList.remove('locked-upload');
+                                    nextContainer.classList.add('active-upload');
+
+                                    // Hiển thị nút "Add Photo" cho ô tiếp theo
+                                    const nextLabel = nextContainer.querySelector('.upload-label span');
+                                    if (nextLabel) {
+                                        nextLabel.textContent = '+ Add Photo'; // Cập nhật nội dung
+                                    }
+
+                                    const nextInput = document.getElementById(`imageUpload${index + 2}`);
+                                    nextInput.disabled = false;
+                                }
+                            };
+                            reader.readAsDataURL(file);
+                        } else {
+                            alert('Please select a valid image file!');
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('.upload-label').forEach((label, index) => {
+                label.addEventListener('click', function(e) {
+                    const container = this.closest('.image-upload-container');
+                    if (!container.classList.contains('active-upload')) {
+                        e.preventDefault();
+                        if (container.classList.contains('locked-upload')) {
+                            alert('Please upload the previous image first.');
+                        }
+                        return;
+                    }
+                    const inputId = `imageUpload${index + 1}`;
+                    const input = document.getElementById(inputId);
+                    if (!input.disabled) {
+                        input.click();
+                    } else {
+                        e.preventDefault();
+                        alert('Please click "Edit Profile" to enable image uploads.');
+                    }
+                });
+            });
+
+            saveButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                const form = document.getElementById('profile');
+                const formData = new FormData(form);
+                fetch('save_profile.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        showMessage('Profile saved successfully!', 'success');
+                        disableEditMode();
+                    })
+                    .catch(error => {
+                        showMessage('Error saving profile!', 'error');
+                    });
+            });
+
+            cancelButton.addEventListener('click', () => {
+                disableEditMode();
+            });
+
+            // Chat functionality
+            friendButton.addEventListener('click', () => {
+                friendButton.classList.toggle('chat-friend--active');
+                chatSideContentFriend.classList.toggle('chat-side__content-friend--show');
+            });
+
+            chatFriends.forEach(friend => {
+                friend.addEventListener('click', () => {
+                    chatFriends.forEach(f => f.classList.remove('chat-side__content-friends--active'));
+                    friend.classList.add('chat-side__content-friends--active');
+                });
+            });
+
+            // Avatar menu functionality
+            avatar.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!menu.contains(e.target) && !avatar.contains(e.target)) {
+                    menu.style.display = 'none';
+                }
+            });
+
+            // Hide dropdowns and inputs when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hobbyOptions.contains(e.target) && !hobbyDisplay.contains(e.target)) {
+                    hobbyOptions.classList.remove('show');
+                }
+                if (!personallyOptions.contains(e.target) && !personallyDisplay.contains(e.target)) {
+                    personallyOptions.classList.remove('show');
                 }
             });
         });
-
-        // Handle form submission
-        document.getElementById('profile').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Profile saved successfully!');
-
-            // Disable form elements after save
-            const formElements = document.querySelectorAll('input, select, button.action-button');
-            formElements.forEach(input => {
-                input.disabled = true;
-            });
-        });
-
-        // Handle cancel button
-        document.querySelector('.cancel-button').addEventListener('click', function () {
-            const formElements = document.querySelectorAll('input, select, button.action-button');
-            formElements.forEach(input => {
-                input.disabled = true;
-            });
-        });
     </script>
-    <script>
-        // Script choose friend to chat
-        const chat_side__content_friends = document.querySelectorAll('.chat-side__content-friends');
-        const main_content = document.querySelector('.main-content');
-
-        chat_side__content_friends.forEach(button => {
-            button.addEventListener('click', () => {
-                chat_side__content_friends.forEach(btn => btn.classList.remove('chat-side__content-friends--active'));
-                button.classList.add('chat-side__content-friends--active');
-            });
-        });
-        // Script choose chat-friend
-        const friend = document.querySelector('.chat-friend__friend');
-        const chat_side__content_friend = document.querySelector('.chat-side__content-friend');
-
-        friend.addEventListener('click', () => {
-            friend.classList.toggle('chat-friend--active');
-            chat_side__content_friend.classList.toggle('chat-side__content-friend--show');
-        });
-
-        //nut avt 
-        const avatar = document.querySelector('.avatar');
-        const menu = document.getElementById('userMenu');
-        const items = document.querySelectorAll('.dropdown-item');
-
-        avatar.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-        });
-
-        document.addEventListener('click', () => {
-            menu.style.display = 'none';
-        });
-
-        menu.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                menu.style.display = 'none';
-            });
-        });
-    </script>
-
 </body>
 
 </html>

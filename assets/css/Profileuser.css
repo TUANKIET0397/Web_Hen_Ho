@@ -432,11 +432,6 @@ body .logo-desc img:first-child {
     text-align: center;
   }
 
-select.infor__looking-friend {
-        margin-top: 10px;
-        margin-left: 30px;
-        padding-right: 88px;
-  }
   
   .info-value {
     font-size: 2rem;
@@ -574,7 +569,13 @@ select.infor__looking-friend {
     vertical-align: top;
 }
 
-.has-image::after {
+/* Ẩn nút "Add Photo" khi ảnh đã được thêm */
+.image-upload-container.has-image .upload-label {
+    display: none;
+}
+
+/* Hiển thị dấu tích (✓) trên ô ảnh đã thêm */
+.image-upload-container.has-image::after {
     content: "✓";
     position: absolute;
     top: 10px;
@@ -592,7 +593,7 @@ select.infor__looking-friend {
 }
 
 /* Make the form elements look better when disabled */
-input[disabled], select[disabled] {
+input[disabled], select[disabled], textarea[disabled] {
     background-color: #f9f9f9;
     color: #555;
     border: none;
@@ -602,36 +603,81 @@ input[disabled], select[disabled] {
     flex: 1;
 }
 
-button {
-    opacity: 0.6;
-    cursor: not-allowed;
-    font-size: 2rem;
-}
 
-input, select {
-    background-color: #f9f9f9;
-    color: #555;
-    border: none;
-    cursor: not-allowed;
-    font-family: 'Heebo';
-    font-size: 2rem;
-    flex: 1;
-}
 
 button[disabled] {
-    opacity: 0.6;
+  opacity: 0.6;
     cursor: not-allowed;
     font-size: 2rem;
 }
-
-input, select{
+button {
+    opacity: 0.6;
     cursor: pointer;
+    font-size: 2rem;
+} 
+input, select, textarea {
+    cursor: pointer;
+    background-color: #f9f9f9;
+    color: #555;
+    border: none;
+    font-family: 'Heebo';
+    font-size: 2rem;
+    flex: 1;
 }
 
 button {
     opacity: 1;
     cursor: pointer;
     font-size: 2rem;
+}
+/* Style chung cho container chứa span và options */
+.hobby-container, .personally-container {
+    position: relative;
+    flex: 1;
+    font-family: 'Heebo', sans-serif;
+    font-size: 2rem;
+}
+
+/* Style cho span hiển thị ban đầu (thay thế style của input trước đó) */
+.hobby-display, .personally-display {
+    padding: 8px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+    color: #858585;
+    display: inline-block; /* Để span có kích thước và padding */
+}
+
+/* Style cho khung chứa các checkbox */
+.hobby-options, .personally-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    z-index: 10;
+    display: none;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.hobby-options.show, .personally-options.show {
+    display: block;
+}
+
+/* Style cho từng label chứa checkbox */
+.hobby-options label, .personally-options label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Style cho nút OK */
+.hobby-options button, .personally-options button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 /* Animation */
 @keyframes growth {
