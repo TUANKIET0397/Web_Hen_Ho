@@ -1,5 +1,5 @@
-<?php 
-  include_once "./assets/php/config.php";
+<?php
+include_once "./assets/php/config.php";
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +53,7 @@
                         <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="#!">About</a>
+                        <a href="./index.php">About</a>
                     </li>
                     <li>
                         <a href="support.php">Support</a>
@@ -102,20 +102,20 @@
                                 <div class="chat-side__content-filter__age-text"> years old</div>
                             </div>
                         </div>
-                        <?php 
-                            $us_look="select * from looking";
-                            $us_hobby="select * from hobbylist";
-                            $kq_us_look = mysqli_query($conn,$us_look);
-                            $kq_us_hobby = mysqli_query($conn,$us_hobby);
+                        <?php
+                        $us_look = "select * from looking";
+                        $us_hobby = "select * from hobbylist";
+                        $kq_us_look = mysqli_query($conn, $us_look);
+                        $kq_us_hobby = mysqli_query($conn, $us_hobby);
                         ?>
                         <div class="chat-side__content-filter__lookingfor">
                             <div class="chat-side__content-filter__lookingfor-title">Looking for:</div>
                             <select name="lookingfor" id="lookingfor">
                                 <option style="text-align: center;" value="">------ Selection Looking ------</option>
-                                <?php 
-                                    while($a = mysqli_fetch_array($kq_us_look)) {?>
-                                        <option value=" <?php echo $a["ID"] ?>"> <?php echo $a["LookingName"] ?></option>
-                                <?php }?>
+                                <?php
+                                while ($a = mysqli_fetch_array($kq_us_look)) { ?>
+                                    <option value=" <?php echo $a["ID"] ?>"> <?php echo $a["LookingName"] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="chat-side__content-filter__location">
@@ -134,10 +134,10 @@
                             <div class="chat-side__content-filter__hobby-title">Hobby:</div>
                             <select name="hobby" id="hobby">
                                 <option style="text-align: center;" value="">------ Selection Hobby ------</option>
-                                <?php 
-                                    while($c = mysqli_fetch_array($kq_us_hobby)) {?>
-                                        <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["HobbyName"] ?></option>
-                                <?php }?>
+                                <?php
+                                while ($c = mysqli_fetch_array($kq_us_hobby)) { ?>
+                                    <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["HobbyName"] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="chat-side__content-btn">
@@ -153,21 +153,21 @@
                         <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="listfriend">
                             <div class="listfriend__name">Lee tuna kaai</div>
-                            <div class="listfriend__seen">seen. 2 hours</div>
+                            <!-- <div class="listfriend__seen">seen. 2 hours</div> -->
                         </div>
                     </button>
                     <button class="chat-side__content-friends">
                         <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="listfriend">
                             <div class="listfriend__name">John Smith</div>
-                            <div class="listfriend__seen">seen. 5 hours</div>
+                            <!-- <div class="listfriend__seen">seen. 5 hours</div> -->
                         </div>
                     </button>
                     <button class="chat-side__content-friends">
                         <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="listfriend">
                             <div class="listfriend__name">Jane Doe</div>
-                            <div class="listfriend__seen">seen. 1 day</div>
+                            <!-- <div class="listfriend__seen">seen. 1 day</div> -->
                         </div>
                     </button>
                 </div>
@@ -358,8 +358,7 @@
     <!-- New Swipe Profile Script -->
     <script>
         // Sample profile data
-        const profiles = [
-            {
+        const profiles = [{
                 name: "Nguyen Minh Thuan",
                 story: "so cool",
                 age: 18,
@@ -545,7 +544,6 @@
         profileButton.addEventListener('click', toggleProfileInfo);
         likeButton.addEventListener('click', () => {
             // Follow this profile
-            alert(`You liked ${profiles[currentProfileIndex].name}!`);
             nextProfile();
         });
 
