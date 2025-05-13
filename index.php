@@ -4,7 +4,6 @@ include_once "./assets/php/config.php";
 $logged_in = false;
 if (isset($_SESSION['user_id'])) {
     $logged_in = true;
-    echo "<script>console.log('Logged in: " . ($logged_in ? 'yes' : 'no') . "');</script>";
 }
 ?>
 <!DOCTYPE html>

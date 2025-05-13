@@ -1,6 +1,10 @@
 <?php
 // Kết nối cơ sở dữ liệu
 $link = @mysqli_connect("localhost", "root", "", "dating_app") or die("Không thể kết nối cơ sở dữ liệu");
+session_start();
+if (!isset($_SESSION['user_id'])) {
+header("Location: login.php");
+}
 
 // Lấy thông tin người dùng (giả sử UserID = 1)
 $userID = 1;
