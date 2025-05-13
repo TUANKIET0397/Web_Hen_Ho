@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once "./assets/php/config.php";
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -130,7 +131,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                     </a>
                     <div class="menu-nav-avt" id="userMenu">
                         <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
-                        <a href="#!" class="dropdown-item">Đăng xuất</a>
+                        <a href="./assets/php/logout.php" class="dropdown-item">Đăng xuất</a>
                     </div>
                 </div>
             </div>

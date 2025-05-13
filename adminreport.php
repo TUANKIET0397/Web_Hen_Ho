@@ -1,5 +1,9 @@
 <?php 
-  include_once "./assets/php/config.php";
+include_once "./assets/php/config.php";
+session_start();
+if (!isset($_SESSION['user_id'])) {
+header("Location: login.php");
+}
 ?>
 
 <!DOCTYPE html>

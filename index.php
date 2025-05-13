@@ -4,7 +4,6 @@ include_once "./assets/php/config.php";
 $logged_in = false;
 if (isset($_SESSION['user_id'])) {
     $logged_in = true;
-    echo "<script>console.log('Logged in: " . ($logged_in ? 'yes' : 'no') . "');</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -77,7 +76,7 @@ if (isset($_SESSION['user_id'])) {
                         <a href="#!" class="button avatar" <?php echo $user['ID']= $_SESSION['user_id']; ?> style="background-image: url(./assets/img/avt.jpg);"></a>
                         <div class="menu-nav-avt" id="userMenu">
                             <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
-                            <a href="#!" class="dropdown-item">Đăng xuất</a>
+                            <a href="./assets/php/logout.php" class="dropdown-item">Đăng xuất</a>
                         </div>
                     <?php } ?>
                 </div>

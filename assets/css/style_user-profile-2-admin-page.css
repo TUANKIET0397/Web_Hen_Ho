@@ -162,7 +162,7 @@ a {
     height: 100px;
     border-radius: 50%;
     background-color: #333;
-    margin: 15px auto 5px auto;
+    margin: -36px auto 5px -71px;
     background-size: cover;
     background-position: center;
     background-image: url(/assets/img/default-avatar.jpg);
@@ -191,7 +191,7 @@ a {
     width: 100%;
     height: fit-content;
     background-color: var(--grey-bgcolor);
- }
+}
 
 .profile-header {
     display: flex;
@@ -206,12 +206,13 @@ a {
 .profile-name {
     font-size: 2.4rem;
     font-weight: bold;
-    margin: 10px 0 5px;
+    margin: -92px 649px 5px 11px;
 }
 
 .profile-location {
     font-size: 1.6rem;
     color: var(--text-color-grey);
+    margin: 35px 708px -6px -3px;
 }
 
 .avatar-upload {
@@ -250,86 +251,86 @@ a {
     background-color: #f8d7da;
     color: #721c24;
 }
-  
 
 
-  /*profile table*/
-  .profile-table {
+
+/*profile table*/
+.profile-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 30px;
-  }
-  
-  .libaryimg {
+}
+
+.libaryimg {
     display: table-row;
-  }
-  
-  .imguser {
+}
+
+.imguser {
     display: table-cell;
     width: 33%;
     height: 400px;
     background-color: #ff3366;
     border-radius: 8px;
     padding: 5px;
-  }
-  
-  .infomation {
+}
+
+.infomation {
     background-color: #f5f5f5;
     border-radius: 7px;
-  }
-  
-  .infomation td {
+}
+
+.infomation td {
     padding: 10px;
-  }
-  
-  .info-item {
+}
+
+.info-item {
     display: flex;
     align-items: center;
     gap: 5px;
-  }
-  
-  .info-label {
+}
+
+.info-label {
     font-size: 2.2rem;
     color: #ff3366;
     font-weight: bold;
     text-align: center;
-  }
+}
 
-  
-  .info-value {
+
+.info-value {
     font-size: 2rem;
     font-weight: 500;
-  }
-  
-  .profile-actions {
+}
+
+.profile-actions {
     display: flex;
     gap: 15px;
     margin-top: 20px;
     gap: 15px;
-  }
-  
-  .action-button {
+}
+
+.action-button {
     padding: 12px;
     border: none;
     border-radius: 8px;
     font-size: 1.8rem;
     font-weight: 500;
     cursor: pointer;
-  }
-  
-  .save-button {
+}
+
+.save-button {
     background-color: #ff3366;
     color: white;
     width: 60%;
-  }
-  
-  .cancel-button {
+}
+
+.cancel-button {
     background-color: #ffee00;
     color: #333;
     flex: 1;
-  }
-  
-  .edit-profile {
+}
+
+.edit-profile {
     position: absolute;
     top: 35px;
     right: 35px;
@@ -338,10 +339,10 @@ a {
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
-  }
-  
-  /* Additional styles for image upload */
-  .image-upload-container {
+}
+
+/* Additional styles for image upload */
+.image-upload-container {
     position: relative;
     width: 100%;
     height: 100%;
@@ -382,7 +383,8 @@ a {
     left: 0;
     z-index: 1;
     border-radius: 8px;
-    image-rendering:-webkit-optimize-contrast;;
+    image-rendering: -webkit-optimize-contrast;
+    ;
 }
 
 .upload-label {
@@ -456,7 +458,9 @@ a {
 }
 
 /* Make the form elements look better when disabled */
-input[disabled], select[disabled], textarea[disabled] {
+input[disabled],
+select[disabled],
+textarea[disabled] {
     background-color: #f9f9f9;
     color: #555;
     border: none;
@@ -469,16 +473,20 @@ input[disabled], select[disabled], textarea[disabled] {
 
 
 button[disabled] {
-  opacity: 0.6;
+    opacity: 0.6;
     cursor: not-allowed;
     font-size: 2rem;
 }
+
 button {
     opacity: 0.6;
     cursor: pointer;
     font-size: 2rem;
-} 
-input, select, textarea {
+}
+
+input,
+select,
+textarea {
     cursor: pointer;
     background-color: #f9f9f9;
     color: #555;
@@ -493,8 +501,10 @@ button {
     cursor: pointer;
     font-size: 2rem;
 }
+
 /* Style chung cho container chứa span và options */
-.hobby-container, .personally-container {
+.hobby-container,
+.personally-container {
     position: relative;
     flex: 1;
     font-family: 'Heebo', sans-serif;
@@ -502,18 +512,21 @@ button {
 }
 
 /* Style cho span hiển thị ban đầu (thay thế style của input trước đó) */
-.hobby-display, .personally-display {
+.hobby-display,
+.personally-display {
     padding: 8px;
     cursor: pointer;
     background-color: #f9f9f9;
     width: 100%;
     box-sizing: border-box;
     color: #858585;
-    display: inline-block; /* Để span có kích thước và padding */
+    display: inline-block;
+    /* Để span có kích thước và padding */
 }
 
 /* Style cho khung chứa các checkbox */
-.hobby-options, .personally-options {
+.hobby-options,
+.personally-options {
     position: absolute;
     top: 100%;
     left: 0;
@@ -526,27 +539,32 @@ button {
     box-sizing: border-box;
 }
 
-.hobby-options.show, .personally-options.show {
+.hobby-options.show,
+.personally-options.show {
     display: block;
 }
 
 /* Style cho từng label chứa checkbox */
-.hobby-options label, .personally-options label {
+.hobby-options label,
+.personally-options label {
     display: block;
     margin-bottom: 5px;
 }
 
 /* Style cho nút OK */
-.hobby-options button, .personally-options button {
+.hobby-options button,
+.personally-options button {
     margin-top: 10px;
     padding: 5px 10px;
     cursor: pointer;
 }
+
 /* Animation */
 @keyframes growth {
     from {
         transform: scale(var(--growth-from));
     }
+
     to {
         transform: scale(var(--growth-to));
     }
@@ -557,11 +575,11 @@ button {
     html {
         font-size: 45%;
     }
-    
+
     .chat-side {
         min-width: 180px;
     }
-    
+
     .header .body ul a {
         padding: 10px 2rem;
         font-size: 2.8rem;

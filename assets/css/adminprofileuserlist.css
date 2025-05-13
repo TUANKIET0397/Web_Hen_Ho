@@ -205,6 +205,7 @@ a {
     gap: 10px;
     flex: 1;
     margin-top: 24px;
+    overflow-y: auto;
 }
 
 .content-body__user {
