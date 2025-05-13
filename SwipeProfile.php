@@ -193,13 +193,6 @@ include_once "./assets/php/config.php";
                                 </div>
                             </div>
                             <div class="info-item">
-                                <span class="info-item-icon"><img src="./assets/img/award.png" alt=""></span>
-                                <div class="info-item-text">
-                                    <span class="info-item-label">Story:</span>
-                                    <span class="info-item-content" id="profile-story">so cool</span>
-                                </div>
-                            </div>
-                            <div class="info-item">
                                 <span class="info-item-icon"><img src="./assets/img/calendar.png" alt=""></span>
                                 <div class="info-item-text">
                                     <span class="info-item-label">Age:</span>
@@ -207,10 +200,31 @@ include_once "./assets/php/config.php";
                                 </div>
                             </div>
                             <div class="info-item">
+                                <span class="info-item-icon"><img src="./assets/img/calendar.png" alt=""></span>
+                                <div class="info-item-text">
+                                    <span class="info-item-label">Job:</span>
+                                    <span class="info-item-content" id="profile-job">Student</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-icon"><img src="./assets/img/calendar.png" alt=""></span>
+                                <div class="info-item-text">
+                                    <span class="info-item-label">Location:</span>
+                                    <span class="info-item-content" id="profile-location">HN</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
                                 <span class="info-item-icon"><img src="./assets/img/arrow-up-right.png" alt=""></span>
                                 <div class="info-item-text">
                                     <span class="info-item-label">Looking for:</span>
                                     <span class="info-item-content" id="profile-looking">realation ship</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-icon"><img src="./assets/img/award.png" alt=""></span>
+                                <div class="info-item-text">
+                                    <span class="info-item-label">Story:</span>
+                                    <span class="info-item-content" id="profile-story">so cool</span>
                                 </div>
                             </div>
                             <div class="info-item">
