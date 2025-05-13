@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['user_id'])) {
-header("Location: login.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
 }
 // Kết nối cơ sở dữ liệu
 $link = @mysqli_connect("localhost", "root", "", "dating_app") or die("Không thể kết nối cơ sở dữ liệu");
@@ -53,7 +53,19 @@ while ($row = mysqli_fetch_assoc($resultPersonally)) {
 // Lấy thông tin công việc
 $sqlJob = "SELECT JobName FROM joblist INNER JOIN userjob ON joblist.ID = userjob.JobID WHERE userjob.UserID = $userID";
 $resultJob = mysqli_query($link, $sqlJob);
-$job = mysqli_fetch_assoc($resultJob)['JobName'];
+$job = '';
+if ($resultJob && mysqli_num_rows($resultJob) > 0) {
+    $rowJob = mysqli_fetch_assoc($resultJob);
+    $job = $rowJob['JobName'];
+}
+
+$sqlLocation = "SELECT Address FROM locationlist INNER JOIN userlocation ON locationlist.ID = userlocation.LocationID WHERE userlocation.UserID = $userID";
+$resultLocation = mysqli_query($link, $sqlLocation);   
+$location = "";
+    if ($resultLocation && mysqli_num_rows($resultLocation) > 0) {
+        $rowLocation = mysqli_fetch_assoc($resultLocation);
+        $location = $rowLocation['Address'];
+    } else
 
 // Lấy thông tin "Looking For"
 $sqlLooking = "SELECT LookingName FROM looking INNER JOIN userlooking ON looking.ID = userlooking.LookingID WHERE userlooking.UserID = $userID";
@@ -240,7 +252,15 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                                 <td>
                                     <div class="info-item">
                                         <h3 class="info-label">Location:</h3>
-                                        <input type="text" name="location" value="<?php echo $user['UserAddress']; ?>" required disabled>
+                                        <select name="location" disabled>
+                                            <?php
+                                            $allJobs = mysqli_query($link, "SELECT Address FROM locationlist");
+                                            while ($row = mysqli_fetch_assoc($allJobs)) {
+                                                $selected = ($row['Address'] == $job) ? 'selected' : '';
+                                                echo "<option value='{$row['Address']}' $selected>{$row['Address']}</option>";
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </td>
                                 <td>
@@ -424,8 +444,8 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                 }
             };
 
+            // Function to display messages
             const showMessage = (message, type = 'success') => {
-                const messageBox = document.getElementById('message');
                 messageBox.textContent = message;
                 messageBox.className = `message ${type}`;
                 messageBox.style.display = 'block';
@@ -434,26 +454,94 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                 }, 3000);
             };
 
-            const uploadAvatarToServer = (file) => {
-                // Fake server upload logic
-                setTimeout(() => {
-                    showMessage('Avatar uploaded successfully!', 'success');
-                }, 1000);
-            };
+            // Preview avatar image when selected
+            avatarUpload.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    if (file.type.match('image.*')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            avatarPreview.style.backgroundImage = `url(${e.target.result})`;
+                        };
+                        reader.readAsDataURL(file);
 
-            // Event Listeners
+                        // Show upload button only when file is selected
+                        uploadBtn.style.display = 'block';
+                    } else {
+                        showMessage('Vui lòng chọn file hình ảnh hợp lệ!', 'error');
+                    }
+                }
+            });
+
+            // Handle form submission
+            avatarForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Check if edit mode is enabled (assuming you have this variable)
+                if (typeof isEditMode !== 'undefined' && !isEditMode) {
+                    showMessage('Vui lòng nhấn "Edit Profile" để thay đổi avatar.', 'error');
+                    return;
+                }
+
+                // Check if file is selected
+                if (!avatarUpload.files[0]) {
+                    showMessage('Vui lòng chọn file hình ảnh trước!', 'error');
+                    return;
+                }
+
+                // Show loading state
+                uploadBtn.textContent = 'Uploading...';
+                uploadBtn.disabled = true;
+
+                const formData = new FormData(this);
+
+                fetch('upload_avatar.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            showMessage(data.message, 'success');
+                            // Update avatar in all places where it's used
+                            if (data.avatar_path) {
+                                const avatarElements = document.querySelectorAll('.avatar');
+                                avatarElements.forEach(el => {
+                                    el.style.backgroundImage = `url('${data.avatar_path}')`;
+                                });
+                            }
+                        } else {
+                            showMessage(data.message, 'error');
+                        }
+                    })
+                    .catch(error => {
+                        showMessage('Lỗi khi tải lên: ' + error, 'error');
+                        console.error('Upload error:', error);
+                    })
+                    .finally(() => {
+                        // Reset button state
+                        uploadBtn.textContent = 'Change Avatar';
+                        uploadBtn.disabled = false;
+                    });
+            });
+
+            // Make avatar clickable to trigger file selection
             avatarPreview.addEventListener('click', () => {
-                if (!isEditMode) {
+                // Check if edit mode is enabled
+                if (typeof isEditMode !== 'undefined' && !isEditMode) {
                     alert('Please click "Edit Profile" to change your avatar.');
                     return;
                 }
                 avatarUpload.click();
             });
 
+
             document.getElementById('avatarForm').addEventListener('submit', function(e) {
+                e.preventDefault(); // luôn chặn reload
+
                 if (!isEditMode) {
-                    e.preventDefault(); // Chặn gửi nếu chưa bật edit
                     alert('Please click "Edit Profile" to change your avatar.');
+                    return;
                 }
             });
 
@@ -467,6 +555,7 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                             uploadAvatarToServer(file);
                         };
                         reader.readAsDataURL(file);
+                        alert('Success! Avatar updated.');
                     } else {
                         showMessage('Please select a valid image file!', 'error');
                     }

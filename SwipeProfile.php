@@ -1,12 +1,19 @@
 <?php
 include_once "./assets/php/config.php";
 session_start();
-if (isset($_SESSION['user_id'])) {
-header("Location: login.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
 }
 
 // Lấy dữ liệu từ form lọc
-$userID != $_SESSION["user_id"];
+$userID = $_SESSION["user_id"];
+$sql = "SELECT * FROM userinformation WHERE ID = $userID";
+$result = mysqli_query($conn, $sql);
+
+$user = null;
+if ($result && mysqli_num_rows($result) > 0) {
+    $user = mysqli_fetch_assoc($result);
+}
 $filterAgeMin = isset($_POST['filterAgeMin']) ? (int)$_POST['filterAgeMin'] : 18;
 $filterAgeMax = isset($_POST['filterAgeMax']) ? (int)$_POST['filterAgeMax'] : 99;
 $filterLookingFor = isset($_POST['lookingfor']) ? (int)$_POST['lookingfor'] : null;
@@ -28,7 +35,8 @@ $query = "SELECT u.ID, u.UserName, u.Age, u.UserAddress AS Location, u.bio AS St
           LEFT JOIN looking l ON ul.LookingID = l.ID
           LEFT JOIN userjob uj ON u.ID = uj.UserID
           LEFT JOIN joblist j ON uj.JobID = j.ID
-          WHERE u.Age BETWEEN $filterAgeMin AND $filterAgeMax";
+          WHERE u.Age BETWEEN $filterAgeMin AND $filterAgeMax
+           AND u.ID != $userID";
 
 if ($filterLookingFor) {
     $query .= " AND ul.LookingID = $filterLookingFor";
@@ -117,7 +125,9 @@ if ($result && mysqli_num_rows($result) > 0) {
                 </ul>
                 <!-- action to call -->
                 <div class="action">
-                    <a href="#!" class="button avatar" <?php echo $user['ID']= $_SESSION['user_id']; ?> style="background-image: url(./assets/img/avt.jpg);"></a>
+                    <a href="#!" class="button avatar"
+                        style="background-image: url('<?php echo !empty($user['Avt']) ? htmlspecialchars($user['Avt']) : './assets/img/default-avatar.jpg'; ?>');">
+                    </a>
                     <div class="menu-nav-avt" id="userMenu">
                         <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
                         <a href="#!" class="dropdown-item">Đăng xuất</a>

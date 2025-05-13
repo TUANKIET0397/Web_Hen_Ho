@@ -74,7 +74,7 @@ if (isset($_SESSION['user_id'])) {
                         <a href="login.php" class="action-btn btn" id="loginBtn">Login</a>
                     <?php }
                     if ($logged_in) { ?>
-                        <a href="#!" class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></a>
+                        <a href="#!" class="button avatar" <?php echo $user['ID']= $_SESSION['user_id']; ?> style="background-image: url(./assets/img/avt.jpg);"></a>
                         <div class="menu-nav-avt" id="userMenu">
                             <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
                             <a href="#!" class="dropdown-item">Đăng xuất</a>
