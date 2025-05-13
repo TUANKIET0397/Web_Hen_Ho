@@ -50,7 +50,7 @@
                         <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="#!">About</a>
+                        <a href="#about-section">About</a>
                     </li>
                     <li>
                         <a href="support.php">Support</a>
@@ -84,9 +84,7 @@
                     <p class="sub-title">We respect your privacy and make sure your data stays safe. You control how
                         much you share and with whom. Your comfort and safety are our top priorities.</p>
                     <div class="btn-cta">
-                        <!-- <div class="cta1 btn">Start with new chat</div>
-                        <div class="cta2 btn">Start with video chat</div> Xóa 2 nút-->
-                        <div class="cta3 btn">Swipe right if you like</div>
+                        <div class="cta3 btn"><a href="./SwipeProfile.php" style='color: #FFFFFF'>Swipe right if you like</a> </div>
                     </div>
                 </div>
                 <div class="hero-img">
@@ -98,7 +96,7 @@
         </div>
 
         <!-- Intoduce -->
-        <div class="intro">
+        <div class="intro" id="about-section">
             <div class="main-content">
                 <div class="btn btn-cta">Reach people like you</div>
                 <h2 class="title">Say Hello to Spontaneous Moments</h2>
@@ -230,35 +228,46 @@
     </footer>
 
     <script>
-    //nut avt 
-    const loginBtn = document.getElementById('loginBtn');
-    const avatar = document.querySelector('.avatar');
-    const menu = document.getElementById('userMenu');
-    const items = document.querySelectorAll('.dropdown-item');
+        //nut avt 
+        const loginBtn = document.getElementById('loginBtn');
+        const avatar = document.querySelector('.avatar');
+        const menu = document.getElementById('userMenu');
+        const items = document.querySelectorAll('.dropdown-item');
 
-    avatar.addEventListener('click', (e) => {
-        e.stopPropagation();
-        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-    });
+        avatar.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+        });
 
-    document.addEventListener('click', () => {
-        menu.style.display = 'none';
-    });
-
-    menu.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-    items.forEach(item => {
-        item.addEventListener('click', () => {
+        document.addEventListener('click', () => {
             menu.style.display = 'none';
         });
-    });
 
-    loginBtn.addEventListener('click', () => {
-        loginBtn.style.display = 'none'; // Ẩn nút Login
-        avatar.style.display = 'block'; // Hiện avatar
-    });
+        menu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                menu.style.display = 'none';
+            });
+        });
+
+        loginBtn.addEventListener('click', () => {
+            loginBtn.style.display = 'none'; // Ẩn nút Login
+            avatar.style.display = 'block'; // Hiện avatar
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
-</body>
 
 </html>
