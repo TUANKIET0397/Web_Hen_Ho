@@ -80,10 +80,12 @@ include_once "./assets/php/config.php";
                         <img src="./assets/img/filter.png" alt="" class="chat-img">
                         <span class="chat-friend__filter-text">Filter</span>
                     </button>
-                    <button class="chat-friend__friend">
-                        <img src="./assets/img/users.svg" alt="" class="friend-img">
-                        <span class="chat-friend__friend-text">Friends</span>
-                    </button>
+                    <a href="ChatFriend.php" class="chat-friend__friend">
+                        <button class="chat-friend__friend">
+                            <img src="./assets/img/users.svg" alt="" class="friend-img">
+                            <span class="chat-friend__friend-text">Friends</span>
+                        </button>
+                    </a>
                 </div>
                 <!-- Filter -->
                 <div class="chat-side__content">
@@ -114,7 +116,7 @@ include_once "./assets/php/config.php";
                                 <option style="text-align: center;" value="">------ Selection Looking ------</option>
                                 <?php
                                 while ($a = mysqli_fetch_array($kq_us_look)) { ?>
-                                    <option value=" <?php echo $a["ID"] ?>"> <?php echo $a["LookingName"] ?></option>
+                                <option value=" <?php echo $a["ID"] ?>"> <?php echo $a["LookingName"] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -136,7 +138,7 @@ include_once "./assets/php/config.php";
                                 <option style="text-align: center;" value="">------ Selection Hobby ------</option>
                                 <?php
                                 while ($c = mysqli_fetch_array($kq_us_hobby)) { ?>
-                                    <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["HobbyName"] ?></option>
+                                <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["HobbyName"] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -150,26 +152,8 @@ include_once "./assets/php/config.php";
                 <!-- Friend -->
                 <div class="chat-side__content-friend">
                     <button class="chat-side__content-friends">
-                        <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
-                        <div class="listfriend">
-                            <div class="listfriend__name">Lee tuna kaai</div>
-                            <!-- <div class="listfriend__seen">seen. 2 hours</div> -->
-                        </div>
                     </button>
-                    <button class="chat-side__content-friends">
-                        <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
-                        <div class="listfriend">
-                            <div class="listfriend__name">John Smith</div>
-                            <!-- <div class="listfriend__seen">seen. 5 hours</div> -->
-                        </div>
-                    </button>
-                    <button class="chat-side__content-friends">
-                        <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
-                        <div class="listfriend">
-                            <div class="listfriend__name">Jane Doe</div>
-                            <!-- <div class="listfriend__seen">seen. 1 day</div> -->
-                        </div>
-                    </button>
+
                 </div>
             </div>
 
@@ -259,296 +243,297 @@ include_once "./assets/php/config.php";
     </div>
 
     <script>
-        // Script choose friend to chat
-        const chat_side__content_friends = document.querySelectorAll('.chat-side__content-friends');
-        const main_content = document.querySelector('.main-content');
+    // Script choose friend to chat
+    const chat_side__content_friends = document.querySelectorAll('.chat-side__content-friends');
+    const main_content = document.querySelector('.main-content');
 
-        chat_side__content_friends.forEach(button => {
-            button.addEventListener('click', () => {
-                chat_side__content_friends.forEach(btn => btn.classList.remove('chat-side__content-friends--active'));
-                button.classList.add('chat-side__content-friends--active');
-            });
+    chat_side__content_friends.forEach(button => {
+        button.addEventListener('click', () => {
+            chat_side__content_friends.forEach(btn => btn.classList.remove(
+                'chat-side__content-friends--active'));
+            button.classList.add('chat-side__content-friends--active');
         });
+    });
 
-        // Script choose chat-friend
-        const chat = document.querySelector('.chat-friend__filter');
-        const friend = document.querySelector('.chat-friend__friend');
-        const chat_side_content = document.querySelector('.chat-side__content');
-        const chat_side__content_friend = document.querySelector('.chat-side__content-friend');
+    // Script choose chat-friend
+    const chat = document.querySelector('.chat-friend__filter');
+    const friend = document.querySelector('.chat-friend__friend');
+    const chat_side_content = document.querySelector('.chat-side__content');
+    const chat_side__content_friend = document.querySelector('.chat-side__content-friend');
 
-        chat.addEventListener('click', () => {
-            chat.classList.add('chat-friend--active');
-            friend.classList.remove('chat-friend--active');
-            chat_side_content.classList.remove('chat-side__content--hide');
-            chat_side__content_friend.classList.remove('chat-side__content-friend--show');
-        });
+    chat.addEventListener('click', () => {
+        chat.classList.add('chat-friend--active');
+        friend.classList.remove('chat-friend--active');
+        chat_side_content.classList.remove('chat-side__content--hide');
+        chat_side__content_friend.classList.remove('chat-side__content-friend--show');
+    });
 
-        friend.addEventListener('click', () => {
-            friend.classList.add('chat-friend--active');
-            chat.classList.remove('chat-friend--active');
-            chat_side__content_friend.classList.add('chat-side__content-friend--show');
-            chat_side_content.classList.add('chat-side__content--hide');
-        });
+    friend.addEventListener('click', () => {
+        friend.classList.add('chat-friend--active');
+        chat.classList.remove('chat-friend--active');
+        chat_side__content_friend.classList.add('chat-side__content-friend--show');
+        chat_side_content.classList.add('chat-side__content--hide');
+    });
     </script>
 
     <!-- Script Filter -->
     <script>
-        const filterAgeMinInput = document.getElementById('filterAgeMin');
-        const filterAgeMaxInput = document.getElementById('filterAgeMax');
-        const ageMinDisplay = document.querySelector('.chat-side__content-filter__age-first-value');
-        const ageMaxDisplay = document.querySelector('.chat-side__content-filter__age-second-value');
+    const filterAgeMinInput = document.getElementById('filterAgeMin');
+    const filterAgeMaxInput = document.getElementById('filterAgeMax');
+    const ageMinDisplay = document.querySelector('.chat-side__content-filter__age-first-value');
+    const ageMaxDisplay = document.querySelector('.chat-side__content-filter__age-second-value');
 
-        function applyFilters() {
-            const ageMin = parseInt(filterAgeMinInput.value);
-            const ageMax = parseInt(filterAgeMaxInput.value);
+    function applyFilters() {
+        const ageMin = parseInt(filterAgeMinInput.value);
+        const ageMax = parseInt(filterAgeMaxInput.value);
 
-            filteredUsers = allUsers.filter(user => {
-                let passes = true;
-                if (user.age < ageMin || user.age > ageMax) passes = false;
-                return passes;
-            });
-        }
+        filteredUsers = allUsers.filter(user => {
+            let passes = true;
+            if (user.age < ageMin || user.age > ageMax) passes = false;
+            return passes;
+        });
+    }
 
-        // Update display for range sliders
-        if (filterAgeMinInput && ageMinDisplay) {
-            filterAgeMinInput.addEventListener('input', (e) => {
-                ageMinDisplay.textContent = e.target.value;
-                if (parseInt(filterAgeMaxInput.value) < parseInt(e.target.value)) {
-                    filterAgeMaxInput.value = e.target.value;
-                    ageMaxDisplay.textContent = e.target.value;
-                }
-            });
-        }
-        if (filterAgeMaxInput && ageMaxDisplay) {
-            filterAgeMaxInput.addEventListener('input', (e) => {
+    // Update display for range sliders
+    if (filterAgeMinInput && ageMinDisplay) {
+        filterAgeMinInput.addEventListener('input', (e) => {
+            ageMinDisplay.textContent = e.target.value;
+            if (parseInt(filterAgeMaxInput.value) < parseInt(e.target.value)) {
+                filterAgeMaxInput.value = e.target.value;
                 ageMaxDisplay.textContent = e.target.value;
-                if (parseInt(filterAgeMinInput.value) > parseInt(e.target.value)) {
-                    filterAgeMinInput.value = e.target.value;
-                    ageMinDisplay.textContent = e.target.value;
-                }
-            });
-        }
+            }
+        });
+    }
+    if (filterAgeMaxInput && ageMaxDisplay) {
+        filterAgeMaxInput.addEventListener('input', (e) => {
+            ageMaxDisplay.textContent = e.target.value;
+            if (parseInt(filterAgeMinInput.value) > parseInt(e.target.value)) {
+                filterAgeMinInput.value = e.target.value;
+                ageMinDisplay.textContent = e.target.value;
+            }
+        });
+    }
     </script>
 
     <script>
-        // Avatar dropdown menu
-        const avatar = document.querySelector('.avatar');
-        const menu = document.getElementById('userMenu');
-        const items = document.querySelectorAll('.dropdown-item');
+    // Avatar dropdown menu
+    const avatar = document.querySelector('.avatar');
+    const menu = document.getElementById('userMenu');
+    const items = document.querySelectorAll('.dropdown-item');
 
-        avatar.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-        });
+    avatar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    });
 
-        document.addEventListener('click', () => {
+    document.addEventListener('click', () => {
+        menu.style.display = 'none';
+    });
+
+    menu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    items.forEach(item => {
+        item.addEventListener('click', () => {
             menu.style.display = 'none';
         });
-
-        menu.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                menu.style.display = 'none';
-            });
-        });
+    });
     </script>
 
     <!-- New Swipe Profile Script -->
     <script>
-        // Sample profile data
-        const profiles = [{
-                name: "Nguyen Minh Thuan",
-                story: "so cool",
-                age: 18,
-                lookingFor: "realation ship",
-                hobby: "Film, listecvbnm,lkjhgvfcdxx cvbhn jmkjnhbgvcxcfvgc hbnjjnhbgvc xcf fsv f sdfg fgf gf f fg g g f f vgbhnjmnhbvcfvgbh njjnhbgvcfvg bhnjjnhb vcvgbhn jbvcvgbhn to music,...",
-                personality: "extrovert, shy,vb njmk,lkmjn bvcxfvgbhn jhbgvcfmjnhgb vcx fd fd  f  h hg ghhgh gh h  fg f f  g gh gh xvfbngmh nbcvx cvgbhgn...dvdfvghjk,l ,kmjhngbfvdc sxzxdklkjhgbf vcxcvfgbhj",
-                images: [
-                    "./assets/img/avt.jpg",
-                    "./assets/img/avt-new.jpg",
-                    "./assets/img/mew.jpg",
-                    "./assets/img/anime.jpg"
-                ]
-            },
-            {
-                name: "Tran Hai Yen",
-                story: "living my best life",
-                age: 22,
-                lookingFor: "friendship",
-                hobby: "Photography, cooking, hiking",
-                personality: "introvert, creative",
-                images: [
-                    "./api/placeholder/400/600?text=Profile2-1",
-                    "./api/placeholder/400/600?text=Profile2-2",
-                    "./api/placeholder/400/600?text=Profile2-3"
-                ]
-            },
-            {
-                name: "Pham Van Minh",
-                story: "adventure seeker",
-                age: 25,
-                lookingFor: "casual dating",
-                hobby: "Travel, sports, gaming",
-                personality: "outgoing, spontaneous",
-                images: [
-                    "./api/placeholder/400/600?text=Profile3-1",
-                    "./api/placeholder/400/600?text=Profile3-2",
-                    "./api/placeholder/400/600?text=Profile3-3",
-                    "./api/placeholder/400/600?text=Profile3-4",
-                    "./api/placeholder/400/600?text=Profile3-5"
-                ]
+    // Sample profile data
+    const profiles = [{
+            name: "Nguyen Minh Thuan",
+            story: "so cool",
+            age: 18,
+            lookingFor: "realation ship",
+            hobby: "Film, listecvbnm,lkjhgvfcdxx cvbhn jmkjnhbgvcxcfvgc hbnjjnhbgvc xcf fsv f sdfg fgf gf f fg g g f f vgbhnjmnhbvcfvgbh njjnhbgvcfvg bhnjjnhb vcvgbhn jbvcvgbhn to music,...",
+            personality: "extrovert, shy,vb njmk,lkmjn bvcxfvgbhn jhbgvcfmjnhgb vcx fd fd  f  h hg ghhgh gh h  fg f f  g gh gh xvfbngmh nbcvx cvgbhgn...dvdfvghjk,l ,kmjhngbfvdc sxzxdklkjhgbf vcxcvfgbhj",
+            images: [
+                "./assets/img/avt.jpg",
+                "./assets/img/avt-new.jpg",
+                "./assets/img/mew.jpg",
+                "./assets/img/anime.jpg"
+            ]
+        },
+        {
+            name: "Tran Hai Yen",
+            story: "living my best life",
+            age: 22,
+            lookingFor: "friendship",
+            hobby: "Photography, cooking, hiking",
+            personality: "introvert, creative",
+            images: [
+                "./api/placeholder/400/600?text=Profile2-1",
+                "./api/placeholder/400/600?text=Profile2-2",
+                "./api/placeholder/400/600?text=Profile2-3"
+            ]
+        },
+        {
+            name: "Pham Van Minh",
+            story: "adventure seeker",
+            age: 25,
+            lookingFor: "casual dating",
+            hobby: "Travel, sports, gaming",
+            personality: "outgoing, spontaneous",
+            images: [
+                "./api/placeholder/400/600?text=Profile3-1",
+                "./api/placeholder/400/600?text=Profile3-2",
+                "./api/placeholder/400/600?text=Profile3-3",
+                "./api/placeholder/400/600?text=Profile3-4",
+                "./api/placeholder/400/600?text=Profile3-5"
+            ]
+        }
+    ];
+
+    // DOM elements
+    const profileCard = document.getElementById('profile-card');
+    const cardImage = document.getElementById('card-image');
+    const profileInfo = document.getElementById('profile-info');
+    const cardPagination = document.getElementById('card-pagination');
+
+    const profileName = document.getElementById('profile-name');
+    const profileStory = document.getElementById('profile-story');
+    const profileAge = document.getElementById('profile-age');
+    const profileLooking = document.getElementById('profile-looking');
+    const profileHobby = document.getElementById('profile-hobby');
+    const profilePersonality = document.getElementById('profile-personality');
+
+    const dismissButton = document.getElementById('dismiss-button');
+    const undoButton = document.getElementById('undo-button');
+    const profileButton = document.getElementById('profile-button');
+    const likeButton = document.getElementById('like-button');
+
+    // State variables
+    let currentProfileIndex = 0;
+    let currentImageIndex = 0;
+    let viewingProfile = false;
+    let previousProfiles = [];
+
+    // Initialize the profile display
+    function initProfiles() {
+        showProfile(currentProfileIndex);
+    }
+
+    // Display the current profile
+    function showProfile(index) {
+        const profile = profiles[index];
+
+        // Update profile info
+        profileName.textContent = profile.name;
+        profileStory.textContent = profile.story;
+        profileAge.textContent = profile.age;
+        profileLooking.textContent = profile.lookingFor;
+        profileHobby.textContent = profile.hobby;
+        profilePersonality.textContent = profile.personality;
+
+        // Reset to first image
+        currentImageIndex = 0;
+        showCurrentImage();
+
+        // Create pagination dots
+        createPaginationDots(profile.images.length);
+    }
+
+    // Create pagination dots for the current profile
+    function createPaginationDots(count) {
+        cardPagination.innerHTML = '';
+
+        // Limit to maximum 6 images
+        const dotsToCreate = Math.min(count, 6);
+
+        for (let i = 0; i < dotsToCreate; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'card-pagination-dot';
+            dot.dataset.index = i;
+
+            if (i === currentImageIndex) {
+                dot.classList.add('active');
             }
-        ];
 
-        // DOM elements
-        const profileCard = document.getElementById('profile-card');
-        const cardImage = document.getElementById('card-image');
-        const profileInfo = document.getElementById('profile-info');
-        const cardPagination = document.getElementById('card-pagination');
-
-        const profileName = document.getElementById('profile-name');
-        const profileStory = document.getElementById('profile-story');
-        const profileAge = document.getElementById('profile-age');
-        const profileLooking = document.getElementById('profile-looking');
-        const profileHobby = document.getElementById('profile-hobby');
-        const profilePersonality = document.getElementById('profile-personality');
-
-        const dismissButton = document.getElementById('dismiss-button');
-        const undoButton = document.getElementById('undo-button');
-        const profileButton = document.getElementById('profile-button');
-        const likeButton = document.getElementById('like-button');
-
-        // State variables
-        let currentProfileIndex = 0;
-        let currentImageIndex = 0;
-        let viewingProfile = false;
-        let previousProfiles = [];
-
-        // Initialize the profile display
-        function initProfiles() {
-            showProfile(currentProfileIndex);
-        }
-
-        // Display the current profile
-        function showProfile(index) {
-            const profile = profiles[index];
-
-            // Update profile info
-            profileName.textContent = profile.name;
-            profileStory.textContent = profile.story;
-            profileAge.textContent = profile.age;
-            profileLooking.textContent = profile.lookingFor;
-            profileHobby.textContent = profile.hobby;
-            profilePersonality.textContent = profile.personality;
-
-            // Reset to first image
-            currentImageIndex = 0;
-            showCurrentImage();
-
-            // Create pagination dots
-            createPaginationDots(profile.images.length);
-        }
-
-        // Create pagination dots for the current profile
-        function createPaginationDots(count) {
-            cardPagination.innerHTML = '';
-
-            // Limit to maximum 6 images
-            const dotsToCreate = Math.min(count, 6);
-
-            for (let i = 0; i < dotsToCreate; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'card-pagination-dot';
-                dot.dataset.index = i;
-
-                if (i === currentImageIndex) {
-                    dot.classList.add('active');
-                }
-
-                dot.addEventListener('click', () => {
-                    currentImageIndex = parseInt(dot.dataset.index);
-                    showCurrentImage();
-                });
-
-                cardPagination.appendChild(dot);
-            }
-        }
-
-        // Update pagination dots
-        function updatePaginationDots() {
-            const dots = cardPagination.querySelectorAll('.card-pagination-dot');
-            dots.forEach((dot, index) => {
-                if (index === currentImageIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
+            dot.addEventListener('click', () => {
+                currentImageIndex = parseInt(dot.dataset.index);
+                showCurrentImage();
             });
-        }
 
-        // Show the current image
-        function showCurrentImage() {
-            const profile = profiles[currentProfileIndex];
-            cardImage.src = profile.images[currentImageIndex];
-            updatePaginationDots();
+            cardPagination.appendChild(dot);
         }
+    }
+
+    // Update pagination dots
+    function updatePaginationDots() {
+        const dots = cardPagination.querySelectorAll('.card-pagination-dot');
+        dots.forEach((dot, index) => {
+            if (index === currentImageIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    // Show the current image
+    function showCurrentImage() {
+        const profile = profiles[currentProfileIndex];
+        cardImage.src = profile.images[currentImageIndex];
+        updatePaginationDots();
+    }
+
+    // Move to next profile
+    function nextProfile() {
+        // Store current profile for potential undo
+        previousProfiles.push(currentProfileIndex);
 
         // Move to next profile
-        function nextProfile() {
-            // Store current profile for potential undo
-            previousProfiles.push(currentProfileIndex);
+        currentProfileIndex = (currentProfileIndex + 1) % profiles.length;
 
-            // Move to next profile
-            currentProfileIndex = (currentProfileIndex + 1) % profiles.length;
+        // Hide profile info if it's visible
+        if (viewingProfile) {
+            toggleProfileInfo();
+        }
+
+        // Show the new profile
+        showProfile(currentProfileIndex);
+    }
+
+    // Undo profile change
+    function undoProfile() {
+        if (previousProfiles.length > 0) {
+            currentProfileIndex = previousProfiles.pop();
 
             // Hide profile info if it's visible
             if (viewingProfile) {
                 toggleProfileInfo();
             }
 
-            // Show the new profile
+            // Show the previous profile
             showProfile(currentProfileIndex);
         }
+    }
 
-        // Undo profile change
-        function undoProfile() {
-            if (previousProfiles.length > 0) {
-                currentProfileIndex = previousProfiles.pop();
+    // Toggle profile info display
+    function toggleProfileInfo() {
+        viewingProfile = !viewingProfile;
 
-                // Hide profile info if it's visible
-                if (viewingProfile) {
-                    toggleProfileInfo();
-                }
-
-                // Show the previous profile
-                showProfile(currentProfileIndex);
-            }
+        if (viewingProfile) {
+            profileInfo.style.display = 'flex';
+        } else {
+            profileInfo.style.display = 'none';
         }
+    }
 
-        // Toggle profile info display
-        function toggleProfileInfo() {
-            viewingProfile = !viewingProfile;
+    // Event listeners
+    dismissButton.addEventListener('click', nextProfile);
+    undoButton.addEventListener('click', undoProfile);
+    profileButton.addEventListener('click', toggleProfileInfo);
+    likeButton.addEventListener('click', () => {
+        // Follow this profile
+        nextProfile();
+    });
 
-            if (viewingProfile) {
-                profileInfo.style.display = 'flex';
-            } else {
-                profileInfo.style.display = 'none';
-            }
-        }
-
-        // Event listeners
-        dismissButton.addEventListener('click', nextProfile);
-        undoButton.addEventListener('click', undoProfile);
-        profileButton.addEventListener('click', toggleProfileInfo);
-        likeButton.addEventListener('click', () => {
-            // Follow this profile
-            nextProfile();
-        });
-
-        // Initialize
-        initProfiles();
+    // Initialize
+    initProfiles();
     </script>
 </body>
 
