@@ -230,34 +230,34 @@
     </footer>
 
     <script>
-        //nut avt 
-        const loginBtn = document.getElementById('loginBtn');
-        const avatar = document.querySelector('.avatar');
-        const menu = document.getElementById('userMenu');
-        const items = document.querySelectorAll('.dropdown-item');
+    //nut avt 
+    const loginBtn = document.getElementById('loginBtn');
+    const avatar = document.querySelector('.avatar');
+    const menu = document.getElementById('userMenu');
+    const items = document.querySelectorAll('.dropdown-item');
 
-        avatar.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-        });
+    avatar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    });
 
-        document.addEventListener('click', () => {
+    document.addEventListener('click', () => {
+        menu.style.display = 'none';
+    });
+
+    menu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    items.forEach(item => {
+        item.addEventListener('click', () => {
             menu.style.display = 'none';
         });
+    });
 
-        menu.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                menu.style.display = 'none';
-            });
-        });
-
-        loginBtn.addEventListener('click', () => {
-            loginBtn.style.display = 'none';     // Ẩn nút Login
-            avatar.style.display = 'block';      // Hiện avatar
-        });
+    loginBtn.addEventListener('click', () => {
+        loginBtn.style.display = 'none'; // Ẩn nút Login
+        avatar.style.display = 'block'; // Hiện avatar
+    });
     </script>
 </body>
 

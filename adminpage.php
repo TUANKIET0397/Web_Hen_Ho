@@ -18,28 +18,56 @@
 
 <body>
     <?php 
-
+        // Online
         $ad_onl = "select isActive from userinformation";
         $kq_ad_onl = mysqli_query($conn,$ad_onl);
         $total_onl = 0;
-        $percent_up;
-         while($tt = mysqli_fetch_array($kq_ad_onl))
-         {
+        while($tt = mysqli_fetch_array($kq_ad_onl))
+        {
             if($tt["isActive"] == 1)
             {
                 $total_onl +=1;
             }
-         }
-
+        }
+        //  Name and follow
         $ad_us="select ID,UserName,isActive,Avt from userinformation";
         $ad_fl="select * from followers";
         $kq_ad_us = mysqli_query($conn,$ad_us);
         $kq_ad_fl = mysqli_query($conn,$ad_fl);
 
         $listfollowers = [];
-        while($row = mysqli_fetch_array($kq_ad_fl)) {
-            $listfollowers[] = $row;
+        while($sub_fl = mysqli_fetch_array($kq_ad_fl)) {
+            $listfollowers[] = $sub_fl;
         }
+
+        // Report
+        $us_rpt = 
+        "
+            select distinct userinformation.UserName, userinformation.ID
+            from reports
+            inner join userinformation ON reports.UserReported = userinformation.id
+        ";
+        $ad_rp = 
+        "
+            select reports.UserReported,
+            case 
+                when count(*) >= 2 then max(reports.ReportTime)  
+                else min(reports.ReportTime)
+            end as LatestReportDate
+            from reports
+            group by reports.UserReported
+        ";
+        $kq_us_rpt = mysqli_query($conn,$us_rpt);
+        $kq_ad_rp = mysqli_query($conn,$ad_rp);
+
+        $listreports = [];
+        while($sub_rp = mysqli_fetch_array($kq_ad_rp)) {
+            $listreports[] = $sub_rp;
+        }
+        // Total Report
+        $tt_rp = "select * from reports order by ID desc limit 1";
+        $kq_tt_rp = mysqli_query($conn,$tt_rp);
+        $total_rp = mysqli_fetch_array($kq_tt_rp);
     ?>
 
     
@@ -112,7 +140,6 @@
                                 <p class="desc">Online People</p>
                                 <p class="total"><?php echo $total_onl ?></p>
                             </div>
-                            <span class="index" style="color: #00FD4E; background: #09ff0036;">+ 3,21%</span>
                         </div>
 
 
@@ -120,9 +147,8 @@
                             <img src="./assets/img/incr.svg" alt="Total report" class="item-img">
                             <div class="item-wrap">
                                 <p class="desc">Total report</p>
-                                <p class="total">129.000</p>
+                                <p class="total"> <?php echo $total_rp["ID"] ?></p>
                             </div>
-                            <span class="index" style="color: #cd2a2d; background: #f60a0e5e;">- 2,14%</span>
                         </div>
                     </div>
 
@@ -132,54 +158,35 @@
                         <a href="adminreport.php" class="title">Report</a>
                         <!-- detail report -->
                         <div class="frame-report">
-                            <div class="detail">
-                                <img src="./assets/img/avt.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Jack Waterson</h3>
-                                    <p class="user-desc">54 follower</p>
+                            <?php 
+                            while($q = mysqli_fetch_array($kq_us_rpt)) {?>
+                                <div class="detail">
+                                    <img src="./assets/img/avt.jpg" alt="" class="avt-user">
+                                    <div class="info">
+                                        <h3 class="name"> <?php echo $q["UserName"]?> </h3>
+                                        <p class="user-desc">
+                                            <?php
+                                                    $fl_count = 0;                                               
+                                                    foreach($listfollowers as $fl) {
+                                                    if ($fl["FollowerID"] == $q["ID"]) {
+                                                        $fl_count += 1;
+                                                    } 
+                                                }
+                                                echo $fl_count . " followers"
+                                            ?>
+                                        </p>
+                                    </div>
+                                    <span class="day-re">
+                                        <?php 
+                                            foreach($listreports as $rp) {
+                                                if ($rp["UserReported"] == $q["ID"]) {
+                                                    echo $rp["LatestReportDate"];
+                                                } 
+                                            }
+                                        ?>
+                                    </span>
                                 </div>
-                                <span class="day-re">23/03/2024</span>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Jack Waterson</h3>
-                                    <p class="user-desc">54 follower</p>
-                                </div>
-                                <span class="day-re">23/03/2024</span>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Jack Waterson</h3>
-                                    <p class="user-desc">54 follower</p>
-                                </div>
-                                <span class="day-re">23/03/2024</span>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Jack Waterson</h3>
-                                    <p class="user-desc">54 follower</p>
-                                </div>
-                                <span class="day-re">23/03/2024</span>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Jack Waterson</h3>
-                                    <p class="user-desc">54 follower</p>
-                                </div>
-                                <span class="day-re">23/03/2024</span>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/avt.jpg" alt="" class="avt-user">
-                                <div class="info">
-                                    <h3 class="name">Jack Waterson</h3>
-                                    <p class="user-desc">54 follower</p>
-                                </div>
-                                <span class="day-re">23/03/2024</span>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

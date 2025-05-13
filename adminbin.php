@@ -107,7 +107,7 @@
                             ?>
                             <div class="bin__content-body">
                                 <div class="content-body__user">
-                                    <div class="chatavt button avatar" style="background-image: url(/assets/img/avt.jpg);">
+                                    <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);">
                                     </div>
                                 
                                     <div class="content-body__user-N-BD">

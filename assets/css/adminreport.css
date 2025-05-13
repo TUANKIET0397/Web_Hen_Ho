@@ -56,6 +56,75 @@ a {
     cursor: pointer;
 }
 
+.report-button
+{
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    font-size: 2rem; 
+    font-weight: 900; 
+    background-color: red; 
+    position: relative;
+}
+
+.report-button:hover .report-list{
+    display: block;
+}
+
+.report-list
+{
+    position: absolute;
+    top: 50px;
+    right: -14px;
+    min-width: 400px;
+    background-color: red;
+    border-radius: 2px;
+    z-index: 1;
+    display: none;
+    height: 200px;
+}
+
+.report-list::after
+{
+    content: "";
+    border-width: 11px 15px;
+    border-style: solid;
+    border-color: transparent transparent red transparent;
+    position: absolute;
+    right: 18px;
+    top: -21.45833248562282769px;
+}
+
+.report__list--roll{
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.report-list-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 50px;
+    border-bottom: 1px solid var(--white-color) ;
+}
+
+.report-list-item:last-child{
+    border: none;
+}
+
+.usrp{
+    font-size: 1.4rem;
+    margin: 0 12px 0 6px ;
+    width: 20%;
+    text-align: center;
+}
+
+.rp-content{
+    font-size: 1.2rem;
+    margin: 6px 0;
+    width: 80%;
+}
+
 /* ========= Aside ========= */
 .container {
     display: flex;

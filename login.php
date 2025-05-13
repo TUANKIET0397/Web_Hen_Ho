@@ -92,30 +92,39 @@
         </section>
 
         <!-- Right signup form -->
-        <section class="form-box glassmorphism">
+        <section class="form-box glassmorphism login">
             <h2>Log in</h2>
             <p class="form-box__p">Log in for free to have access to in any of our products.</p>
             <!-- form login -->
             <form action="#" method="post" enctype="multipart/form-data" autocomplete="off">
-                <label>Email address</address></label>
-                <input type="text" />
+                <label for="email">Email address</label>
+                <input type="text" id="email" name="email" required />
 
-                <label>Password</label>
+                <label for="pass">Password</label>
                 <div class="input-password">
-                    <input type="password" />
+                    <input type="password" id="pass" name="pass" required />
                     <button type="button" class="toggle-password">
                         <i class="fas fa-eye-slash"></i> Hide
                     </button>
                 </div>
                 <p class="note">Use 8 or more characters with a mix of letters, numbers & symbols</p>
+                <div class="error-text" style="
+                  position: absolute;top:305px;left:50%;transform:translateX(-50%);;color: #721c24;
+                  padding: 8px 10px;text-align: center;border-radius: 5px;
+                background: #f8d7da;border: 1px solid #f5c6cb;margin-bottom: 10px;display: none;white-space: nowrap;">
+                </div>
 
+                <!-- submit -->
                 <button type="submit" class="btn-submit">Create an account</button>
-                <p class="form-subnote">Don't have an account? <a href="#">Sign up</a></p>
+                <p class="form-subnote">Don't have an account? <a href="signup.php">Sign up</a></p>
             </form>
         </section>
     </main>
 
     </div>
+
+    <script type="text/javascript" src="./assets/js/login.js"></script>
+
 </body>
 
 </html>
