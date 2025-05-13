@@ -5,6 +5,12 @@
     if (!isset($_SESSION['user_id'])) {
         header("location: login.php");
     }
+                        $sql = mysqli_query($conn, "SELECT * FROM userinformation WHERE ID = {$_SESSION['user_id']}");
+
+                        if (mysqli_num_rows($sql) > 0) {
+                            $row = mysqli_fetch_assoc($sql);
+                        }
+
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +75,8 @@
                 </ul>
                 <!-- action to call -->
                 <div class="action">
-                    <a href="#!" class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></a>
+                    <a href="#!" class="button avatar"
+                        style="background-image: url(./assets/img/<?php echo $row['Avt'] ?>);"></a>
                     <div class="menu-nav-avt" id="userMenu">
                         <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
                         <a href="./assets/php/logout.php" class="dropdown-item">Đăng xuất</a>
@@ -98,13 +105,6 @@
                         <header>
                             <div class="content">
 
-                                <?php
-                        $sql = mysqli_query($conn, "SELECT * FROM userinformation WHERE ID = {$_SESSION['user_id']}");
-
-                        if (mysqli_num_rows($sql) > 0) {
-                            $row = mysqli_fetch_assoc($sql);
-                        }
-                        ?>
                             </div>
                         </header>
                         <!-- danh sach friend chat -->
