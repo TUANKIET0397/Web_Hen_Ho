@@ -44,18 +44,18 @@
         $us_rpt = 
         "
             select distinct userinformation.UserName, userinformation.ID
-            from reports
-            inner join userinformation ON reports.UserReported = userinformation.id
+            from userreport
+            inner join userinformation ON userreport.ReportedID = userinformation.id
         ";
         $ad_rp = 
         "
-            select reports.UserReported,
+            select userreport.ReportedID,
             case 
-                when count(*) >= 2 then max(reports.ReportTime)  
-                else min(reports.ReportTime)
+                when count(*) >= 2 then max(userreport.ReportDate)  
+                else min(userreport.ReportDate)
             end as LatestReportDate
-            from reports
-            group by reports.UserReported
+            from userreport
+            group by userreport.ReportedID
         ";
         $kq_us_rpt = mysqli_query($conn,$us_rpt);
         $kq_ad_rp = mysqli_query($conn,$ad_rp);
@@ -65,7 +65,7 @@
             $listreports[] = $sub_rp;
         }
         // Total Report
-        $tt_rp = "select * from reports order by ID desc limit 1";
+        $tt_rp = "select * from userreport order by ID desc limit 1";
         $kq_tt_rp = mysqli_query($conn,$tt_rp);
         $total_rp = mysqli_fetch_array($kq_tt_rp);
     ?>
@@ -179,7 +179,7 @@
                                     <span class="day-re">
                                         <?php 
                                             foreach($listreports as $rp) {
-                                                if ($rp["UserReported"] == $q["ID"]) {
+                                                if ($rp["ReportedID"] == $q["ID"]) {
                                                     echo $rp["LatestReportDate"];
                                                 } 
                                             }

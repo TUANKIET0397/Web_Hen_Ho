@@ -1,3 +1,12 @@
+<?php
+session_start();
+include_once "./assets/php/config.php";
+$logged_in = false;
+if (isset($_SESSION['user_id'])) {
+    $logged_in = true;
+    echo "<script>console.log('Logged in: " . ($logged_in ? 'yes' : 'no') . "');</script>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,12 +70,16 @@
                 </ul>
                 <!-- action to call -->
                 <div class="action">
-                    <a href="login.php" class="action-btn btn" id="loginBtn">Login</a>
-                    <a href="#!" class="avatar" style="background-image: url(/assets/img/avt.jpg);"></a>
-                    <div class="menu-nav-avt" id="userMenu">
-                        <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
-                        <a href="#!" class="dropdown-item">Đăng xuất</a>
-                    </div>
+                    <?php if (!$logged_in) { ?>
+                        <a href="login.php" class="action-btn btn" id="loginBtn">Login</a>
+                    <?php }
+                    if ($logged_in) { ?>
+                        <a href="#!" class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></a>
+                        <div class="menu-nav-avt" id="userMenu">
+                            <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
+                            <a href="#!" class="dropdown-item">Đăng xuất</a>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -234,10 +247,12 @@
         const menu = document.getElementById('userMenu');
         const items = document.querySelectorAll('.dropdown-item');
 
-        avatar.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-        });
+        if (avatar) {
+            avatar.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+            });
+        }
 
         document.addEventListener('click', () => {
             menu.style.display = 'none';

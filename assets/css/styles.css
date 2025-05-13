@@ -100,7 +100,10 @@ body .logo-desc img:first-child {
 .header .action {
     display: flex;
     align-items: center;
-    margin-left: auto;
+    justify-content: center; 
+    width: 7%;
+    min-width: 80px;
+    height: 80px;
     position: relative;
 }
 
@@ -165,7 +168,6 @@ body .logo-desc img:first-child {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    display: none;
 }
 
 /* ====== Hero ====== */

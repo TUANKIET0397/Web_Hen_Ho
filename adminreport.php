@@ -1,3 +1,7 @@
+<?php 
+  include_once "./assets/php/config.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +14,7 @@
     <!-- fonts -->
     <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
     <!-- Admin report css -->
-    <link rel="stylesheet" href="./assets/css/adminreport.css">   
+    <link rel="stylesheet" href="./assets/css/adminreport.css">
 </head>
 
 <body>
@@ -75,55 +79,141 @@
                 <div class="bin__content-head">
                     <div class="bin__firstcontent">UserName</div>
                     <div class="bin__secondcontent">Follow</div>
-                    <div class="bin__thirdcontent">User Report</div>
+                    <div class="bin__thirdcontent">Report Date</div>
                     <div class="bin__fourthcontent">Status</div>
                 </div>
+                <?php 
+
+                        $rp_count = "select * from userreport";
+                        $kq_rp_count = mysqli_query($conn,$rp_count);
+                        $listrp_count = [];
+                        while($sub_rp_count = mysqli_fetch_array($kq_rp_count)) {
+                            $listrp_count[] = $sub_rp_count;
+                        }
+
+                        // Follow
+                        $ad_us="select ID,UserName,isActive,Avt from userinformation";
+                        $ad_fl="select * from followers";
+                        $kq_ad_us = mysqli_query($conn,$ad_us);
+                        $kq_ad_fl = mysqli_query($conn,$ad_fl);
+
+                        $listfollowers = [];
+                        while($sub_fl = mysqli_fetch_array($kq_ad_fl)) {
+                            $listfollowers[] = $sub_fl;
+                        }
+                        // Report
+                        $us_rpt = 
+                        "
+                            select distinct userinformation.UserName, userinformation.ID, userinformation.BirthDate
+                            from userreport
+                            inner join userinformation ON userreport.ReportedID = userinformation.id
+                        ";
+
+                        $rp_content = 
+                        "
+                            select 
+                            reporter.UserName as ReporterName,
+                            reported.UserName as ReportedName,
+                            userreport.ContentReport,
+                            userreport.ReportedID
+                        from userreport
+                        inner join userinformation as reported ON userreport.ReportedID = reported.ID
+                        inner join userinformation as reporter ON userreport.ReporterID = reporter.ID
+                        ";
+                        $ad_rp = 
+                        "
+                            select userreport.ReportedID,
+                            case 
+                                when count(*) >= 2 then max(userreport.ReportDate)  
+                                else min(userreport.ReportDate)
+                            end as LatestReportDate
+                            from userreport
+                            group by userreport.ReportedID
+                        ";
+                        $kq_ad_rp = mysqli_query($conn,$ad_rp);
+                        $listreports = [];
+                        while($sub_rp = mysqli_fetch_array($kq_ad_rp)) {
+                            $listreports[] = $sub_rp;
+                        }
+                        $kq_us_rpt = mysqli_query($conn,$us_rpt);
+                        $kq_rp_content = mysqli_query($conn,$rp_content); 
+                        $listreport_content = [];
+                        while($sub_rp_content = mysqli_fetch_array($kq_rp_content)) {
+                            $listreport_content[] = $sub_rp_content;
+                        }
+                        
+
+                ?>
                 <div class="bin__content-box">
+                    <?php 
+                    while($q = mysqli_fetch_array($kq_us_rpt)) {?>
                     <div class="bin__content-body">
                         <div class="content-body__user">
                             <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);">
                             </div>
-                            <div class="content-body__user-N-BD">
-                                <div class="content-body__user-Name">Nguyen Gia Bao</div>
-                                <div class="content-body__user-BirthDate">15/06/2003</div>
-                            </div>
+                             
+                                <div class="content-body__user-N-BD">
+                                    <div class="content-body__user-Name"> <?php echo $q["UserName"] ?></div>
+                                    <div class="content-body__user-BirthDate"><?php echo $q["BirthDate"] ?></div>
+                                </div>
                         </div>
                         <div class="content-body__followers">
-                            <div class="followers-num">100</div>
+                            <div class="followers-num">
+                                <?php
+                                    $fl_count = 0;                                               
+                                        foreach($listreport_content as $count) {
+                                            if ($count["ReportedID"] == $q["ID"]) {
+                                                $fl_count += 1;
+                                            } 
+                                        }
+                                    echo $fl_count;
+                                ?>
+                            </div>
                             <div class="followers-text">Followers</div>
                         </div>
                         <div class="content-body__user-report">
-                            <div class="user-report">December 28, 2023sfdfghj</div>
+                            <div class="user-report"> 
+                            <?php 
+                            foreach($listreports as $rp) {
+                                if ($rp["ReportedID"] == $q["ID"]) {
+                                     echo $rp["LatestReportDate"];
+                                } 
+                            }
+                            ?> 
+                            </div>
                         </div>
+                        
+
+
                         <div class="content-body__status">
                             <div class="report-button btn-icon">
-                                3
+                                <?php
+                                    $rp_num = 0;                                               
+                                        foreach($listrp_count as $num) {
+                                            if ($num["ReportedID"] == $q["ID"]) {
+                                                $rp_num += 1;
+                                            } 
+                                        }
+                                    echo $rp_num;
+                                ?>
                                 <div class="report-list">
-                                    <div class="report__list--roll">
-                                        <div class="report-list-item">
-                                            <div class="usrp">Gia Bao</div>
-                                            <div class="rp-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic fuga possimus libero distinctio, iste soluta eligendi deleniti suscipit delectus fugiat unde, velit corrupti quas dicta nam cumque, illum nemo. Ipsa.</div>
-                                        </div>
-                                        <div class="report-list-item">
-                                            <div class="usrp">Manh</div>
-                                            <div class="rp-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic fuga possimus libero distinctio, iste soluta eligendi deleniti suscipit delectus fugiat unde, velit corrupti quas dicta nam cumque, illum nemo. Ipsa.</div>
-                                        </div>
-                                        <div class="report-list-item">
-                                            <div class="usrp">Le Tuan Kiet</div>
-                                            <div class="rp-content">123</div>
-                                        </div>
-                                        <div class="report-list-item">
-                                            <div class="usrp">Le Tuan Kiet</div>
-                                            <div class="rp-content">123</div>
-                                        </div>
-                                        <div class="report-list-item">
-                                            <div class="usrp">Le Tuan Kiet</div>
-                                            <div class="rp-content">123</div>
-                                        </div>
-                                        <div class="report-list-item">
-                                            <div class="usrp">Le Tuan Kiet</div>
-                                            <div class="rp-content">123</div>
-                                        </div>
+                                    <div class="report__list--roll"> 
+                                        <?php 
+                                        foreach($listreport_content as $rp_content2) {
+                                            if($rp_content2["ReportedID"] == $q["ID"]) {
+                                        ?>
+                                            <div class="report-list-item">
+                                                <div class="usrp"> 
+                                                    <?php echo $rp_content2["ReporterName"]; ?>
+                                                </div>
+                                                <div class="rp-content">
+                                                    <?php echo $rp_content2["ContentReport"]; ?>
+                                                </div>
+                                            </div>
+                                        <?php 
+                                            } // end if
+                                        } // end foreach
+                                        ?>
                                     </div>
                                 </div>
                                     
@@ -137,6 +227,7 @@
                                 style="background-color: red; background-image: url(./assets/img/bin.png);"></a>
                         </div>
                     </div>
+                    <?php }?>
                 </div>
             </div>
         </div>
