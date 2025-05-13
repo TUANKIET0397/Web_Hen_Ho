@@ -130,10 +130,12 @@ header("Location: login.php");
                                     }
                                 ?></div>
                             </div>
-                            <div class="content-body__restore">
-                                <a href="user-profile-2-admin-page.php" class="profile-button btn-icon"
-                                style="display: block; margin-right: 48px; background-color: blue; background-image: url(./assets/img/user_white.png)"></a>
-                            </div>
+                            <form action="./assets/php/admin_pro_us.php" method="GET" class="content-body__restore">
+                                <input type="hidden" name="profile-us" value="<?php echo htmlspecialchars($a['ID']);?>">
+                                <input type="submit" value= "" name="" class="profile-button btn-icon"
+                                    style="display: block; margin-right: 48px; background-color: blue; background-image: url(./assets/img/user_white.png)">
+                            </form>
+                           
                         </div>
                     <?php }?>
                 </div>

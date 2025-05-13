@@ -7,7 +7,7 @@ header("Location: login.php");
 }
 
 // Lấy thông tin người dùng (giả sử UserID = 1)
-$userID = 1;
+$userID = isset($_GET['id']) ? intval($_GET['id']) : 1; 
 $sql = "SELECT * FROM userinformation WHERE ID = $userID";
 $result = mysqli_query($link, $sql);
 $user = mysqli_fetch_assoc($result);
