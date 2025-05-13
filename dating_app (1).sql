@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 11, 2025 lúc 05:21 AM
+-- Thời gian đã tạo: Th5 13, 2025 lúc 01:41 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -59,6 +59,13 @@ CREATE TABLE `bin` (
   `DeleteTime` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `bin`
+--
+
+INSERT INTO `bin` (`ID`, `UserID`, `DeleteTime`) VALUES
+(1, 1, '2025-05-11 14:23:40');
+
 -- --------------------------------------------------------
 
 --
@@ -84,6 +91,13 @@ CREATE TABLE `followers` (
   `FollowerID` int(11) NOT NULL,
   `FollowingID` int(11) NOT NULL
 ) ;
+
+--
+-- Đang đổ dữ liệu cho bảng `followers`
+--
+
+INSERT INTO `followers` (`ID`, `FollowerID`, `FollowingID`) VALUES
+(1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -277,6 +291,18 @@ CREATE TABLE `userhobbby` (
   `HobbyID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `userhobbby`
+--
+
+INSERT INTO `userhobbby` (`ID`, `UserID`, `HobbyID`) VALUES
+(1, 1, 2),
+(2, 1, 1),
+(3, 1, 3),
+(4, 3, 2),
+(5, 4, 8),
+(6, 3, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -294,20 +320,22 @@ CREATE TABLE `userinformation` (
   `IsActive` bit(1) NOT NULL DEFAULT b'0',
   `Avt` varchar(255) NOT NULL,
   `UserAddress` varchar(50) NOT NULL,
-  'bio' varchar(255) NULL
+  `reported` int(11) DEFAULT 0,
+  `bio` text DEFAULT NULL,
+  `CountReport` int(11) DEFAULT 0
 ) ;
 
 --
 -- Đang đổ dữ liệu cho bảng `userinformation`
 --
 
-INSERT INTO `userinformation` (`ID`, `UserName`, `Email`, `PhoneNumber`, `BirthDate`, `Age`, `Gender`, `IsActive`, `Avt`, `UserAddress`) VALUES
-(1, 'Nguyen Minh Thuan', 'minhthuan2604@gmail.com', '0337760280', '2005-04-26', 20, 'Men', b'1', 'hinhanh.jpg', 'quan 7'),
-(2, 'Nemo Nguyễn', 'minhthuan2005@gmail.com', '01298945279', '2003-09-19', 21, 'Men', b'1', 'hinhanh1.jpg', 'quan 1'),
-(3, 'Lê Tuấn Kiệt', 'tuankiet778@gmail.com', '0836278240', '2005-01-26', 20, 'Men', b'1', 'hinhanh2.jpg', 'quan 9'),
-(4, 'Nguyễn Đức Mạnh', 'ducmanh678@gmail.com', '0678264670', '2002-12-17', 22, 'Men', b'1', 'hinhanh3.jpg', 'quan 6'),
-(5, 'Nguyễn Gia Bảo', 'Giabao1278@gmail.com', '0625478190', '2001-07-25', 23, 'Men', b'1', 'hinhanh4.jpg', 'quan 3'),
-(6, 'Mỹ Hoàng', 'Myhoang635@gmail.com', '0735117399', '2003-09-17', 21, 'Women', b'1', 'hinhanh5.jpg', 'quan 2');
+INSERT INTO `userinformation` (`ID`, `UserName`, `Email`, `PhoneNumber`, `BirthDate`, `Age`, `Gender`, `IsActive`, `Avt`, `UserAddress`, `reported`, `bio`, `CountReport`) VALUES
+(1, 'Nguyen Minh Thuan', 'minhthuan2604@gmail.com', '0337760280', '2005-04-26', 20, 'Men', b'1', 'hinhanh.jpg', 'quan 7', 0, NULL, 2),
+(2, 'Nemo Nguyễn', 'minhthuan2005@gmail.com', '01298945279', '2003-09-19', 21, 'Men', b'1', 'hinhanh1.jpg', 'quan 1', 0, NULL, 6),
+(3, 'Lê Tuấn Kiệt', 'tuankiet778@gmail.com', '0836278240', '2005-01-26', 20, 'Men', b'1', 'hinhanh2.jpg', 'quan 9', 0, NULL, 2),
+(4, 'Nguyễn Đức Mạnh', 'ducmanh678@gmail.com', '0678264670', '2002-12-17', 22, 'Men', b'1', 'hinhanh3.jpg', 'quan 6', 0, NULL, 0),
+(5, 'Nguyễn Gia Bảo', 'Giabao1278@gmail.com', '0625478190', '2001-07-25', 23, 'Men', b'1', 'hinhanh4.jpg', 'quan 3', 0, NULL, 2),
+(6, 'Mỹ Hoàng', 'Myhoang635@gmail.com', '0735117399', '2003-09-17', 21, 'Women', b'1', 'hinhanh5.jpg', 'quan 2', 0, NULL, 0);
 
 --
 -- Bẫy `userinformation`
@@ -350,7 +378,11 @@ CREATE TABLE `userjob` (
 --
 
 INSERT INTO `userjob` (`ID`, `UserID`, `JobID`) VALUES
-(1, 1, 2);
+(1, 1, 2),
+(29, 2, 1),
+(30, 3, 1),
+(31, 4, 3),
+(32, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -369,7 +401,14 @@ CREATE TABLE `userlooking` (
 --
 
 INSERT INTO `userlooking` (`ID`, `UserID`, `LookingID`) VALUES
-(1, 2, 5);
+(1, 2, 5),
+(2, 1, 2),
+(6, 1, 7),
+(7, 1, 7),
+(8, 1, 3),
+(9, 1, 2),
+(10, 2, 3),
+(11, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -382,6 +421,62 @@ CREATE TABLE `userpersonally` (
   `UserID` int(11) NOT NULL,
   `PersonallyID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `userpersonally`
+--
+
+INSERT INTO `userpersonally` (`ID`, `UserID`, `PersonallyID`) VALUES
+(25, 1, 2),
+(26, 1, 3),
+(27, 1, 1),
+(28, 2, 1),
+(29, 3, 2),
+(30, 5, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `userreport`
+--
+
+CREATE TABLE `userreport` (
+  `ID` int(11) NOT NULL,
+  `ReporterID` int(11) NOT NULL,
+  `ReportedID` int(11) NOT NULL,
+  `ReportDate` date DEFAULT current_timestamp(),
+  `ContentReport` varchar(225) DEFAULT NULL
+) ;
+
+--
+-- Đang đổ dữ liệu cho bảng `userreport`
+--
+
+INSERT INTO `userreport` (`ID`, `ReporterID`, `ReportedID`, `ReportDate`, `ContentReport`) VALUES
+(1, 1, 2, '2025-05-13', 'avatar giả mạo'),
+(2, 2, 3, '2025-05-13', 'nói khùng nói điên'),
+(3, 3, 1, '2025-05-13', 'Nói bậy chửi thề'),
+(4, 2, 5, '2025-05-13', 'avatar giả mạo'),
+(5, 1, 2, '2025-05-13', 'avatar giả mạo'),
+(6, 1, 2, '2025-05-13', 'avatar giả mạo'),
+(7, 1, 2, '2025-05-13', 'avatar giả mạo'),
+(8, 2, 3, '2025-05-13', 'nói khùng nói điên'),
+(9, 3, 1, '2025-05-13', 'Nói bậy chửi thề'),
+(10, 2, 5, '2025-05-13', 'avatar giả mạo'),
+(11, 1, 2, '2025-05-13', 'avatar giả mạo'),
+(12, 1, 2, '2025-05-13', 'avatar giả mạo');
+
+--
+-- Bẫy `userreport`
+--
+DELIMITER $$
+CREATE TRIGGER `increment_report_count` AFTER INSERT ON `userreport` FOR EACH ROW BEGIN
+    UPDATE userInformation
+    SET CountReport = CountReport + 1
+    WHERE ID = NEW.ReportedID;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -412,6 +507,44 @@ CREATE TABLE `view_chat_usend&ureceive` (
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc đóng vai cho view `view_count_report`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_count_report` (
+`ID` int(11)
+,`UserName` varchar(100)
+,`Email` varchar(100)
+,`TimesReported` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc đóng vai cho view `view_deletedusers`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_deletedusers` (
+`UserID` int(11)
+,`UserName` varchar(100)
+,`Email` varchar(100)
+,`DeleteTime` datetime
+);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc đóng vai cho view `view_followers`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_followers` (
+`ID` int(11)
+,`FollowerName` varchar(100)
+,`FollowingName` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc đóng vai cho view `view_match`
 -- (See below for the actual view)
 --
@@ -421,6 +554,18 @@ CREATE TABLE `view_match` (
 ,`User1Name` varchar(100)
 ,`User2ID` int(11)
 ,`User2Name` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc đóng vai cho view `view_userhobbies`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_userhobbies` (
+`UserID` int(11)
+,`UserName` varchar(100)
+,`HobbyName` varchar(50)
 );
 
 -- --------------------------------------------------------
@@ -445,6 +590,32 @@ CREATE TABLE `view_userlooking` (
 `UserID` int(11)
 ,`UserName` varchar(100)
 ,`LookingName` varchar(50)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc đóng vai cho view `view_userpersonally`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_userpersonally` (
+`UserID` int(11)
+,`UserName` varchar(100)
+,`PersonallyName` varchar(80)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc đóng vai cho view `view_userreports`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_userreports` (
+`ReportID` int(11)
+,`ReporterName` varchar(100)
+,`ReportedName` varchar(100)
+,`ReportDate` date
+,`ContentReport` varchar(225)
 );
 
 -- --------------------------------------------------------
@@ -480,11 +651,47 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc cho view `view_count_report`
+--
+DROP TABLE IF EXISTS `view_count_report`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_count_report`  AS SELECT `u`.`ID` AS `ID`, `u`.`UserName` AS `UserName`, `u`.`Email` AS `Email`, count(`r`.`ID`) AS `TimesReported` FROM (`userinformation` `u` left join `userreport` `r` on(`u`.`ID` = `r`.`ReportedID`)) GROUP BY `u`.`ID` ;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc cho view `view_deletedusers`
+--
+DROP TABLE IF EXISTS `view_deletedusers`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_deletedusers`  AS SELECT `u`.`ID` AS `UserID`, `u`.`UserName` AS `UserName`, `u`.`Email` AS `Email`, `b`.`DeleteTime` AS `DeleteTime` FROM (`bin` `b` join `userinformation` `u` on(`b`.`UserID` = `u`.`ID`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc cho view `view_followers`
+--
+DROP TABLE IF EXISTS `view_followers`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_followers`  AS SELECT `f`.`ID` AS `ID`, `follower`.`UserName` AS `FollowerName`, `following`.`UserName` AS `FollowingName` FROM ((`followers` `f` join `userinformation` `follower` on(`f`.`FollowerID` = `follower`.`ID`)) join `userinformation` `following` on(`f`.`FollowingID` = `following`.`ID`)) ;
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc cho view `view_match`
 --
 DROP TABLE IF EXISTS `view_match`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_match`  AS SELECT `m`.`ID` AS `MatchID`, `u1`.`ID` AS `User1ID`, `u1`.`UserName` AS `User1Name`, `u2`.`ID` AS `User2ID`, `u2`.`UserName` AS `User2Name` FROM ((`matches` `m` join `userinformation` `u1` on(`m`.`User1ID` = `u1`.`ID`)) join `userinformation` `u2` on(`m`.`User2ID` = `u2`.`ID`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc cho view `view_userhobbies`
+--
+DROP TABLE IF EXISTS `view_userhobbies`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_userhobbies`  AS SELECT `u`.`ID` AS `UserID`, `u`.`UserName` AS `UserName`, `h`.`HobbyName` AS `HobbyName` FROM ((`userinformation` `u` join `userhobbby` `uh` on(`u`.`ID` = `uh`.`UserID`)) join `hobbylist` `h` on(`uh`.`HobbyID` = `h`.`ID`)) ;
 
 -- --------------------------------------------------------
 
@@ -503,6 +710,24 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `view_userlooking`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_userlooking`  AS SELECT `ul`.`UserID` AS `UserID`, `ui`.`UserName` AS `UserName`, `l`.`LookingName` AS `LookingName` FROM ((`userlooking` `ul` join `userinformation` `ui` on(`ul`.`UserID` = `ui`.`ID`)) join `looking` `l` on(`ul`.`LookingID` = `l`.`ID`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc cho view `view_userpersonally`
+--
+DROP TABLE IF EXISTS `view_userpersonally`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_userpersonally`  AS SELECT `u`.`ID` AS `UserID`, `u`.`UserName` AS `UserName`, `pl`.`PersonallyName` AS `PersonallyName` FROM ((`userpersonally` `up` join `userinformation` `u` on(`up`.`UserID` = `u`.`ID`)) join `personallylist` `pl` on(`up`.`PersonallyID` = `pl`.`ID`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc cho view `view_userreports`
+--
+DROP TABLE IF EXISTS `view_userreports`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_userreports`  AS SELECT `r`.`ID` AS `ReportID`, `reporterid`.`UserName` AS `ReporterName`, `reportedid`.`UserName` AS `ReportedName`, `r`.`ReportDate` AS `ReportDate`, `r`.`ContentReport` AS `ContentReport` FROM ((`userreport` `r` join `userinformation` `reporterid` on(`r`.`ReporterID` = `reporterid`.`ID`)) join `userinformation` `reportedid` on(`r`.`ReportedID` = `reportedid`.`ID`)) ;
 
 -- --------------------------------------------------------
 
@@ -609,23 +834,30 @@ ALTER TABLE `userinformation`
 ALTER TABLE `userjob`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `UserID` (`UserID`),
-  ADD UNIQUE KEY `JobID` (`JobID`);
+  ADD KEY `fk_job` (`JobID`);
 
 --
 -- Chỉ mục cho bảng `userlooking`
 --
 ALTER TABLE `userlooking`
   ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `UserID` (`UserID`),
-  ADD UNIQUE KEY `LookingID` (`LookingID`);
+  ADD KEY `fk_looking` (`LookingID`),
+  ADD KEY `userlooking_ibfk_1` (`UserID`);
 
 --
 -- Chỉ mục cho bảng `userpersonally`
 --
 ALTER TABLE `userpersonally`
   ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `UserID` (`UserID`),
-  ADD UNIQUE KEY `PersonallyID` (`PersonallyID`);
+  ADD KEY `userpersonally_ibfk_2` (`PersonallyID`);
+
+--
+-- Chỉ mục cho bảng `userreport`
+--
+ALTER TABLE `userreport`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ReporterID` (`ReporterID`),
+  ADD KEY `ReportedID` (`ReportedID`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -641,7 +873,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT cho bảng `bin`
 --
 ALTER TABLE `bin`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `chat`
@@ -695,7 +927,7 @@ ALTER TABLE `personallylist`
 -- AUTO_INCREMENT cho bảng `userhobbby`
 --
 ALTER TABLE `userhobbby`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `userinformation`
@@ -707,18 +939,24 @@ ALTER TABLE `userinformation`
 -- AUTO_INCREMENT cho bảng `userjob`
 --
 ALTER TABLE `userjob`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT cho bảng `userlooking`
 --
 ALTER TABLE `userlooking`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `userpersonally`
 --
 ALTER TABLE `userpersonally`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT cho bảng `userreport`
+--
+ALTER TABLE `userreport`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -775,22 +1013,28 @@ ALTER TABLE `userhobbby`
 -- Các ràng buộc cho bảng `userjob`
 --
 ALTER TABLE `userjob`
-  ADD CONSTRAINT `userjob_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `userinformation` (`ID`),
-  ADD CONSTRAINT `userjob_ibfk_2` FOREIGN KEY (`JobID`) REFERENCES `joblist` (`ID`);
+  ADD CONSTRAINT `fk_job` FOREIGN KEY (`JobID`) REFERENCES `joblist` (`ID`),
+  ADD CONSTRAINT `userjob_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `userinformation` (`ID`);
 
 --
 -- Các ràng buộc cho bảng `userlooking`
 --
 ALTER TABLE `userlooking`
-  ADD CONSTRAINT `userlooking_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `userinformation` (`ID`),
-  ADD CONSTRAINT `userlooking_ibfk_2` FOREIGN KEY (`LookingID`) REFERENCES `looking` (`ID`);
+  ADD CONSTRAINT `fk_looking` FOREIGN KEY (`LookingID`) REFERENCES `looking` (`ID`),
+  ADD CONSTRAINT `userlooking_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `userinformation` (`ID`);
 
 --
 -- Các ràng buộc cho bảng `userpersonally`
 --
 ALTER TABLE `userpersonally`
-  ADD CONSTRAINT `userpersonally_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `userinformation` (`ID`),
   ADD CONSTRAINT `userpersonally_ibfk_2` FOREIGN KEY (`PersonallyID`) REFERENCES `personallylist` (`ID`);
+
+--
+-- Các ràng buộc cho bảng `userreport`
+--
+ALTER TABLE `userreport`
+  ADD CONSTRAINT `userreport_ibfk_1` FOREIGN KEY (`ReporterID`) REFERENCES `userinformation` (`ID`),
+  ADD CONSTRAINT `userreport_ibfk_2` FOREIGN KEY (`ReportedID`) REFERENCES `userinformation` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

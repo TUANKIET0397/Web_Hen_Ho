@@ -1,9 +1,13 @@
 <?php
+session_start();
+if (isset($_SESSION['user_id'])) {
+header("Location: login.php");
+}
 // Kết nối cơ sở dữ liệu
 $link = @mysqli_connect("localhost", "root", "", "dating_app") or die("Không thể kết nối cơ sở dữ liệu");
 
 // Lấy thông tin người dùng (giả sử UserID = 1)
-$userID = 1;
+$userID = $_SESSION['user_id'];
 $sql = "SELECT * FROM userinformation WHERE ID = $userID";
 $result = mysqli_query($link, $sql);
 $user = mysqli_fetch_assoc($result);
@@ -19,6 +23,15 @@ while ($row = mysqli_fetch_assoc($resultImages)) {
 // Đảm bảo mảng $images có đủ 6 phần tử
 while (count($images) < 6) {
     $images[] = './assets/img/default-image.jpg'; // Thêm ảnh mặc định
+}
+
+$sqlAvatar = "select Avt from userinformation where ID = $userID";
+$resultAvatar = mysqli_query($link, $sqlAvatar);
+$avatar = mysqli_fetch_assoc($resultAvatar)['Avt'];
+if ($avatar) {
+    $user['Avt'] = $avatar;
+} else {
+    $user['Avt'] = './assets/img/default-avatar.jpg'; // Đường dẫn ảnh mặc định
 }
 
 // Lấy danh sách sở thích
@@ -114,7 +127,7 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                 </ul>
                 <!-- action to call -->
                 <div class="action">
-                    <a href="#!" class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></a>
+                    <a href="#!" class="button avatar" style="background-image: url('<?php echo !empty($user['Avt']) ? $user['Avt'] : './assets/img/default-avatar.jpg'; ?>');"></a>
                     <div class="menu-nav-avt" id="userMenu">
                         <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
                         <a href="#!" class="dropdown-item">Đăng xuất</a>
@@ -437,12 +450,11 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                 avatarUpload.click();
             });
 
-            uploadBtn.addEventListener('click', () => {
+            document.getElementById('avatarForm').addEventListener('submit', function(e) {
                 if (!isEditMode) {
+                    e.preventDefault(); // Chặn gửi nếu chưa bật edit
                     alert('Please click "Edit Profile" to change your avatar.');
-                    return;
                 }
-                avatarUpload.click();
             });
 
             avatarUpload.addEventListener('change', function() {

@@ -6,15 +6,6 @@ $link = @mysqli_connect("localhost", "root", "", "dating_app") or die("Không th
 if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
     $userID = 1; // ID người dùng (cần thay đổi theo logic của bạn)
     $uploadDir = './uploads/avatars/'; // Thư mục lưu ảnh
-    if (!is_dir($uploadDir)) {
-    if (!mkdir($uploadDir, 0777, true)) {
-        // Nếu không thể tạo thư mục, xóa file tạm thời đã upload
-        if (isset($_FILES['avatar']['tmp_name']) && file_exists($_FILES['avatar']['tmp_name'])) {
-            unlink($_FILES['avatar']['tmp_name']); // Xóa file tạm thời
-        }
-        die("Failed to create upload directory and temporary file has been deleted.");
-    }
-}
     $fileName = basename($_FILES['avatar']['name']);
     $fileTmpPath = $_FILES['avatar']['tmp_name'];
     $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
@@ -23,13 +14,14 @@ if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
     // Kiểm tra định dạng file
     if (in_array($fileExtension, $allowedExtensions)) {
         // Tạo tên file duy nhất
-        $newFileName = 'avatar_' . $userID . '_' . time() . '.' . $fileExtension;
-        $destination = $uploadDir . $newFileName;
+       $newFileName = 'avatar_' . $userID . '_' . time() . '.' . $fileExtension;
+$destination = $uploadDir . $newFileName;
 
         // Di chuyển file vào thư mục đích
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
+
         if (move_uploaded_file($fileTmpPath, $destination)) {
             // Cập nhật đường dẫn ảnh vào cơ sở dữ liệu
             $avatarPath = $destination;
