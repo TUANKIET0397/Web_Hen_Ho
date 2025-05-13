@@ -1,14 +1,13 @@
 <?php
 
 include_once "./assets/php/config.php";
-session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
 }
 
 // Lấy dữ liệu từ form lọc
 $userID = $_SESSION["user_id"];
-$sql = "SELECT * FROM userinformation WHERE ID = $userID";
+$sql = "SELECT * FROM userinformation WHERE ID = {'$userID'}";
 $result = mysqli_query($conn, $sql);
 
 $user = null;
@@ -144,15 +143,17 @@ if ($result && mysqli_num_rows($result) > 0) {
                         <img src="./assets/img/filter.png" alt="" class="chat-img">
                         <span class="chat-friend__filter-text">Filter</span>
                     </button>
-                    <button class="chat-friend__friend">
-                        <img src="./assets/img/users.svg" alt="" class="friend-img">
-                        <span class="chat-friend__friend-text">Friends</span>
-                    </button>
+                    <a href="ChatFriend.php" class="chat-friend__friend">
+                        <button class="chat-friend__friend">
+                            <img src="./assets/img/users.svg" alt="" class="friend-img">
+                            <span class="chat-friend__friend-text">Friends</span>
+                        </button>
+                    </a>
                 </div>
                 <!-- Filter -->
                 <div class="chat-side__content">
-                    <form class="chat-side__content-main" name="profile" id="profile" action="SwipeProfile.php" method="post"
-                        enctype="multipart/form-data" autocomplete="off">
+                    <form class="chat-side__content-main" name="profile" id="profile" action="SwipeProfile.php"
+                        method="post" enctype="multipart/form-data" autocomplete="off">
                         <div class="chat-side__content-filter__age">
                             <div class="chat-side__content-filter__age-title">AGE:</div>
                             <input type="range" id="filterAgeMin" name="filterAgeMin" min="18" max="99" value="18"
@@ -180,11 +181,11 @@ if ($result && mysqli_num_rows($result) > 0) {
                                 <option style="text-align: center;" value="">------ Selection Looking ------</option>
                                 <?php
                                 while ($a = mysqli_fetch_array($kq_us_look)) { ?>
-                                    <option value=" <?php echo $a["ID"] ?>"> <?php echo $a["LookingName"] ?></option>
+                                <option value=" <?php echo $a["ID"] ?>"> <?php echo $a["LookingName"] ?></option>
                                 <?php } ?>
                                 <?php
                                 while ($a = mysqli_fetch_array($kq_us_look)) { ?>
-                                    <option value=" <?php echo $a["ID"] ?>"> <?php echo $a["LookingName"] ?></option>
+                                <option value=" <?php echo $a["ID"] ?>"> <?php echo $a["LookingName"] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -194,7 +195,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                                 <option style="text-align: center;" value="">------ Selection Location ------</option>
                                 <?php
                                 while ($c = mysqli_fetch_array($kq_us_location)) { ?>
-                                    <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["Address"] ?></option>
+                                <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["Address"] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -204,11 +205,11 @@ if ($result && mysqli_num_rows($result) > 0) {
                                 <option style="text-align: center;" value="">------ Selection Hobby ------</option>
                                 <?php
                                 while ($c = mysqli_fetch_array($kq_us_hobby)) { ?>
-                                    <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["HobbyName"] ?></option>
+                                <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["HobbyName"] ?></option>
                                 <?php } ?>
                                 <?php
                                 while ($c = mysqli_fetch_array($kq_us_hobby)) { ?>
-                                    <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["HobbyName"] ?></option>
+                                <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["HobbyName"] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -222,36 +223,40 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <!-- Friend -->
                 <div class="chat-side__content-friend">
                     <button class="chat-side__content-friends">
-                        <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
-                        <div class="listfriend">
-                            <div class="listfriend__name">Lee tuna kaai</div>
-                            <div class="listfriend__seen">seen. 2 hours</div>
-                        </div>
-                    </button>
-                    <button class="chat-side__content-friends">
-                        <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
-                        <div class="listfriend">
-                            <div class="listfriend__name">John Smith</div>
-                            <div class="listfriend__seen">seen. 5 hours</div>
-                        </div>
-                    </button>
-                    <button class="chat-side__content-friends">
-                        <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
-                        <div class="listfriend">
-                            <div class="listfriend__name">Jane Doe</div>
-                            <div class="listfriend__seen">seen. 1 day</div>
-                        </div>
-                    </button>
+                        <<<<<<< HEAD=======<div class="chatavt button avatar"
+                            style="background-image: url(./assets/img/avt.jpg);">
                 </div>
-            </div>
+                <div class="listfriend">
+                    <div class="listfriend__name">Lee tuna kaai</div>
+                    <div class="listfriend__seen">seen. 2 hours</div>
+                </div>
+                </button>
+                <button class="chat-side__content-friends">
+                    <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
+                    <div class="listfriend">
+                        <div class="listfriend__name">John Smith</div>
+                        <div class="listfriend__seen">seen. 5 hours</div>
+                    </div>
+                </button>
+                <button class="chat-side__content-friends">
+                    <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
+                    <div class="listfriend">
+                        <div class="listfriend__name">Jane Doe</div>
+                        <div class="listfriend__seen">seen. 1 day</div>
+                    </div>
+                    >>>>>>> 73a2a45652e9cf2aea0d381597ad19e1c89f4c67
+                </button>
 
-            <!-- Updated Main Content Section -->
-            <div class="main-content">
-                <div class="swipe-container">
-                    <div class="card-container">
-                        <?php if ($users): ?>
-                            <?php foreach ($users as $user): ?>
-                                <?php
+            </div>
+        </div>
+
+        <!-- Updated Main Content Section -->
+        <div class="main-content">
+            <div class="swipe-container">
+                <div class="card-container">
+                    <?php if ($users): ?>
+                    <?php foreach ($users as $user): ?>
+                    <?php
                                 // Lấy tất cả ảnh của user này
                                 $userId = $user['ID'];
                                 $queryImg = "SELECT imgPath FROM images WHERE UserID = $userId AND IsActive = 1";
@@ -270,328 +275,346 @@ if ($result && mysqli_num_rows($result) > 0) {
                                 $startIndex = ($currentPage - 1) * $imagesPerPage;
                                 $currentImages = array_slice($images, $startIndex, $imagesPerPage);
                                 ?>
-                                <div class="card" id="profile-card-<?php echo $userId; ?>">
-                                    <div class="card-images-container">
-                                        <div class="card-wrapper">
-                                            <div class="card-images">
-                                                <!-- Hiển thị ảnh của user -->
-                                                <?php if ($images): ?>
-                                                    <?php foreach ($images as $idx => $image): ?>
-                                                        <img src="<?php echo htmlspecialchars($image); ?>"
-                                                            alt="Profile Image"
-                                                            class="card-image"
-                                                            style="display: <?php echo $idx === 0 ? 'block' : 'none'; ?>;"
-                                                            data-index="<?php echo $idx; ?>">
-                                                    <?php endforeach; ?>
-                                                <?php else: ?>
-                                                    <img src="./assets/img/default-profile.jpg" alt="Profile Image" class="card-image" style="display: block;">
-                                                <?php endif; ?>
-                                            </div>
-                                            <!-- Phân trang ảnh -->
-                                            <div class="pagination-buttons">
-                                                <button class="pagination-button prev-img-btn" style="display:none;">Previous</button>
-                                                <button class="pagination-button next-img-btn" <?php if (count($images) <= 1) echo 'style="display:none;"'; ?>>Next</button>
-                                            </div>
-                                        </div>
-                                        <!-- Thông tin user -->
-                                        <div class="profile-info" id="profile-info-<?php echo $userId; ?>" style="display: none;">
-                                            <div class="info-item">
-                                                <span class="info-item-icon"><img style="width: 24px; height: 24px;" src="./assets/img/user_white.png" alt=""></span>
-                                                <div class="info-item-text">
-                                                    <span class="info-item-label">Name:</span>
-                                                    <span class="info-item-content"><?php echo htmlspecialchars($user['UserName']); ?></span>
-                                                </div>
-                                            </div>
-                                            <div class="info-item">
-                                                <span class="info-item-icon"><img src="./assets/img/calendar.png" alt=""></span>
-                                                <div class="info-item-text">
-                                                    <span class="info-item-label">Age:</span>
-                                                    <span class="info-item-content"><?php echo htmlspecialchars($user['Age']); ?></span>
-                                                </div>
-                                            </div>
-                                            <div class="info-item">
-                                                <span class="info-item-icon"><img src="./assets/img/calendar.png" alt=""></span>
-                                                <div class="info-item-text">
-                                                    <span class="info-item-label">Job:</span>
-                                                    <span class="info-item-content"><?php echo htmlspecialchars($user['Job']); ?></span>
-                                                </div>
-                                            </div>
-                                            <div class="info-item">
-                                                <span class="info-item-icon"><img src="./assets/img/calendar.png" alt=""></span>
-                                                <div class="info-item-text">
-                                                    <span class="info-item-label">Location:</span>
-                                                    <span class="info-item-content"><?php echo htmlspecialchars($user['Location']); ?></span>
-                                                </div>
-                                            </div>
-                                            <div class="info-item">
-                                                <span class="info-item-icon"><img src="./assets/img/arrow-up-right.png" alt=""></span>
-                                                <div class="info-item-text">
-                                                    <span class="info-item-label">Looking for:</span>
-                                                    <span class="info-item-content"><?php echo htmlspecialchars($user['LookingFor']); ?></span>
-                                                </div>
-                                            </div>
-                                            <div class="info-item">
-                                                <span class="info-item-icon"><img src="./assets/img/coffee.png" alt=""></span>
-                                                <div class="info-item-text">
-                                                    <span class="info-item-label">Hobby:</span>
-                                                    <span class="info-item-content"><?php echo htmlspecialchars($user['Hobby']); ?></span>
-                                                </div>
-                                            </div>
-                                            <div class="info-item">
-                                                <span class="info-item-icon"><img src="./assets/img/meh.png" alt=""></span>
-                                                <div class="info-item-text">
-                                                    <span class="info-item-label">Personality:</span>
-                                                    <span class="info-item-content"><?php echo htmlspecialchars($user['Personality']); ?></span>
-                                                </div>
-                                            </div>
-                                            <div class="info-item">
-                                                <span class="info-item-icon"><img src="./assets/img/award.png" alt=""></span>
-                                                <div class="info-item-text">
-                                                    <span class="info-item-label">Story:</span>
-                                                    <span class="info-item-content"><?php echo htmlspecialchars($user['Story']); ?></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Nút hành động -->
-                                    <div class="card-action-buttons">
-                                        <button class="action-button dismiss-button" id="dismiss-button-<?php echo $userId; ?>"><img src="./assets/img/x.png" alt=""></button>
-                                        <button class="action-button undo-button" id="undo-button-<?php echo $userId; ?>"><img src="./assets/img/restore.png" alt=""></button>
-                                        <button class="action-button profile-button" id="profile-button-<?php echo $userId; ?>"><img src="./assets/img/user_white.png" alt=""></button>
-                                        <button class="action-button like-button" id="like-button-<?php echo $userId; ?>"><img src="./assets/img/heart.png" alt=""></button>
+                    <div class="card" id="profile-card-<?php echo $userId; ?>">
+                        <div class="card-images-container">
+                            <div class="card-wrapper">
+                                <div class="card-images">
+                                    <!-- Hiển thị ảnh của user -->
+                                    <?php if ($images): ?>
+                                    <?php foreach ($images as $idx => $image): ?>
+                                    <img src="<?php echo htmlspecialchars($image); ?>" alt="Profile Image"
+                                        class="card-image"
+                                        style="display: <?php echo $idx === 0 ? 'block' : 'none'; ?>;"
+                                        data-index="<?php echo $idx; ?>">
+                                    <?php endforeach; ?>
+                                    <?php else: ?>
+                                    <img src="./assets/img/default-profile.jpg" alt="Profile Image" class="card-image"
+                                        style="display: block;">
+                                    <?php endif; ?>
+                                </div>
+                                <!-- Phân trang ảnh -->
+                                <div class="pagination-buttons">
+                                    <button class="pagination-button prev-img-btn"
+                                        style="display:none;">Previous</button>
+                                    <button class="pagination-button next-img-btn"
+                                        <?php if (count($images) <= 1) echo 'style="display:none;"'; ?>>Next</button>
+                                </div>
+                            </div>
+                            <!-- Thông tin user -->
+                            <div class="profile-info" id="profile-info-<?php echo $userId; ?>" style="display: none;">
+                                <div class="info-item">
+                                    <span class="info-item-icon"><img style="width: 24px; height: 24px;"
+                                            src="./assets/img/user_white.png" alt=""></span>
+                                    <div class="info-item-text">
+                                        <span class="info-item-label">Name:</span>
+                                        <span
+                                            class="info-item-content"><?php echo htmlspecialchars($user['UserName']); ?></span>
                                     </div>
                                 </div>
-
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <div class="no-results">
-                                <p>No profiles match your filters.</p>
+                                <div class="info-item">
+                                    <span class="info-item-icon"><img src="./assets/img/calendar.png" alt=""></span>
+                                    <div class="info-item-text">
+                                        <span class="info-item-label">Age:</span>
+                                        <span
+                                            class="info-item-content"><?php echo htmlspecialchars($user['Age']); ?></span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-item-icon"><img src="./assets/img/calendar.png" alt=""></span>
+                                    <div class="info-item-text">
+                                        <span class="info-item-label">Job:</span>
+                                        <span
+                                            class="info-item-content"><?php echo htmlspecialchars($user['Job']); ?></span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-item-icon"><img src="./assets/img/calendar.png" alt=""></span>
+                                    <div class="info-item-text">
+                                        <span class="info-item-label">Location:</span>
+                                        <span
+                                            class="info-item-content"><?php echo htmlspecialchars($user['Location']); ?></span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-item-icon"><img src="./assets/img/arrow-up-right.png"
+                                            alt=""></span>
+                                    <div class="info-item-text">
+                                        <span class="info-item-label">Looking for:</span>
+                                        <span
+                                            class="info-item-content"><?php echo htmlspecialchars($user['LookingFor']); ?></span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-item-icon"><img src="./assets/img/coffee.png" alt=""></span>
+                                    <div class="info-item-text">
+                                        <span class="info-item-label">Hobby:</span>
+                                        <span
+                                            class="info-item-content"><?php echo htmlspecialchars($user['Hobby']); ?></span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-item-icon"><img src="./assets/img/meh.png" alt=""></span>
+                                    <div class="info-item-text">
+                                        <span class="info-item-label">Personality:</span>
+                                        <span
+                                            class="info-item-content"><?php echo htmlspecialchars($user['Personality']); ?></span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-item-icon"><img src="./assets/img/award.png" alt=""></span>
+                                    <div class="info-item-text">
+                                        <span class="info-item-label">Story:</span>
+                                        <span
+                                            class="info-item-content"><?php echo htmlspecialchars($user['Story']); ?></span>
+                                    </div>
+                                </div>
                             </div>
-                        <?php endif; ?>
+                        </div>
+                        <!-- Nút hành động -->
+                        <div class="card-action-buttons">
+                            <button class="action-button dismiss-button" id="dismiss-button-<?php echo $userId; ?>"><img
+                                    src="./assets/img/x.png" alt=""></button>
+                            <button class="action-button undo-button" id="undo-button-<?php echo $userId; ?>"><img
+                                    src="./assets/img/restore.png" alt=""></button>
+                            <button class="action-button profile-button" id="profile-button-<?php echo $userId; ?>"><img
+                                    src="./assets/img/user_white.png" alt=""></button>
+                            <button class="action-button like-button" id="like-button-<?php echo $userId; ?>"><img
+                                    src="./assets/img/heart.png" alt=""></button>
+                        </div>
                     </div>
+
+                    <?php endforeach; ?>
+                    <?php else: ?>
+                    <div class="no-results">
+                        <p>No profiles match your filters.</p>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 
     <script>
-        // Script choose friend to chat
-        const chat_side__content_friends = document.querySelectorAll('.chat-side__content-friends');
-        const main_content = document.querySelector('.main-content');
+    // Script choose friend to chat
+    const chat_side__content_friends = document.querySelectorAll('.chat-side__content-friends');
+    const main_content = document.querySelector('.main-content');
 
-        chat_side__content_friends.forEach(button => {
-            button.addEventListener('click', () => {
-                chat_side__content_friends.forEach(btn => btn.classList.remove('chat-side__content-friends--active'));
-                button.classList.add('chat-side__content-friends--active');
-            });
+    chat_side__content_friends.forEach(button => {
+        button.addEventListener('click', () => {
+            chat_side__content_friends.forEach(btn => btn.classList.remove(
+                'chat-side__content-friends--active'));
+            button.classList.add('chat-side__content-friends--active');
         });
+    });
 
-        // Script choose chat-friend
-        const chat = document.querySelector('.chat-friend__filter');
-        const friend = document.querySelector('.chat-friend__friend');
-        const chat_side_content = document.querySelector('.chat-side__content');
-        const chat_side__content_friend = document.querySelector('.chat-side__content-friend');
+    // Script choose chat-friend
+    const chat = document.querySelector('.chat-friend__filter');
+    const friend = document.querySelector('.chat-friend__friend');
+    const chat_side_content = document.querySelector('.chat-side__content');
+    const chat_side__content_friend = document.querySelector('.chat-side__content-friend');
 
-        chat.addEventListener('click', () => {
-            chat.classList.add('chat-friend--active');
-            friend.classList.remove('chat-friend--active');
-            chat_side_content.classList.remove('chat-side__content--hide');
-            chat_side__content_friend.classList.remove('chat-side__content-friend--show');
-        });
+    chat.addEventListener('click', () => {
+        chat.classList.add('chat-friend--active');
+        friend.classList.remove('chat-friend--active');
+        chat_side_content.classList.remove('chat-side__content--hide');
+        chat_side__content_friend.classList.remove('chat-side__content-friend--show');
+    });
 
-        friend.addEventListener('click', () => {
-            friend.classList.add('chat-friend--active');
-            chat.classList.remove('chat-friend--active');
-            chat_side__content_friend.classList.add('chat-side__content-friend--show');
-            chat_side_content.classList.add('chat-side__content--hide');
-        });
+    friend.addEventListener('click', () => {
+        friend.classList.add('chat-friend--active');
+        chat.classList.remove('chat-friend--active');
+        chat_side__content_friend.classList.add('chat-side__content-friend--show');
+        chat_side_content.classList.add('chat-side__content--hide');
+    });
     </script>
 
     <!-- Script Filter -->
     <script>
-        const filterAgeMinInput = document.getElementById('filterAgeMin');
-        const filterAgeMaxInput = document.getElementById('filterAgeMax');
-        const ageMinDisplay = document.querySelector('.chat-side__content-filter__age-first-value');
-        const ageMaxDisplay = document.querySelector('.chat-side__content-filter__age-second-value');
+    const filterAgeMinInput = document.getElementById('filterAgeMin');
+    const filterAgeMaxInput = document.getElementById('filterAgeMax');
+    const ageMinDisplay = document.querySelector('.chat-side__content-filter__age-first-value');
+    const ageMaxDisplay = document.querySelector('.chat-side__content-filter__age-second-value');
 
-        function applyFilters() {
-            const ageMin = parseInt(filterAgeMinInput.value);
-            const ageMax = parseInt(filterAgeMaxInput.value);
+    function applyFilters() {
+        const ageMin = parseInt(filterAgeMinInput.value);
+        const ageMax = parseInt(filterAgeMaxInput.value);
 
-            filteredUsers = allUsers.filter(user => {
-                let passes = true;
-                if (user.age < ageMin || user.age > ageMax) passes = false;
-                return passes;
-            });
-        }
+        filteredUsers = allUsers.filter(user => {
+            let passes = true;
+            if (user.age < ageMin || user.age > ageMax) passes = false;
+            return passes;
+        });
+    }
 
-        // Update display for range sliders
-        if (filterAgeMinInput && ageMinDisplay) {
-            filterAgeMinInput.addEventListener('input', (e) => {
-                ageMinDisplay.textContent = e.target.value;
-                if (parseInt(filterAgeMaxInput.value) < parseInt(e.target.value)) {
-                    filterAgeMaxInput.value = e.target.value;
-                    ageMaxDisplay.textContent = e.target.value;
-                }
-            });
-        }
-        if (filterAgeMaxInput && ageMaxDisplay) {
-            filterAgeMaxInput.addEventListener('input', (e) => {
+    // Update display for range sliders
+    if (filterAgeMinInput && ageMinDisplay) {
+        filterAgeMinInput.addEventListener('input', (e) => {
+            ageMinDisplay.textContent = e.target.value;
+            if (parseInt(filterAgeMaxInput.value) < parseInt(e.target.value)) {
+                filterAgeMaxInput.value = e.target.value;
                 ageMaxDisplay.textContent = e.target.value;
-                if (parseInt(filterAgeMinInput.value) > parseInt(e.target.value)) {
-                    filterAgeMinInput.value = e.target.value;
-                    ageMinDisplay.textContent = e.target.value;
-                }
-            });
-        }
+            }
+        });
+    }
+    if (filterAgeMaxInput && ageMaxDisplay) {
+        filterAgeMaxInput.addEventListener('input', (e) => {
+            ageMaxDisplay.textContent = e.target.value;
+            if (parseInt(filterAgeMinInput.value) > parseInt(e.target.value)) {
+                filterAgeMinInput.value = e.target.value;
+                ageMinDisplay.textContent = e.target.value;
+            }
+        });
+    }
     </script>
 
     <script>
-        // Avatar dropdown menu
-        const avatar = document.querySelector('.avatar');
-        const menu = document.getElementById('userMenu');
-        const items = document.querySelectorAll('.dropdown-item');
+    // Avatar dropdown menu
+    const avatar = document.querySelector('.avatar');
+    const menu = document.getElementById('userMenu');
+    const items = document.querySelectorAll('.dropdown-item');
 
-        avatar.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-        });
+    avatar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    });
 
-        document.addEventListener('click', () => {
+    document.addEventListener('click', () => {
+        menu.style.display = 'none';
+    });
+
+    menu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    items.forEach(item => {
+        item.addEventListener('click', () => {
             menu.style.display = 'none';
         });
-
-        menu.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                menu.style.display = 'none';
-            });
-        });
+    });
     </script>
     <script>
-        const cards = document.querySelectorAll('.card-container .card');
-        let currentIndex = 0;
+    const cards = document.querySelectorAll('.card-container .card');
+    let currentIndex = 0;
 
-        function showCard(index) {
-            cards.forEach((card, i) => {
-                card.style.display = (i === index) ? 'flex' : 'none';
-            });
-        }
-        showCard(currentIndex);
-
-        // Xử lý nút trong từng card
+    function showCard(index) {
         cards.forEach((card, i) => {
-            const userId = card.id.replace('profile-card-', '');
-            const dismissBtn = card.querySelector(`#dismiss-button-${userId}`);
-            const likeBtn = card.querySelector(`#like-button-${userId}`);
-            const undoBtn = card.querySelector(`#undo-button-${userId}`);
-            const profileBtn = card.querySelector(`#profile-button-${userId}`);
-            const profileInfo = card.querySelector(`#profile-info-${userId}`);
-
-            // Hiện/ẩn thông tin profile
-            if (profileBtn && profileInfo) {
-                profileBtn.addEventListener('click', () => {
-                    profileInfo.style.display = (profileInfo.style.display === 'none' || profileInfo.style.display === '') ? 'flex' : 'none';
-                });
-            }
-
-            // Like: gửi like và chuyển card tiếp theo
-            if (likeBtn) {
-                likeBtn.addEventListener('click', () => {
-                    fetch('like.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            },
-                            body: `likedUserId=${userId}`
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                alert('You liked this profile!');
-                                nextCard();
-                            } else {
-                                alert('Error: ' + data.message);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
-                });
-            }
-
-            // Dismiss: chuyển card tiếp theo
-            if (dismissBtn) {
-                dismissBtn.addEventListener('click', () => {
-                    nextCard();
-                });
-            }
-
-            // Undo: quay lại card trước đó
-            if (undoBtn) {
-                undoBtn.addEventListener('click', () => {
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                        showCard(currentIndex);
-                    }
-                });
-            }
+            card.style.display = (i === index) ? 'flex' : 'none';
         });
+    }
+    showCard(currentIndex);
 
-        function nextCard() {
-            if (currentIndex < cards.length - 1) {
-                currentIndex++;
-                showCard(currentIndex);
-            } else {
-                // Hết card, có thể hiện thông báo hoặc reload lại trang
-                cards.forEach(card => card.style.display = 'none');
-                const container = document.querySelector('.swipe-container');
-                if (container) {
-                    container.innerHTML = '<div class="no-results"><p>No more profiles.</p></div>';
+    // Xử lý nút trong từng card
+    cards.forEach((card, i) => {
+        const userId = card.id.replace('profile-card-', '');
+        const dismissBtn = card.querySelector(`#dismiss-button-${userId}`);
+        const likeBtn = card.querySelector(`#like-button-${userId}`);
+        const undoBtn = card.querySelector(`#undo-button-${userId}`);
+        const profileBtn = card.querySelector(`#profile-button-${userId}`);
+        const profileInfo = card.querySelector(`#profile-info-${userId}`);
+
+        // Hiện/ẩn thông tin profile
+        if (profileBtn && profileInfo) {
+            profileBtn.addEventListener('click', () => {
+                profileInfo.style.display = (profileInfo.style.display === 'none' || profileInfo.style
+                    .display === '') ? 'flex' : 'none';
+            });
+        }
+
+        // Like: gửi like và chuyển card tiếp theo
+        if (likeBtn) {
+            likeBtn.addEventListener('click', () => {
+                fetch('like.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: `likedUserId=${userId}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('You liked this profile!');
+                            nextCard();
+                        } else {
+                            alert('Error: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+        }
+
+        // Dismiss: chuyển card tiếp theo
+        if (dismissBtn) {
+            dismissBtn.addEventListener('click', () => {
+                nextCard();
+            });
+        }
+
+        // Undo: quay lại card trước đó
+        if (undoBtn) {
+            undoBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    showCard(currentIndex);
                 }
+            });
+        }
+    });
+
+    function nextCard() {
+        if (currentIndex < cards.length - 1) {
+            currentIndex++;
+            showCard(currentIndex);
+        } else {
+            // Hết card, có thể hiện thông báo hoặc reload lại trang
+            cards.forEach(card => card.style.display = 'none');
+            const container = document.querySelector('.swipe-container');
+            if (container) {
+                container.innerHTML = '<div class="no-results"><p>No more profiles.</p></div>';
             }
         }
+    }
     </script>
     <script>
-        document.querySelectorAll('.card').forEach(card => {
-            const images = card.querySelectorAll('.card-image');
-            const prevBtn = card.querySelector('.prev-img-btn');
-            const nextBtn = card.querySelector('.next-img-btn');
-            let current = 0;
+    document.querySelectorAll('.card').forEach(card => {
+        const images = card.querySelectorAll('.card-image');
+        const prevBtn = card.querySelector('.prev-img-btn');
+        const nextBtn = card.querySelector('.next-img-btn');
+        let current = 0;
 
-            function updateButtons() {
-                if (images.length <= 1) {
-                    prevBtn.style.display = 'none';
-                    nextBtn.style.display = 'none';
-                } else {
-                    prevBtn.style.display = current === 0 ? 'none' : 'inline-block';
-                    nextBtn.style.display = current === images.length - 1 ? 'none' : 'inline-block';
-                }
+        function updateButtons() {
+            if (images.length <= 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = current === 0 ? 'none' : 'inline-block';
+                nextBtn.style.display = current === images.length - 1 ? 'none' : 'inline-block';
             }
+        }
 
-            function showImage(idx) {
-                images.forEach((img, i) => {
-                    img.style.display = (i === idx) ? 'block' : 'none';
-                });
-                current = idx;
-                updateButtons();
-            }
+        function showImage(idx) {
+            images.forEach((img, i) => {
+                img.style.display = (i === idx) ? 'block' : 'none';
+            });
+            current = idx;
+            updateButtons();
+        }
 
-            if (prevBtn) {
-                prevBtn.addEventListener('click', () => {
-                    if (current > 0) showImage(current - 1);
-                });
-            }
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    if (current < images.length - 1) showImage(current + 1);
-                });
-            }
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (current > 0) showImage(current - 1);
+            });
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                if (current < images.length - 1) showImage(current + 1);
+            });
+        }
 
-            showImage(0);
-        });
+        showImage(0);
+    });
     </script>
 </body>
 

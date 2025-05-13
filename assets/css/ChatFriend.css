@@ -160,6 +160,45 @@ body .logo-desc img:first-child {
     cursor: pointer;
 }
 
+.users-list {
+    width: 100%;
+}
+
+.user {
+    display: flex;
+    width: 200px;
+    margin-top: 8px;
+    padding: 6px 5px;
+    align-items: center;
+}
+
+.user:hover {
+    cursor: pointer;
+    background-color: var(--grey-bgcolor);
+    border-radius: 10px;
+    transition: all 0.3s ease-out;
+}
+
+.details {
+    margin-left: 12px;
+}
+
+.details span {
+    display: inline-block;
+    font-weight: 600;
+    font-size:2rem;
+    overflow: hidden;
+    dislay: --webkit-box;
+    --webkit-line-clamp: 1;
+    --webkit-box-orient: vertical;
+}
+
+.details p {
+    padding-top: 8px;
+    overflow: hidden;
+    font-size:1.8rem;
+}
+
 /* Main Container */
 .textchat_container {
     display: flex;
