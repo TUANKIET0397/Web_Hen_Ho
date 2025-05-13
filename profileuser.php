@@ -103,7 +103,7 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                         <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="#!">About</a>
+                        <a href="./index.php">About</a>
                     </li>
                     <li>
                         <a href="support.php">Support</a>
@@ -136,21 +136,21 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                         <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="listfriend">
                             <div class="listfriend__name">Lee tuna kaai</div>
-                            <div class="listfriend__seen">seen. 2 hours</div>
+                            <!-- <div class="listfriend__seen">seen. 2 hours</div> -->
                         </div>
                     </button>
                     <button class="chat-side__content-friends">
                         <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="listfriend">
                             <div class="listfriend__name">John Smith</div>
-                            <div class="listfriend__seen">seen. 5 hours</div>
+                            <!-- <div class="listfriend__seen">seen. 5 hours</div> -->
                         </div>
                     </button>
                     <button class="chat-side__content-friends">
                         <div class="chatavt button avatar" style="background-image: url(./assets/img/avt.jpg);"></div>
                         <div class="listfriend">
                             <div class="listfriend__name">Jane Doe</div>
-                            <div class="listfriend__seen">seen. 1 day</div>
+                            <!-- <div class="listfriend__seen">seen. 1 day</div> -->
                         </div>
                     </button>
                 </div>

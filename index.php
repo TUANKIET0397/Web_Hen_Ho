@@ -180,7 +180,7 @@
                         <h3 class="title-slay">Stay in the loop</h3>
                         <p class="desc-slay">Join our Gmail Server to get updates before anyone else.</p>
                     </div>
-                    <div class="btn btn-act-slay">Contact us</div>
+                    <div class="btn btn-act-slay"> <a href="mailto:minhthuann2604@gmail.com" class="textContact">Contact Us</a></div>
                 </div>
             </div>
         </div>
