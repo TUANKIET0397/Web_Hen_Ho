@@ -36,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Xử lý các hình ảnh khác
    // Xử lý các hình ảnh khác
 for ($i = 1; $i <= 6; $i++) {
     $inputName = "image{$i}";
