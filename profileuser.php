@@ -443,6 +443,7 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                     nextInput.disabled = false;
                 }
             };
+            
 
             // Function to display messages
             const showMessage = (message, type = 'success') => {
