@@ -4,6 +4,7 @@ include_once "./assets/php/config.php";
 $logged_in = false;
 if (isset($_SESSION['user_id'])) {
     $logged_in = true;
+    echo "<script>console.log('Logged in: " . ($logged_in ? 'yes' : 'no') . "');</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -70,14 +71,14 @@ if (isset($_SESSION['user_id'])) {
                 <!-- action to call -->
                 <div class="action">
                     <?php if (!$logged_in) { ?>
-                        <a href="login.php" class="action-btn btn" id="loginBtn">Login</a>
+                    <a href="login.php" class="action-btn btn" id="loginBtn">Login</a>
                     <?php }
                     if ($logged_in) { ?>
-                        <a href="#!" class="button avatar" <?php echo $user['ID']= $_SESSION['user_id']; ?> style="background-image: url(./assets/img/avt.jpg);"></a>
-                        <div class="menu-nav-avt" id="userMenu">
-                            <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
-                            <a href="./assets/php/logout.php" class="dropdown-item">Đăng xuất</a>
-                        </div>
+                    <a href="#!" class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></a>
+                    <div class="menu-nav-avt" id="userMenu">
+                        <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
+                        <a href="#!" class="dropdown-item">Đăng xuất</a>
+                    </div>
                     <?php } ?>
                 </div>
             </div>
@@ -96,7 +97,8 @@ if (isset($_SESSION['user_id'])) {
                     <p class="sub-title">We respect your privacy and make sure your data stays safe. You control how
                         much you share and with whom. Your comfort and safety are our top priorities.</p>
                     <div class="btn-cta">
-                        <div class="cta3 btn"><a href="./SwipeProfile.php" style='color: #FFFFFF'>Swipe right if you like</a> </div>
+                        <div class="cta3 btn"><a href="./SwipeProfile.php" style='color: #FFFFFF'>Swipe right if you
+                                like</a> </div>
                     </div>
                 </div>
                 <div class="hero-img">
@@ -192,7 +194,8 @@ if (isset($_SESSION['user_id'])) {
                         <h3 class="title-slay">Stay in the loop</h3>
                         <p class="desc-slay">Join our Gmail Server to get updates before anyone else.</p>
                     </div>
-                    <div class="btn btn-act-slay"> <a href="mailto:minhthuann2604@gmail.com" class="textContact">Contact Us</a></div>
+                    <div class="btn btn-act-slay"> <a href="mailto:minhthuann2604@gmail.com" class="textContact">Contact
+                            Us</a></div>
                 </div>
             </div>
         </div>
@@ -240,48 +243,48 @@ if (isset($_SESSION['user_id'])) {
     </footer>
 
     <script>
-        //nut avt 
-        const loginBtn = document.getElementById('loginBtn');
-        const avatar = document.querySelector('.avatar');
-        const menu = document.getElementById('userMenu');
-        const items = document.querySelectorAll('.dropdown-item');
+    //nut avt 
+    const loginBtn = document.getElementById('loginBtn');
+    const avatar = document.querySelector('.avatar');
+    const menu = document.getElementById('userMenu');
+    const items = document.querySelectorAll('.dropdown-item');
 
-        if (avatar) {
-            avatar.addEventListener('click', (e) => {
-                e.stopPropagation();
-                menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-            });
-        }
+    if (avatar) {
+        avatar.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+        });
+    }
 
-        document.addEventListener('click', () => {
+    document.addEventListener('click', () => {
+        menu.style.display = 'none';
+    });
+
+    menu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    items.forEach(item => {
+        item.addEventListener('click', () => {
             menu.style.display = 'none';
         });
+    });
 
-        menu.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                menu.style.display = 'none';
-            });
-        });
+    loginBtn.addEventListener('click', () => {
+        loginBtn.style.display = 'none'; // Ẩn nút Login
+        avatar.style.display = 'block'; // Hiện avatar
+    });
 
-        loginBtn.addEventListener('click', () => {
-            loginBtn.style.display = 'none'; // Ẩn nút Login
-            avatar.style.display = 'block'; // Hiện avatar
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+    });
     </script>
 
 </html>

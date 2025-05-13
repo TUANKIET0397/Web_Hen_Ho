@@ -46,7 +46,6 @@ a {
 .btn-icon {
     aspect-ratio: 1 / 1;
     height: 40px;
-    width: 40px;
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 3px;
@@ -56,7 +55,6 @@ a {
     background-size: 60%;
     cursor: pointer;
 }
-
 
 
 /* ========= Aside ========= */
@@ -207,7 +205,6 @@ a {
     gap: 10px;
     flex: 1;
     margin-top: 24px;
-    overflow-y: auto;
 }
 
 .content-body__user {

@@ -58,7 +58,6 @@ a {
     height: 87px;
     display: flex;
     align-items: center;
-    JUSTIFY-CONTENT: SPACE-AROUND;
 }
 
 body .logo {

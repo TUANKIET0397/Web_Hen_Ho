@@ -104,6 +104,7 @@ include_once "./assets/php/config.php";
                 <div class="input-password">
                     <input type="password" id="pass" name="pass" required />
                     <button type="button" class="toggle-password">
+                        <i class="fas fa-eye-slash"></i> Hide
                     </button>
                 </div>
                 <p class="note">Use 8 or more characters with a mix of letters, numbers & symbols</p>
@@ -123,7 +124,6 @@ include_once "./assets/php/config.php";
     </div>
 
     <script type="text/javascript" src="./assets/js/login.js"></script>
-    <script type="text/javascript" src="./assets/js/pass-show-hide.js"></script>
 
 </body>
 

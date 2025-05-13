@@ -240,7 +240,8 @@ a {
 .profile-name {
     font-size: 3.2rem;
     font-weight: 500;
-    margin: -94px 7px 5px -635px;
+    margin-bottom: 22px;
+    margin-top: -22px;
 }
 
 .profile-status {
@@ -283,8 +284,7 @@ a {
     padding: 24px;
     margin: 30px auto;
     width: 100%;
-    max-width: 1030px;
-    /* để tránh vượt quá giới hạn nếu có padding */
+    max-width: 1030px; /* để tránh vượt quá giới hạn nếu có padding */
     box-sizing: border-box;
 }
 

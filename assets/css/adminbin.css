@@ -231,6 +231,7 @@ a {
 
 .bin__fourthcontent,
 .content-body__restore {
+    width: 8%;
     display: flex;
     justify-content: center;
 }
@@ -250,7 +251,6 @@ a {
     flex-direction: column;
     gap: 10px;
     flex: 1;
-    overflow-y: auto;
 }
 
 .content-body__user{

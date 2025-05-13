@@ -1,13 +1,9 @@
 <?php
 // Kết nối cơ sở dữ liệu
 $link = @mysqli_connect("localhost", "root", "", "dating_app") or die("Không thể kết nối cơ sở dữ liệu");
-session_start();
-if (!isset($_SESSION['user_id'])) {
-header("Location: login.php");
-}
 
 // Lấy thông tin người dùng (giả sử UserID = 1)
-$userID = isset($_GET['id']) ? intval($_GET['id']) : 1; 
+$userID = 1;
 $sql = "SELECT * FROM userinformation WHERE ID = $userID";
 $result = mysqli_query($link, $sql);
 $user = mysqli_fetch_assoc($result);
@@ -133,10 +129,9 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
             <div class="main-content">
                 <div class="fixe-box_profile">
                     <div class="profile-header">
-                        <div class="user-avt-profile" id="avatarPreview" style="background-image: url('<?php echo !empty($user['Avt']) ? $user['Avt'] : './assets/img/default-avatar.jpg'; ?>');"></div>
+                        <div class="user-avt-profile" id="avatarPreview" style="background-image: url('<?php echo !empty($user['Avt']) ? $user['Avt'] : './assets/img/default-avatar.jpg'; ?>');"></div> 
                         <h2 class="profile-name"><?php echo $user['UserName']; ?></h2>
                         <h3 class="profile-location"><?php echo $user['Age']; ?> years old, <?php echo $user['UserAddress']; ?></h3>
-
                     </div>
 
                     <form name="profile" id="profile" action="save_profile.php" method="post" enctype="multipart/form-data" autocomplete="off">
@@ -148,7 +143,7 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                                         <?php $index = $row * 3 + $col; ?>
                                         <td class="imguser">
                                             <div class="image-preview" id="imagePreview<?php echo $index + 1; ?>"
-                                                style="background-image: url('<?php echo isset($images[$index]) ? $images[$index] : './assets/img/default-image.jpg'; ?>');">
+                                                    style="background-image: url('<?php echo isset($images[$index]) ? $images[$index] : './assets/img/default-image.jpg'; ?>');">
                                             </div>
                                         </td>
                                     <?php endfor; ?>
@@ -290,10 +285,10 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                             </tr>
                             <tr>
                                 <td colspan="3">
-                                    <!-- <div class="profile-actions">
+                                    <div class="profile-actions">
                                         <button type="submit" class="action-button save-button" disabled>Save</button>
                                         <button type="reset" class="action-button cancel-button" disabled>Cancel</button>
-                                    </div> -->
+                                    </div>
                                 </td>
                             </tr>
                         </table>
@@ -347,7 +342,7 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                 </div>
         </div>
         </section> -->
-            </main>
+        </main>
 </body>
 
 </html>

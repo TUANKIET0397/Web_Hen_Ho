@@ -1,9 +1,5 @@
 <?php 
-include_once "./assets/php/config.php";
-session_start();
-if (!isset($_SESSION['user_id'])) {
-header("Location: login.php");
-}
+  include_once "./assets/php/config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,12 +126,10 @@ header("Location: login.php");
                                     }
                                 ?></div>
                             </div>
-                            <form action="./assets/php/admin_pro_us.php" method="GET" class="content-body__restore">
-                                <input type="hidden" name="profile-us" value="<?php echo htmlspecialchars($a['ID']);?>">
-                                <input type="submit" value= "" name="" class="profile-button btn-icon"
-                                    style="display: block; margin-right: 48px; background-color: blue; background-image: url(./assets/img/user_white.png)">
-                            </form>
-                           
+                            <div class="content-body__restore">
+                                <a href="user-profile-2-admin-page.php" class="profile-button btn-icon"
+                                style="display: block; margin-right: 48px; background-color: blue; background-image: url(./assets/img/user_white.png)"></a>
+                            </div>
                         </div>
                     <?php }?>
                 </div>

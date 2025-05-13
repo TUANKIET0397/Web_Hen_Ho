@@ -1,9 +1,5 @@
 <?php 
-    include_once "./assets/php/config.php";
-    session_start();
-    if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    }
+  include_once "./assets/php/config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,19 +68,6 @@
         $tt_rp = "select * from userreport order by ID desc limit 1";
         $kq_tt_rp = mysqli_query($conn,$tt_rp);
         $total_rp = mysqli_fetch_array($kq_tt_rp);
-
-        $tt_rp = "select * from userreport";
-        $kq_tt_rp = mysqli_query($conn,$tt_rp);
-        $total_rp = 0;
-        
-        $rp_count_tt=[];
-        while($sub_ttrp = mysqli_fetch_array($kq_tt_rp))
-        {
-            $rp_count_tt[] = $sub_ttrp;
-        }
-        foreach($rp_count_tt as $rp) {
-            $total_rp +=1;
-        }   
 
         // To do list
         $dolist = "select * from todolist";
@@ -168,7 +151,7 @@
                             <img src="./assets/img/incr.svg" alt="Total report" class="item-img">
                             <div class="item-wrap">
                                 <p class="desc">Total report</p>
-                                <p class="total"> <?php echo $total_rp ?></p>
+                                <p class="total"> <?php echo $total_rp["ID"] ?></p>
                             </div>
                         </div>
                     </div>
