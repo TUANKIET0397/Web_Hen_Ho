@@ -1,27 +1,104 @@
 <?php 
 include_once "./assets/php/config.php";
+session_start();
+if (!isset($_SESSION['user_id'])) {
+header("Location: login.php");
+}
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_deleted'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_deleted'])) {
     $user_deleted = mysqli_real_escape_string($conn, $_POST['user_deleted']);
 
+    // Kiểm tra user tồn tại trong bảng userinformation
     $sql = mysqli_query($conn, "SELECT * FROM userinformation WHERE ID = '{$user_deleted}'");
     if (mysqli_num_rows($sql) > 0) {
         $row = mysqli_fetch_assoc($sql);
         $user_id = $row["ID"];
 
-        // Thêm vào bảng bin
+        // Kiểm tra xem user đã có trong bảng bin chưa
         $check_bin = mysqli_query($conn, "SELECT * FROM bin WHERE UserID = '{$user_id}'");
-                if (mysqli_num_rows($check_bin) == 0) {
-                    // Nếu chưa tồn tại, thêm vào bảng bin
-                    $insert_query = mysqli_query($conn, "INSERT INTO bin(UserID) VALUES ({$user_id})");
-                }
-            }    
+        if (mysqli_num_rows($check_bin) == 0) {
+            $user_name = mysqli_real_escape_string($conn, $row["UserName"]);
+            $birth_date = mysqli_real_escape_string($conn, $row["BirthDate"]);
+            $email = mysqli_real_escape_string($conn, $row["Email"]);
+            $password_Hash = mysqli_real_escape_string($conn, $row["passwordHash"]);
+            $phone_number = mysqli_real_escape_string($conn, $row["PhoneNumber"]);
+            $age = mysqli_real_escape_string($conn, $row["Age"]);
+            $gender = mysqli_real_escape_string($conn, $row["Gender"]);
+            $insert_query = mysqli_query(
+                $conn, 
+                "INSERT INTO bin(UserID, UserName, BirthDate, Email, passwordHash, PhoneNumber) VALUES ('{$user_id}', '{$user_name}', '{$birth_date}', '{$email}', '{$password_Hash}', '{$phone_number}')"
+            );
+        }
 
-    // Chuyển hướng sau khi xử lý thành công
+        // Xóa bản ghi user từ bảng userinformation (không ảnh hưởng đến bảng bin)
+        $delete_related = mysqli_query($conn, "DELETE FROM userreport WHERE ReportedID = '{$user_deleted}'");
+        $delete_query = mysqli_query($conn, "DELETE FROM userinformation WHERE ID = '{$user_deleted}'");
+
+        if ($delete_query) {
+            echo "User deleted successfully, moved to bin.";
+        } else {
+            echo "Error deleting user.";
+        }
+    } else {
+        echo "User not found.";
+    }
+
+    // Chuyển hướng về trang adminbin sau khi xử lý
     header("Location: adminbin.php");
     exit();
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_restore'])) {
+    $user_restore = mysqli_real_escape_string($conn, $_POST['user_restore']);
+
+    // Kiểm tra user tồn tại trong bảng userinformation
+    $sql2 = mysqli_query($conn, "SELECT * FROM Bin WHERE UserID = '{$user_restore}'");
+    if (mysqli_num_rows($sql2) > 0) {
+        $row2 = mysqli_fetch_assoc($sql2);
+        $user_id2 = $row2["UserID"];
+
+        // Kiểm tra xem user đã có trong bảng bin chưa
+        $check_userinfo = mysqli_query($conn, "SELECT * FROM userinformation WHERE ID = '{$user_id2}'");
+        if (mysqli_num_rows($check_userinfo) == 0) {
+            $user_name2 = mysqli_real_escape_string($conn, $row2["UserName"]);
+            $birth_date2 = mysqli_real_escape_string($conn, $row2["BirthDate"]);
+            $email2 = mysqli_real_escape_string($conn, $row2["Email"]);
+            $password_Hash2 = mysqli_real_escape_string($conn, $row2["PasswordHash"]);
+            $phone_number2 = mysqli_real_escape_string($conn, $row2["PhoneNumber"]);
+            $age2 = mysqli_real_escape_string($conn, $row["Age"]);
+            $gender2 = mysqli_real_escape_string($conn, $row["Gender"]);
+            $insert_query = mysqli_query(
+                $conn, 
+                "INSERT INTO userinformation (ID, UserName, BirthDate, Email, PhoneNumber, Age, Gender) VALUES ('{$user_id2}', '{$user_name2}', '{$birth_date2}', '{$email2}', '{$phone_number2}', '{$age}', '{$gender}')"
+            );
+            $insert_query2 = mysqli_query(
+                $conn, 
+                "INSERT INTO account (UserID, Email, PasswordHash) VALUES ('{$user_id2}', '{$email2}', '{$password_Hash2}')"
+            );
+        }
+
+        // Xóa bản ghi user từ bảng bin
+        $delete_query2 = mysqli_query($conn, "DELETE FROM bin WHERE UserID = '{$user_restore}'");
+
+        if ($delete_query2) {
+            echo "User restored successfully, moved to userinformation.";
+        } else {
+            echo "Error restoring user.";
+        }
+    } else {
+        echo "User not found.";
+    }
+
+    // Chuyển hướng về trang adminbin sau khi xử lý
+    header("Location: adminprofileuser.php");
+    exit();
+}
+
+
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -104,11 +181,7 @@ include_once "./assets/php/config.php";
                 </div>
                 <div class="bin__content-box">
                     <?php 
-                        $bin_un="
-                        select userinformation.ID,userinformation.UserName,userinformation.BirthDate 
-                        from bin 
-                        inner join userinformation ON bin.UserID = userinformation.ID
-                        ";
+                        $bin_un = "SELECT * FROM bin";
                         $bin_date ="select DATE(NOW()) AS currentDate";
                         $kq1 = mysqli_query($conn,$bin_un);
                         $kq2 = mysqli_query($conn,$bin_date);
@@ -136,16 +209,16 @@ include_once "./assets/php/config.php";
                                     </div>
                                 
                                     <div class="content-body__user-N-BD">
-                                        <div class="content-body__user-Name"><?php echo $a["UserName"]?></div>
-                                        <div class="content-body__user-BirthDate"><?php echo $a["BirthDate"]?></div>
-                                    </div>
+                                        <div class="content-body__user-Name"><?php echo $a["UserName"];?></div>
+                                        <div class="content-body__user-BirthDate"><?php echo $a["BirthDate"];?></div>
+                                     </div>
                                 </div>
                                 <div class="content-body__followers">
                                     <div class="followers-num">
                                         <?php
                                             $fl_count = 0;                                               
                                             foreach($listfollowers as $b) {
-                                            if ($b["FollowerID"] == $a["ID"] ) {
+                                            if ($b["FollowerID"] == $a["UserID"] ) {
                                                 $fl_count += 1;
                                             } 
                                         }
@@ -160,8 +233,11 @@ include_once "./assets/php/config.php";
                                 <div class="content-body__restore">
                                     <a href="user-profile-2-admin-page.php" class="profile-button btn-icon"
                                         style="background-color: blue; background-image: url(./assets/img/user_white.png)"></a>
-                                    <a href="#!" class="chat-button btn-icon"
-                                        style="background-color: yellow; background-image: url(./assets/img/restore.png);"></a>
+                                    <form action="adminbin.php" method="POST">
+                                        <input type="hidden" name="user_restore" value="<?php echo htmlspecialchars($a['UserID']);?>">
+                                        <input type="submit" value="" class="chat-button btn-icon"
+                                            style="background-color: yellow; background-image: url(./assets/img/restore.png);">
+                                    </form>
                                 </div>
                             </div>
                     <?php } ?>

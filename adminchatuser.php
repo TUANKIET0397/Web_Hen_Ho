@@ -1,3 +1,11 @@
+<?php 
+include_once "config.php"; // Kết nối CSDL
+session_start();
+if (!isset($_SESSION['user_id'])) {
+header("Location: login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

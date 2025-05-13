@@ -1,3 +1,11 @@
+<?php
+session_start();
+include_once "./assets/php/config.php";
+$logged_in = false;
+if (isset($_SESSION['user_id'])) {
+    $logged_in = true;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +51,6 @@
                         <img src="./assets/img/logo-desc1.svg" alt="Flirt Zone">
                         <img src="./assets/img/logo-desc2.svg" alt="Flirt Zone">
                     </div>
-
                 </div>
                 <!-- nav -->
                 <ul>
@@ -51,10 +58,10 @@
                         <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="./index.php">About</a>
+                        <a href="#about-section">About</a>
                     </li>
                     <li>
-                        <a href="./support.php">Support</a>
+                        <a href="support.php">Support</a>
                     </li>
                     <li>
                         <a href="SwipeProfile.php" style="color: red;">Swipe</a>
@@ -62,7 +69,16 @@
                 </ul>
                 <!-- action to call -->
                 <div class="action">
-                    <a href="login.php" class="action-btn btn">Login</a>
+                    <?php if (!$logged_in) { ?>
+                        <a href="login.php" class="action-btn btn" id="loginBtn">Login</a>
+                    <?php }
+                    if ($logged_in) { ?>
+                        <a href="#!" class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></a>
+                        <div class="menu-nav-avt" id="userMenu">
+                            <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
+                            <a href="#!" class="dropdown-item">Đăng xuất</a>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -142,6 +158,51 @@
             <p class="content-footer">All rights reserved. BeFriendsWith LTD.</p>
         </div>
     </footer>
+
+     <script>
+        //nut avt 
+        const loginBtn = document.getElementById('loginBtn');
+        const avatar = document.querySelector('.avatar');
+        const menu = document.getElementById('userMenu');
+        const items = document.querySelectorAll('.dropdown-item');
+
+        if (avatar) {
+            avatar.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+            });
+        }
+
+        document.addEventListener('click', () => {
+            menu.style.display = 'none';
+        });
+
+        menu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                menu.style.display = 'none';
+            });
+        });
+
+        loginBtn.addEventListener('click', () => {
+            loginBtn.style.display = 'none'; // Ẩn nút Login
+            avatar.style.display = 'block'; // Hiện avatar
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 
 </body>
 
