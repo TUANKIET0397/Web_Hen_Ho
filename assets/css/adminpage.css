@@ -145,6 +145,7 @@ a {
 /* ==== main-access ==== */
 .wrap .main {
     display: flex;
+    min-height: 100vh;
 }
 
 .wrap .main-left .access {
@@ -271,6 +272,12 @@ a {
     margin-bottom: 18px;
 }
 
+.add-value2 {
+    display: flex;
+    margin-top: 12px;
+    margin-bottom: 18px;
+}
+
 .main-right .add-value .check {
     width: 19px;
     height: 19px;
@@ -278,6 +285,14 @@ a {
 }
 
 .main-right .add-value .write {
+    margin: 0 0 0 7px;
+    padding-right: 124px;
+    background: #D9D9D9;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+.main-right .add-value2 .write {
     margin: 0 0 0 7px;
     padding-right: 124px;
     background: #D9D9D9;
@@ -293,7 +308,8 @@ a {
     margin: 0;
 }
 
-.main-right .add-value:last-child .write{
+
+.main-right .add-value2:last-child .write{
     cursor: pointer;
     display: block;
     padding: 0 146px 0 150px;

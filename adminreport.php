@@ -223,8 +223,11 @@
                                 style="background-color: #00FF4F; background-image: url(./assets/img/chat-button.png);"></a>
                             <a href="user-profile-2-admin-page.php" class="profile-button btn-icon"
                                 style="background-color: blue; background-image: url(./assets/img/user_white.png)"></a>
-                            <a href="adminbin.php" class="bin-button btn-icon"
-                                style="background-color: red; background-image: url(./assets/img/bin.png);"></a>
+                            <form action="adminbin.php" method="POST">
+                                <input type="hidden" name="user_deleted" value="<?php echo htmlspecialchars($q['ID']);?>">
+                                <input type="submit" value="" class="bin-button btn-icon"
+                                    style="background-color: red; background-image: url(./assets/img/bin.png);">
+                            </form>
                         </div>
                     </div>
                     <?php }?>
