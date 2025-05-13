@@ -53,7 +53,7 @@
                         <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="#!">About</a>
+                        <a href="./index.php">About</a>
                     </li>
                     <li>
                         <a href="support.php">Support</a>
@@ -83,17 +83,17 @@
                 <p class="form-subtitle">Already have an account? <a href="#">Log in</a></p>
                 <form action="#" method="post" enctype="multipart/form-data" autocomplete="off">
                     <label for="username">User name</label>
-                    <input type="text" name="username" id="username" required />
+                    <input type="text" name="username" id="username" placeholder="Full name" required />
 
                     <label for="email">Email address</label>
-                    <input type="email" name="email" id="email" required
+                    <input type="email" placeholder="@gmail.com" name="email" id="email" required
                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
 
                     <label for="telphone">PhoneNumber</label>
                     <input type="tel" name="telphone" id="telphone" required />
 
                     <label for="gender">Gender</label>
-                    <input type="text" name="gender" id="gender" required />
+                    <input placeholder="Men or Women or Other" type="text" name="gender" id="gender" required />
 
                     <label for="birthday">Birthday</label>
                     <input type="date" name="birthday" id="birthday" />

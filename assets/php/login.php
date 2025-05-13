@@ -9,10 +9,10 @@
         if(mysqli_num_rows($sql) > 0){
             $row = mysqli_fetch_assoc($sql);
             if(password_verify($password, $row['PasswordHash'])) {
-                $status = "1";
+                $status = 1;
                 $sql2 = mysqli_query($conn, "UPDATE account SET IsActive = '{$status}' WHERE UserID = {$row['UserID']}");
                 if($sql2){
-                    $_SESSION['UserID'] = $row['UserID'];
+                    $_SESSION['user_id'] = $row['UserID'];
                     echo "success";
                 }else{
                     echo "Lỗi SQL: " . mysqli_error($conn);

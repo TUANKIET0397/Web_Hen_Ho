@@ -44,18 +44,18 @@
         $us_rpt = 
         "
             select distinct userinformation.UserName, userinformation.ID
-            from reports
-            inner join userinformation ON reports.UserReported = userinformation.id
+            from userreport
+            inner join userinformation ON userreport.ReportedID = userinformation.id
         ";
         $ad_rp = 
         "
-            select reports.UserReported,
+            select userreport.ReportedID,
             case 
-                when count(*) >= 2 then max(reports.ReportTime)  
-                else min(reports.ReportTime)
+                when count(*) >= 2 then max(userreport.ReportDate)  
+                else min(userreport.ReportDate)
             end as LatestReportDate
-            from reports
-            group by reports.UserReported
+            from userreport
+            group by userreport.ReportedID
         ";
         $kq_us_rpt = mysqli_query($conn,$us_rpt);
         $kq_ad_rp = mysqli_query($conn,$ad_rp);
@@ -65,9 +65,13 @@
             $listreports[] = $sub_rp;
         }
         // Total Report
-        $tt_rp = "select * from reports order by ID desc limit 1";
+        $tt_rp = "select * from userreport order by ID desc limit 1";
         $kq_tt_rp = mysqli_query($conn,$tt_rp);
         $total_rp = mysqli_fetch_array($kq_tt_rp);
+
+        // To do list
+        $dolist = "select * from todolist";
+        $kq_dolist = mysqli_query($conn,$dolist);
     ?>
 
     
@@ -179,7 +183,7 @@
                                     <span class="day-re">
                                         <?php 
                                             foreach($listreports as $rp) {
-                                                if ($rp["UserReported"] == $q["ID"]) {
+                                                if ($rp["ReportedID"] == $q["ID"]) {
                                                     echo $rp["LatestReportDate"];
                                                 } 
                                             }
@@ -190,26 +194,24 @@
                         </div>
                     </div>
                 </div>
+                
+                
 
                 <!-- content right -->
                 <div class="main-right">
                     <div class="to-do-list">
                         <div class="wrap-list">
                             <h4 class="list">To do List</h4>
-                            <div class="add-value">
+                            <?php 
+                            while($td = mysqli_fetch_array($kq_dolist)) {?>
+                            <form class="add-value" method="POST">
+                                <input type="hidden" name="todolist_id" value="<?php echo $td["ID"]; ?>">
                                 <input type="checkbox" class="check">
-                                <input type="text" placeholder="Add..." class="write">
-                            </div>
-                            <div class="add-value">
-                                <input type="checkbox" class="check">
-                                <input type="text" placeholder="Add..." class="write">
-                            </div>
-                            <div class="add-value">
-                                <input type="checkbox" class="check">
-                                <input type="text" placeholder="Add..." class="write">
-                            </div>
-                            <div class="add-value">
-                                <button class="write">+</button>
+                                <input type="text" name="todolist" value="<?php echo $td["Remind"]; ?>" class="write" disabled> 
+                            </form>
+                            <?php }?>
+                            <div class="add-value2">
+                                <button class="write" id="add-task">+</button>
                             </div>
                         </div>
                     </div>
@@ -250,6 +252,64 @@
         </main>
     </div>
     </div>
+
+    
+    <script>
+    // Xóa To Do List 
+    document.querySelectorAll('.check').forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                const form = checkbox.closest('form');
+                const todolistId = form.querySelector('input[name="todolist_id"]').value;
+
+                // Gửi Ajax để xóa
+                fetch('./assets/php/delete_todo.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'todolist_id=' + encodeURIComponent(todolistId)
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data); // in thông báo server trả về (tuỳ chọn)
+                    // Xóa form khỏi DOM
+                    form.remove();
+                })
+                .catch(error => console.error('Lỗi:', error));
+            }
+        });
+    });
+    // Thêm form để nhập TD List
+    document.getElementById("add-task").addEventListener("click", function () {
+    // Tạo phần tử form mới
+    const form = document.createElement("form");
+    form.className = "add-value";
+    form.method = "POST";
+    form.action = "./assets/php/add_todo.php";
+
+    // Tạo checkbox
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "check";
+
+    // Tạo ô nhập văn bản
+    const input = document.createElement("input");
+    input.type = "text";
+    input.name = "todolist";
+    input.placeholder = "Add...";
+    input.className = "write";
+
+    // Thêm các phần tử vào form
+    form.appendChild(checkbox);
+    form.appendChild(input);
+
+    // Thêm form vào danh sách trước nút "+"
+    const addButtonDiv = document.querySelector(".add-value2");
+    addButtonDiv.parentElement.insertBefore(form, addButtonDiv);
+    input.focus();
+});
+</script>
 
 </body>
 

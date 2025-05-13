@@ -1,5 +1,26 @@
 <?php 
-  include_once "./assets/php/config.php";
+include_once "./assets/php/config.php";
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_deleted'])) {
+    $user_deleted = mysqli_real_escape_string($conn, $_POST['user_deleted']);
+
+    $sql = mysqli_query($conn, "SELECT * FROM userinformation WHERE ID = '{$user_deleted}'");
+    if (mysqli_num_rows($sql) > 0) {
+        $row = mysqli_fetch_assoc($sql);
+        $user_id = $row["ID"];
+
+        // Thêm vào bảng bin
+        $check_bin = mysqli_query($conn, "SELECT * FROM bin WHERE UserID = '{$user_id}'");
+                if (mysqli_num_rows($check_bin) == 0) {
+                    // Nếu chưa tồn tại, thêm vào bảng bin
+                    $insert_query = mysqli_query($conn, "INSERT INTO bin(UserID) VALUES ({$user_id})");
+                }
+            }    
+
+    // Chuyển hướng sau khi xử lý thành công
+    header("Location: adminbin.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +104,11 @@
                 </div>
                 <div class="bin__content-box">
                     <?php 
-                        $bin_un="select ID,UserName,BirthDate from userinformation";
+                        $bin_un="
+                        select userinformation.ID,userinformation.UserName,userinformation.BirthDate 
+                        from bin 
+                        inner join userinformation ON bin.UserID = userinformation.ID
+                        ";
                         $bin_date ="select DATE(NOW()) AS currentDate";
                         $kq1 = mysqli_query($conn,$bin_un);
                         $kq2 = mysqli_query($conn,$bin_date);

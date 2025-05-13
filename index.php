@@ -1,3 +1,12 @@
+<?php
+session_start();
+include_once "./assets/php/config.php";
+$logged_in = false;
+if (isset($_SESSION['user_id'])) {
+    $logged_in = true;
+    echo "<script>console.log('Logged in: " . ($logged_in ? 'yes' : 'no') . "');</script>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +59,7 @@
                         <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="#!">About</a>
+                        <a href="#about-section">About</a>
                     </li>
                     <li>
                         <a href="support.php">Support</a>
@@ -61,12 +70,16 @@
                 </ul>
                 <!-- action to call -->
                 <div class="action">
-                    <a href="login.php" class="action-btn btn" id="loginBtn">Login</a>
-                    <a href="#!" class="avatar" style="background-image: url(/assets/img/avt.jpg);"></a>
-                    <div class="menu-nav-avt" id="userMenu">
-                        <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
-                        <a href="#!" class="dropdown-item">Đăng xuất</a>
-                    </div>
+                    <?php if (!$logged_in) { ?>
+                        <a href="login.php" class="action-btn btn" id="loginBtn">Login</a>
+                    <?php }
+                    if ($logged_in) { ?>
+                        <a href="#!" class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></a>
+                        <div class="menu-nav-avt" id="userMenu">
+                            <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
+                            <a href="#!" class="dropdown-item">Đăng xuất</a>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -84,9 +97,7 @@
                     <p class="sub-title">We respect your privacy and make sure your data stays safe. You control how
                         much you share and with whom. Your comfort and safety are our top priorities.</p>
                     <div class="btn-cta">
-                        <!-- <div class="cta1 btn">Start with new chat</div>
-                        <div class="cta2 btn">Start with video chat</div> Xóa 2 nút-->
-                        <div class="cta3 btn">Swipe right if you like</div>
+                        <div class="cta3 btn"><a href="./SwipeProfile.php" style='color: #FFFFFF'>Swipe right if you like</a> </div>
                     </div>
                 </div>
                 <div class="hero-img">
@@ -98,7 +109,7 @@
         </div>
 
         <!-- Intoduce -->
-        <div class="intro">
+        <div class="intro" id="about-section">
             <div class="main-content">
                 <div class="btn btn-cta">Reach people like you</div>
                 <h2 class="title">Say Hello to Spontaneous Moments</h2>
@@ -182,7 +193,7 @@
                         <h3 class="title-slay">Stay in the loop</h3>
                         <p class="desc-slay">Join our Gmail Server to get updates before anyone else.</p>
                     </div>
-                    <div class="btn btn-act-slay">Contact us</div>
+                    <div class="btn btn-act-slay"> <a href="mailto:minhthuann2604@gmail.com" class="textContact">Contact Us</a></div>
                 </div>
             </div>
         </div>
@@ -230,35 +241,48 @@
     </footer>
 
     <script>
-    //nut avt 
-    const loginBtn = document.getElementById('loginBtn');
-    const avatar = document.querySelector('.avatar');
-    const menu = document.getElementById('userMenu');
-    const items = document.querySelectorAll('.dropdown-item');
+        //nut avt 
+        const loginBtn = document.getElementById('loginBtn');
+        const avatar = document.querySelector('.avatar');
+        const menu = document.getElementById('userMenu');
+        const items = document.querySelectorAll('.dropdown-item');
 
-    avatar.addEventListener('click', (e) => {
-        e.stopPropagation();
-        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-    });
+        if (avatar) {
+            avatar.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+            });
+        }
 
-    document.addEventListener('click', () => {
-        menu.style.display = 'none';
-    });
-
-    menu.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-    items.forEach(item => {
-        item.addEventListener('click', () => {
+        document.addEventListener('click', () => {
             menu.style.display = 'none';
         });
-    });
 
-    loginBtn.addEventListener('click', () => {
-        loginBtn.style.display = 'none'; // Ẩn nút Login
-        avatar.style.display = 'block'; // Hiện avatar
-    });
+        menu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                menu.style.display = 'none';
+            });
+        });
+
+        loginBtn.addEventListener('click', () => {
+            loginBtn.style.display = 'none'; // Ẩn nút Login
+            avatar.style.display = 'block'; // Hiện avatar
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
-</body>
 
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +30,7 @@
     <meta name="msapplication-TileImage" content="./assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 </head>
+
 <body>
     <!-- Header -->
     <header class="header fixed-header">
@@ -41,6 +43,7 @@
                         <img src="./assets/img/logo-desc1.svg" alt="Flirt Zone">
                         <img src="./assets/img/logo-desc2.svg" alt="Flirt Zone">
                     </div>
+
                 </div>
                 <!-- nav -->
                 <ul>
@@ -48,10 +51,10 @@
                         <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="#!">About</a>
+                        <a href="./index.php">About</a>
                     </li>
                     <li>
-                        <a href="#!">Support</a>
+                        <a href="./support.php">Support</a>
                     </li>
                     <li>
                         <a href="SwipeProfile.php" style="color: red;">Swipe</a>
@@ -80,7 +83,8 @@
             <img src="./assets/img/mail.svg" alt="" class="support__main-img">
             <div class="support__main-title">Email Support</div>
             <div class="support__main-text">Prefer email? Reach out to our support team directly.</div>
-            <button class="support__main-btn">Email Us</button>
+            <!-- <button class="support__main-btn">Email Us</button> -->
+            <a href="mailto:minhthuann2604@gmail.com" class="support__main-btn">Email Us</a>
         </div>
         <div class="support__footer">
             <div class="support__footer-title">Connect With Us</div>
@@ -98,8 +102,8 @@
         </div>
     </div>
 
-     <!-- Footer -->
-     <footer class="footer">
+    <!-- Footer -->
+    <footer class="footer">
         <div class="body">
             <!-- logo -->
             <div class="logo">
@@ -140,4 +144,5 @@
     </footer>
 
 </body>
+
 </html>

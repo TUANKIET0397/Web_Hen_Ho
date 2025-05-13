@@ -1,5 +1,5 @@
-<?php 
-  include_once "./assets/php/config.php";
+<?php
+include_once "./assets/php/config.php";
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +57,7 @@
                         <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="#!">About</a>
+                        <a href="./index.php">About</a>
                     </li>
                     <li>
                         <a href="support.php">Support</a>
@@ -115,7 +115,7 @@
                 </div>
 
                 <!-- submit -->
-                <button type="submit" class="btn-submit">Create an account</button>
+                <button type="submit" class="btn-submit">Log in</button>
                 <p class="form-subnote">Don't have an account? <a href="signup.php">Sign up</a></p>
             </form>
         </section>

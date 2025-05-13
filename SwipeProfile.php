@@ -171,6 +171,10 @@ if ($result && mysqli_num_rows($result) > 0) {
                                 while ($a = mysqli_fetch_array($kq_us_look)) { ?>
                                     <option value=" <?php echo $a["ID"] ?>"> <?php echo $a["LookingName"] ?></option>
                                 <?php } ?>
+                                <?php
+                                while ($a = mysqli_fetch_array($kq_us_look)) { ?>
+                                    <option value=" <?php echo $a["ID"] ?>"> <?php echo $a["LookingName"] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="chat-side__content-filter__location">
@@ -187,6 +191,10 @@ if ($result && mysqli_num_rows($result) > 0) {
                             <div class="chat-side__content-filter__hobby-title">Hobby:</div>
                             <select name="hobby" id="hobby">
                                 <option style="text-align: center;" value="">------ Selection Hobby ------</option>
+                                <?php
+                                while ($c = mysqli_fetch_array($kq_us_hobby)) { ?>
+                                    <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["HobbyName"] ?></option>
+                                <?php } ?>
                                 <?php
                                 while ($c = mysqli_fetch_array($kq_us_hobby)) { ?>
                                     <option value=" <?php echo $c["ID"] ?>"> <?php echo $c["HobbyName"] ?></option>

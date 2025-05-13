@@ -1,45 +1,133 @@
 /* reset */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
 }
+
 body {
-	line-height: 1;
+    line-height: 1;
 }
-ol, ul {
-	list-style: none;
+
+ol,
+ul {
+    list-style: none;
 }
-blockquote, q {
-	quotes: none;
+
+blockquote,
+q {
+    quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
 }
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
+
 :root {
     --grey-color: #d9d9d9;
     --logobg-color: #d0d0d0;
@@ -63,8 +151,7 @@ html {
     box-sizing: border-box;
 }
 
-button 
-{
+button {
     font-family: 'Heebo', sans-serif;
 }
 
@@ -103,6 +190,7 @@ a {
     background: #D9D9D9;
     opacity: 0.98;
 }
+
 .header .body {
     height: 87px;
     display: flex;
@@ -143,7 +231,7 @@ body .logo-desc img:first-child {
 }
 
 .header .body ul a:hover {
-    text-decoration: underline ;
+    text-decoration: underline;
 }
 
 .header .action {
@@ -174,30 +262,30 @@ body .logo-desc img:first-child {
 }
 
 /* Body */
-.support__header{
+.support__header {
     height: 450px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background:  linear-gradient(to right, #b24bcf, #4f66cf);
+    background: linear-gradient(to right, #b24bcf, #4f66cf);
     margin-bottom: 150px;
 }
 
-.support__header-title{
+.support__header-title {
     color: var(--white-color);
     font-size: 8rem;
     line-height: 12rem;
 }
 
-.support__header-text{
+.support__header-text {
     color: var(--white-color);
     font-size: 3rem;
     line-height: 12rem;
 }
 
 
-.support__main{
+.support__main {
     background-color: #f2bdff;
     width: 80%;
     display: flex;
@@ -209,22 +297,23 @@ body .logo-desc img:first-child {
     border-radius: 15px;
 }
 
-.support__main-img{
+.support__main-img {
     width: 100px;
     height: 100px;
 }
-.support__main-title{
+
+.support__main-title {
     font-size: 4rem;
     font-weight: 700;
     color: #6f2085;
 }
 
-.support__main-text{
+.support__main-text {
     font-size: 3rem;
     color: #89399f;
 }
 
-.support__main-btn{
+.support__main-btn {
     outline: none;
     border: none;
     background-color: #8b28a7;
@@ -235,26 +324,32 @@ body .logo-desc img:first-child {
     font-size: 2.5rem;
     font-weight: 600;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.support__footer{
+
+
+
+.support__footer {
     text-align: center;
     margin-top: 100px
 }
 
-.support__footer-title{
+.support__footer-title {
     font-size: 5rem;
     font-weight: 700;
     color: #4d2180;
 }
 
-.support__footer-link-box{
+.support__footer-link-box {
     display: flex;
     justify-content: center;
     margin-top: 24px;
 }
 
-.support__footer-link{
+.support__footer-link {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -303,7 +398,7 @@ body .logo-desc img:first-child {
 .footer .body ul a {
     font-size: 2.4rem;
     font-weight: 600;
-    color: #000; 
+    color: #000;
 }
 
 .footer .body .icon-contact {
