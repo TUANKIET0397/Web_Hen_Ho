@@ -132,6 +132,7 @@ if ($resultLooking && mysqli_num_rows($resultLooking) > 0) {
                         <div class="user-avt-profile" id="avatarPreview" style="background-image: url('<?php echo !empty($user['Avt']) ? $user['Avt'] : './assets/img/default-avatar.jpg'; ?>');"></div>
                         <h2 class="profile-name"><?php echo $user['UserName']; ?></h2>
                         <h3 class="profile-location"><?php echo $user['Age']; ?> years old, <?php echo $user['UserAddress']; ?></h3>
+
                     </div>
 
                     <form name="profile" id="profile" action="save_profile.php" method="post" enctype="multipart/form-data" autocomplete="off">
