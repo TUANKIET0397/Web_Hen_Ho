@@ -1,10 +1,15 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+}
+
 // Kết nối cơ sở dữ liệu
 $link = mysqli_connect("localhost", "root", "", "dating_app") or die("Không thể kết nối cơ sở dữ liệu");
 
 // Kiểm tra nếu form được submit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $userID = 1; // ID người dùng hiện tại (cần thay đổi theo session)
+    $userID = $_SESSION['user_id']; // ID người dùng hiện tại (cần thay đổi theo session)
     $uploadDir = 'uploads/'; // Thư mục lưu file
     // Kiểm tra nếu thư mục uploads không tồn tại thì tạo mới
     if (!is_dir($uploadDir)) {
@@ -18,23 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = mysqli_real_escape_string($link, $_POST['email']);
     $phone = mysqli_real_escape_string($link, $_POST['phone']);
     $story = mysqli_real_escape_string($link, $_POST['story']);
-
-
-    // Kiểm tra nếu có file avatar được upload
-    if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = 'uploads/'; // Thư mục lưu file
-        $fileName = uniqid() . '_' . basename($_FILES['avatar']['name']); // Tạo tên file duy nhất
-        $uploadFile = $uploadDir . $fileName;
-
-        // Di chuyển file vào thư mục uploads
-        if (move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadFile)) {
-            $avatarURL = $uploadFile; // Lưu đường dẫn tương đối
-
-            // Lưu đường dẫn vào cơ sở dữ liệu
-            $sqlAvatar = "UPDATE userinformation SET Avt = '$avatarURL' WHERE ID = $userID";
-            mysqli_query($link, $sqlAvatar);
-        }
-    }
 
    // Xử lý các hình ảnh khác
 for ($i = 1; $i <= 6; $i++) {
