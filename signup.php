@@ -93,7 +93,7 @@
                     <input type="tel" name="telphone" id="telphone" required />
 
                     <label for="Gender">Gender</label>
-                    <select name="gender" id="gender"required> 
+                    <select name="gender" id="gender" required>
                         <option value="">Others</option>
                         <option value="Men">Men</option>
                         <option value="Women">Women</option>
@@ -108,7 +108,6 @@
                     <div class="input-password">
                         <input type="password" name="pass" id="pass" required />
                         <button type="button" class="toggle-password">
-                            <i class="fas fa-eye-slash"></i>
                         </button>
                     </div>
 
@@ -117,7 +116,6 @@
                     <div class="input-password">
                         <input type="password" name="confirmPass" id="confirmPass" required />
                         <button type="button" class="toggle-password">
-                            <i class="fas fa-eye-slash"></i>
                         </button>
                     </div>
 
@@ -158,6 +156,8 @@
     </main>
 
     <script type="text/javascript" src="./assets/js/signup.js"></script>
+    <script type="text/javascript" src="./assets/js/pass-show-hide.js"></script>
+
 </body>
 
 </html>
