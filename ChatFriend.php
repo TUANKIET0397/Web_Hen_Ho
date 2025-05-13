@@ -63,7 +63,7 @@
                     <a href="#!" class="button avatar" style="background-image: url(./assets/img/avt.jpg);"></a>
                     <div class="menu-nav-avt" id="userMenu">
                         <a href="Profileuser.php" class="dropdown-item">Xem trang cá nhân</a>
-                        <a href="#!" class="dropdown-item">Đăng xuất</a>
+                        <a href="./assets/php/logout.php" class="dropdown-item">Đăng xuất</a>
                     </div>
                 </div>
             </div>
